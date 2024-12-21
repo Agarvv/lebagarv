@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using lebagarv.Core.Application.Services.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +13,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+builder.Logging.AddConsole();
+
+Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+    options.UseMySql(
+        Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"),
+        ServerVersion.AutoDetect(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"))
+    ));
 
 var app = builder.Build();
 

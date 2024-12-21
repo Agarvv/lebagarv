@@ -17,16 +17,16 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public IActionResult Register([FromBody] RegisterRequest request)
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
-        _authService.RegisterAsync(request);
+        await _authService.RegisterAsync(request);
         return Ok("Registered Sucesfully!!!");
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequest request)
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        var token = _authService.LoginAsync(request);
-        return Ok(token);
+       var token = await _authService.LoginAsync(request);
+       return Ok(token);
     }
 }

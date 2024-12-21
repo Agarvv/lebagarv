@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lebagarv")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eeb837ab6c5971ea858f8ad8b809f76c41755d7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49443099ffb9969e25e3fe7d284b596262aa97c0")]
 [assembly: System.Reflection.AssemblyProductAttribute("lebagarv")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lebagarv")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

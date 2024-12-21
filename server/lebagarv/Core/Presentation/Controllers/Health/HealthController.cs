@@ -5,13 +5,13 @@ using MySql.Data.MySqlClient;
 using System;
 
 [ApiController]
-[Route("api/lebagarv/health")]
+[Route("/health")]
 public class HealthController : ControllerBase 
 {
    
    [HttpGet]
     public IActionResult Health() 
     {
-       return Ok("OK");
+       return Ok("FINE");
     }
 }

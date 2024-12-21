@@ -8,11 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
-
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -23,12 +24,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting(); 
+app.UseAuthorization();
 
-app.MapGet("/health", async () =>
-{
-    return "OK";
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+app.MapControllers(); 
 
 app.Run();

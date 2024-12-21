@@ -1,0 +1,62 @@
+.header {
+    background: var(--app_theme);
+    color: var(--app_theme_font);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hUser {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .hUserImg { 
+    position: relative;
+  }
+  
+  .hUserImg img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+  }
+  
+  .hUserStatus {
+    width: 12px;
+    height: 12px;
+    background: green;
+    border-radius: 50%;
+    position: absolute;
+    top: 45px;
+    left: 40px;
+  }
+  
+  .hUserData {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hUsername {
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--app_theme_font);
+  }
+  
+  .hBio {
+    font-size: 14px;
+    color: #ccc;
+  }
+  
+  .hActions {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    font-size: 22px;
+    color: #555;
+    position: relative;
+  }
+  

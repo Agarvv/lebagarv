@@ -1,0 +1,21 @@
+.submitButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6e7a96;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .submitButton:hover {
+    background-color: #576a80; 
+  }
+  
+  .submitButton i {
+    color: var(--app_theme_font); 
+    font-size: 18px; 
+  }
+  

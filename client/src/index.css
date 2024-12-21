@@ -1,0 +1,29 @@
+:root {
+    --success: #4CAF50; 
+    --danger: #F44336;
+    --app_theme: #2b2d42;
+    --app_theme_font: #edf2f4; 
+    --gray_accent: #3c3f58;
+}
+
+body {
+    background-color: var(--app_theme);
+    color: var(--app_theme_font);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
+}
+
+.formError {
+    color: var(--danger);
+    padding: 5px;
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+ */ 

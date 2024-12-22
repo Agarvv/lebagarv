@@ -2,10 +2,10 @@
 
 
 
-export const getUserContacts = async () => {
+export const getUserContacts = async (data: any) => {
     return 
 }
 
-export const getUserContacts = async () => {
+export const createChat = async (data: any) => {
     return 
 }

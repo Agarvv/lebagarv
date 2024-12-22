@@ -1,0 +1,13 @@
+.profilePicture {
+ width: 80px;
+ height: 80px;
+ border-radius: 50%;
+ object-fit: cover;
+ position: absolute;
+ top: 210px;
+ left: 10px;
+}
+
+input[type="file"] {
+    display: none; 
+}

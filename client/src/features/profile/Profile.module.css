@@ -1,0 +1,58 @@
+.user-banner {
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+
+/* .user-banner .banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */ 
+
+.banner .user-img {
+  position: relative;
+ 
+}
+
+
+/* .user-img img {
+ width: 80px;
+ height: 80px;
+ border-radius: 50%;
+ object-fit: cover;
+ position: absolute;
+ top: 210px;
+ left: 10px;
+} */ 
+
+.user-details{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.user-details .user-actions {
+  display: flex;
+  gap: 15px;
+  color: white;
+}
+
+.user-data {
+  color: white;
+  padding-top: 30px;
+}
+
+/*.user-data .ud-username {
+  font-size: 25px;
+  font-weight: bold;
+} */ 
+
+.user-data .ud-status {
+  color: green;
+}
+
+.ac-des {
+  color: white;
+}

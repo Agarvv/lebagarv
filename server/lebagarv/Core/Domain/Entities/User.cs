@@ -2,11 +2,20 @@ namespace lebagarv.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+using System.ComponentModel.DataAnnotations;
+
 public class User 
 {
-    public int id { get; set; }
-    public string username { get; set; }
-    public string profilePicture { get; set; } // stored as url 
-    public string email { get; set; }
-    public string password { get; set; }
+    public int Id { get; set; }
+
+    [Required]
+    public string Username { get; set; }
+
+    public string? ProfilePicture { get; set; } 
+
+    [Required]
+    public string Email { get; set; }
+
+    [Required]
+    public string Password { get; set; }
 }

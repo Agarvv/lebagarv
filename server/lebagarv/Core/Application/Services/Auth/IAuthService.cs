@@ -6,4 +6,5 @@ public interface IAuthService
 {
     Task<bool> RegisterAsync(RegisterRequest request);
     Task<string> LoginAsync(LoginRequest request); 
+    Task<bool> isEmailTakenAsync(string email);
 }

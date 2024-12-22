@@ -1,0 +1,36 @@
+
+namespace lebagarv.Presentation.Controllers.Auth;
+
+using Microsoft.AspNetCore.Mvc;
+using lebagarv.Core.Presentation.Models.Requests.Auth;
+using lebagarv.Core.Application.Services.Auth;
+
+[ApiController]
+[Route("api/lebagarv/auth")]
+public class AuthController : ControllerBase
+{
+    private readonly IAuthService _authService; 
+
+    public AuthController(IAuthService authService)
+    {
+        _authService = authService; 
+    }
+
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+    {
+        if(await _authService.emailExists(request.Email)) {
+            return BadRequest("Email Is Taken");
+        }
+        
+        await _authService.RegisterAsync(request);
+        return Ok("Registered Sucesfully!!!");
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    {
+       var token = await _authService.LoginAsync(request);
+       return Ok(token);
+    }
+}

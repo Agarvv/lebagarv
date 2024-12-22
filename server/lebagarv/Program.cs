@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using lebagarv.Core.Application.Services.Auth;
-using lebagarv.Infrastructure;
+using lebagarv.Infrastructure.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddSingleton<JwtService>(new JwtService("secret"));
 
 builder.Logging.AddConsole();
 

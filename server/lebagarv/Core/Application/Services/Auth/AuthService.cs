@@ -37,7 +37,7 @@ public class AuthService : IAuthService
     return Task.FromResult("JWT TOKEN"); 
     }
 
-    public async Task<bool> emailExists(string email)
+    public async Task<bool> EmailExists(string email)
     {
       return await _context.Users.AnyAsync(u => u.Email == email);
     } 

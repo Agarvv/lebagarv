@@ -19,7 +19,7 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
-        if(await _authService.emailExists(request.Email)) {
+        if(await _authService.EmailExists(request.Email)) {
             return BadRequest("Email Is Taken");
         }
         

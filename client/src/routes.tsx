@@ -22,9 +22,9 @@ export const AppRoutes = () => (
       <Route 
         path='/' 
         element={ 
-          <ProtectedRoute> 
+         { /* <ProtectedRoute> */ }
             <HomePage /> 
-          </ProtectedRoute> 
+         {/* </ProtectedRoute> */}
         }
       /> 
       

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import styles from './CarFormStepOne.module.css'
-import sharedCarFormStyles from '../CarForm';
+import sharedCarFormStyles from '../CarForm.module.css';
 
 const CarFormStepOne = () => {
     const { register } = useFormContext();

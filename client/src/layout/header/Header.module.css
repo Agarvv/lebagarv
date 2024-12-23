@@ -52,7 +52,7 @@
 }
 
 @media(max-width: 600px) {
-  header .h-user {
+  .header .hUser {
     display: none;
   }
 }

@@ -56,12 +56,15 @@ const CarForm = () => {
 
                     <div className={styles.nextPrev}>
                         {step > 0 && (
-                            <button type="button" onClick={prevStep}>
-                                <i className="fa fa-arrow-left"></i> Prev
+                            <button 
+                            type="button"
+                            onClick={prevStep}>
+                            className={npPrev}
+                            <i className="fa fa-arrow-left"></i> Prev
                             </button>
                         )}
                         {step < 2 ? (
-                            <button type="button" onClick={nextStep} className="np-next">
+                            <button type="button" onClick={nextStep} className={npNext}>
                                 Next <i className="fa fa-arrow-right"></i>
                             </button>
                         ) : (

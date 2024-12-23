@@ -50,3 +50,9 @@
 .huMessages i, .huFavs i, .huCreate i {
   margin-bottom: 5px;
 }
+
+@media(max-width: 600px) {
+  header .h-user {
+    display: none;
+  }
+}

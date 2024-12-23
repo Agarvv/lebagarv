@@ -1,5 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
+import styles from './CarFormStepTwo.module.css'
+import sharedCarFormStyles from '../CarForm.module.css';
 
 const CarFormStepTwo = () => {
     const { register } = useFormContext();
@@ -7,24 +9,24 @@ const CarFormStepTwo = () => {
     return (
         <div className="second-step">
             <div className="st-h">
-                <p className="step-p">We need More Info About Your Car</p>
+                <p className={sharedCarFormStyles.stepP}>We need More Info About Your Car</p>
             </div>
-            <div className="fields">
-                <div className="field">
+            <div className={sharedCarFormStyles.fields}>
+                <div className={sharedCarFormStyles.field}>
                     <label>Car Brand</label>
                     <select {...register('carBrand')}>
                         <option value="BEMVE">BEMVE</option>
                     </select>
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>Car Model</label>
                     <input type="text" {...register('carModel')} placeholder="Model" />
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>Car Year</label>
                     <input type="number" {...register('carYear')} placeholder="Year" />
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>Fuel Type</label>
                     <select {...register('fuelType')}>
                         <option value="Diesel">Diesel</option>
@@ -35,14 +37,14 @@ const CarFormStepTwo = () => {
                         <option value="Other..">Other..</option>
                     </select>
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>Gearbox</label>
                     <select {...register('gearbox')}>
                         <option value="Auto">Auto</option>
                         <option value="Manual">Manual</option>
                     </select>
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>Bodywork</label>
                     <select {...register('bodywork')}>
                         <option value="sedan">Sedan</option>
@@ -59,23 +61,23 @@ const CarFormStepTwo = () => {
                         <option value="limousine">Limousine</option>
                     </select>
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>How Many Doors?</label>
                     <input type="number" {...register('doors')} placeholder="Doors" />
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>How Many Seats?</label>
                     <input type="number" {...register('seats')} placeholder="Seats" />
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>Horsepower</label>
                     <input type="number" {...register('horsepower')} placeholder="Horsepower" />
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>How Many KM?</label>
                     <input type="number" {...register('kilometers')} placeholder="KM" />
                 </div>
-                <div className="field">
+                <div className={sharedCarFormStyles.field}>
                     <label>Car Color</label>
                     <select {...register('color')}>
                         <option value="white">White</option>

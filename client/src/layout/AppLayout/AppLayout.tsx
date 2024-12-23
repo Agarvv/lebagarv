@@ -5,7 +5,7 @@ import ResponsiveFooter from 'src/layout/responsive-footer/ResponsiveFooter';
 
 interface AppLayoutProps {
   children: React.ReactNode,
-  footer: boolean 
+  footer?: boolean 
 }
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children, footer }) => {

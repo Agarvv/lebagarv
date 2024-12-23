@@ -5,6 +5,8 @@ import CarFormStepOne from './car-form-step-one/CarFormStepOne';
 import CarFormStepTwo from './car-form-step-two/CarFormStepTwo';
 import CarFormStepThree from './car-form-step-three/CarFormStepThree';
 
+import styles from './CarForm.module.css'
+
 const CarForm = () => {
     const [step, setStep] = useState(0);
     const methods = useForm();
@@ -26,8 +28,12 @@ const CarForm = () => {
     };
 
     return (
+        <header className={styles.header}>
+          <h1>Sell A Car</h1>
+       </header>
+
         <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className="car-form">
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.carForm}>
                 <div className="form">
                     {step === 0 && (
                         <div className="firstStep">
@@ -47,7 +53,7 @@ const CarForm = () => {
                         </div>
                     )}
 
-                    <div className="next-prev">
+                    <div className={styles.nextPrev}>
                         {step > 0 && (
                             <button type="button" onClick={prevStep}>
                                 <i className="fa fa-arrow-left"></i> Prev
@@ -58,7 +64,7 @@ const CarForm = () => {
                                 Next <i className="fa fa-arrow-right"></i>
                             </button>
                         ) : (
-                            <button type="submit" className="submit-btn">
+                            <button type="submit" className={styles.submitBtn}>
                                 Submit
                             </button>
                         )}

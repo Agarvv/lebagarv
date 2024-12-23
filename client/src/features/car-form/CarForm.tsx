@@ -59,12 +59,12 @@ const CarForm = () => {
                             <button 
                             type="button"
                             onClick={prevStep}>
-                            className={npPrev}
+                            className={styles.npPrev}
                             <i className="fa fa-arrow-left"></i> Prev
                             </button>
                         )}
                         {step < 2 ? (
-                            <button type="button" onClick={nextStep} className={npNext}>
+                            <button type="button" onClick={nextStep} className={styles.npNext}>
                                 Next <i className="fa fa-arrow-right"></i>
                             </button>
                         ) : (

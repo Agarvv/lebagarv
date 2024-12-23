@@ -4,16 +4,12 @@
     --logo: #239120; 
 }
 
-body {
-    background-color: var(--app_theme);
-    color: var(--app_theme_font);
-}
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .formError {

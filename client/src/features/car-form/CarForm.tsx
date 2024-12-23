@@ -21,8 +21,8 @@ const CarForm = () => {
         setStep((prev) => prev - 1);
     };
 
-    const onSubmit = (data) => {
-        console.log('Formulario enviado:', data);
+    const onSubmit = (data: any) => {
+        console.log('La multi ani!!!', data);
     };
 
     return (

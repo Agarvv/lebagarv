@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Car.module.css';
-import logo from 'src/logo';  
+import logo from 'src/logo.svg';
 
 const Car = () => {
   return (

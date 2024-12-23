@@ -1,36 +1,62 @@
-
-namespace lebagarv.Presentation.Controllers.Auth;
-
-using Microsoft.AspNetCore.Mvc;
-using lebagarv.Core.Presentation.Models.Requests.Auth;
-using lebagarv.Core.Application.Services.Auth;
-
-[ApiController]
-[Route("api/lebagarv/auth")]
-public class AuthController : ControllerBase
+namespace lebagarv.Presentation.Controllers.Auth
 {
-    private readonly IAuthService _authService; 
+    using Microsoft.AspNetCore.Mvc;
+    using lebagarv.Presentation.Models.Requests.Auth;
+    using lebagarv.Core.Application.Services.Auth;
+    using lebagarv.Infrastructure.Persistence.Repositories;
+    using lebagarv.Infrastructure.Repositories.User;
 
-    public AuthController(IAuthService authService)
+    [ApiController]
+    [Route("api/lebagarv/auth")]
+    public class AuthController : ControllerBase
     {
-        _authService = authService; 
-    }
+        private readonly IAuthService _authService; 
+        private readonly IUserRepository _userRepository; 
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
-    {
-        if(await _authService.EmailExists(request.Email)) {
-            return BadRequest("Email Is Taken");
+        public AuthController(IAuthService authService, IUserRepository userRepository)
+        {
+            _authService = authService; 
+            _userRepository = userRepository; 
         }
-        
-        await _authService.RegisterAsync(request);
-        return Ok("Registered Sucesfully!!!");
-    }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request)
-    {
-       var token = await _authService.LoginAsync(request);
-       return Ok(token);
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        {
+            if (await _userRepository.ExistsByEmailAsync(request.Email)) 
+            {
+                return BadRequest("Email Is Taken");
+            }
+
+            await _authService.RegisterAsync(request);
+            return Ok("Registered Successfully!!!");
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        {
+            var user = await _userRepository.FindByEmailAsync(request.Email);
+            if (user == null) 
+            {
+                return BadRequest("Wrong Credentials."); 
+            }
+
+            var token = await _authService.LoginAsync(request, user);
+            if (token != null)
+            {
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddHours(1)
+                }; 
+                Response.Cookies.Append("jwt", token, cookieOptions);
+                return Ok(token);
+            } 
+            else 
+            {
+                return BadRequest("Wrong Password.");
+            }
+        }
     }
 }

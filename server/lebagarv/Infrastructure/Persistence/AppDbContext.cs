@@ -1,7 +1,7 @@
 using lebagarv.Core.Domain.Entities; 
 using Microsoft.EntityFrameworkCore;
 
-namespace lebagarv.Core.Infrastructure.Persistence;
+namespace lebagarv.Infrastructure.Persistence;
 
 public class AppDbContext : DbContext
 {

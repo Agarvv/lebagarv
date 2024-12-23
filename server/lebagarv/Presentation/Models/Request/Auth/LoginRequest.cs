@@ -1,4 +1,4 @@
-namespace lebagarv.Core.Presentation.Models.Requests.Auth; 
+namespace lebagarv.Presentation.Models.Requests.Auth; 
 
 using System.ComponentModel.DataAnnotations;
 

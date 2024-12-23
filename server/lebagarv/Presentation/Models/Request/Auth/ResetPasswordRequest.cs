@@ -2,14 +2,10 @@ namespace lebagarv.Presentation.Models.Requests.Auth;
 
 using System.ComponentModel.DataAnnotations;
 
-public class RegisterRequest 
-{   
-    [Required]
-    public string Username { get; set; }
-
+public class ResetPasswordRequest 
+{  
     [Required, EmailAddress]
     public string Email { get; set; }
-
-    [Required, MinLength(6)]
-    public string Password { get; set; }
+    [Required]
+    public string ResetToken { get; set; }
 }

@@ -1,44 +1,63 @@
-namespace lebagarv.Core.Application.Services.Auth; 
-
-using lebagarv.Core.Presentation.Models.Requests.Auth; 
-using Microsoft.AspNetCore.Identity; 
-using lebagarv.Core.Infrastructure.Persistence;
-using lebagarv.Core.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-
-public class AuthService : IAuthService 
+namespace lebagarv.Core.Application.Services.Auth
 {
-    private readonly AppDbContext _context; 
-    private readonly PasswordHasher<User> _passwordHasher;
+    using lebagarv.Presentation.Models.Requests.Auth;
+    using Microsoft.AspNetCore.Identity;
+    using lebagarv.Infrastructure.Persistence;
+    using lebagarv.Core.Domain.Entities;
+    using lebagarv.Infrastructure.Security;
+    using lebagarv.Infrastructure.Persistence.Repositories;
 
-    public AuthService(AppDbContext context) 
+    public class AuthService : IAuthService
     {
-        _context = context;
-        _passwordHasher = new PasswordHasher<User>();
-    }
+        private readonly IUserRepository _userRepository;
+        private readonly PasswordHasher<User> _passwordHasher;
+        private readonly JwtService _jwtService;
 
-    public async Task<bool> RegisterAsync(RegisterRequest request) 
-    {
-        var user = new User
+        public AuthService(JwtService jwtService, IUserRepository userRepository)
         {
-           Username=request.Username,
-           Email=request.Email
-        };
+            _passwordHasher = new PasswordHasher<User>();
+            _jwtService = jwtService;
+            _userRepository = userRepository;
+        }
 
-        user.Password = _passwordHasher.HashPassword(user, request.Password); 
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
-        
-        return true;
+        public async Task<bool> RegisterAsync(RegisterRequest request)
+        {
+            var user = new User
+            {
+                Username = request.Username,
+                Email = request.Email
+            };
+
+            user.Password = _passwordHasher.HashPassword(user, request.Password);
+            await _userRepository.AddAsync(user);
+
+            return true;
+        }
+
+        public Task<string?> LoginAsync(LoginRequest request, User user)
+        {
+            if (PasswordMatch(user, request.Password))
+            {
+                var token = _jwtService.GenerateJwtToken(user.Id, user.Username, user.Email);
+                return Task.FromResult<string?>(token);
+            }
+            return Task.FromResult<string?>(null);
+        }
+
+        public async Task<bool> SendResetPasswordEmailAsync(string email)
+        {
+            return true;
+        }
+
+        public async Task<bool> ResetPasswordAsync(ResetPasswordRequest request)
+        {
+            return true;
+        }
+
+        public bool PasswordMatch(User user, string rawPassword)
+        {
+            var result = _passwordHasher.VerifyHashedPassword(user, user.Password, rawPassword);
+            return result == PasswordVerificationResult.Success;
+        }
     }
-
-    public Task<string> LoginAsync(LoginRequest request)
-    {
-    return Task.FromResult("JWT TOKEN"); 
-    }
-
-    public async Task<bool> EmailExists(string email)
-    {
-      return await _context.Users.AnyAsync(u => u.Email == email);
-    } 
 }

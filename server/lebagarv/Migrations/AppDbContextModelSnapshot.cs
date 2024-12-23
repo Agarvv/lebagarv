@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using lebagarv.Core.Infrastructure.Persistence;
+using lebagarv.Infrastructure.Persistence;
 
 #nullable disable
 

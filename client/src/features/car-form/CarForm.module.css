@@ -48,7 +48,7 @@
 .field input, select, textarea {
   width: 100%;
   height: 45px;
-  border: 1px solid var(--input-border);
+  border: 1px solid gray;
   border-radius: var(--border-radius);
   background-color: var(--input-bg);
   padding: 10px;

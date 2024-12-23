@@ -61,13 +61,13 @@
   box-shadow: 0 0 4px rgba(35, 145, 32, 0.4);
 }
 
-.next-prev {
+.nextPrev {
   margin-top: 20px;
   display: flex;
   gap: 10px;
 }
 
-.npNext, .npPrev {
+.npNext, .npPrev { 
   flex: 1;
   height: 45px;
   border: none;

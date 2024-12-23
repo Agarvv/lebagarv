@@ -18,6 +18,14 @@
   animation: fadeIn 0.5s ease-in-out;
 }
 
+.fsH {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--app_theme);
+  font-weight: bold;
+  text-align: center;
+}
+
 .stepP {
   font-size: 18px;
   font-weight: bold;
@@ -53,16 +61,17 @@
   box-shadow: 0 0 4px rgba(35, 145, 32, 0.4);
 }
 
-.nextPrev {
+.next-prev {
   margin-top: 20px;
   display: flex;
   gap: 10px;
 }
 
-.nextPrev .np-next, .np-prev {
+.np-next, .np-prev {
   flex: 1;
   height: 45px;
   border: none;
+  border-radius: var(--border-radius);
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;

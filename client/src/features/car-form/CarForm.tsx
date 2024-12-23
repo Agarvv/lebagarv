@@ -28,6 +28,7 @@ const CarForm = () => {
     };
 
     return (
+        <> 
         <header className={styles.header}>
           <h1>Sell A Car</h1>
        </header>
@@ -72,6 +73,7 @@ const CarForm = () => {
                 </div>
             </form>
         </FormProvider>
+      </> 
     );
 };
 

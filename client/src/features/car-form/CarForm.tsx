@@ -58,8 +58,10 @@ const CarForm = () => {
                         {step > 0 && (
                             <button 
                             type="button"
-                            onClick={prevStep}>
+                            onClick={prevStep}
                             className={styles.npPrev}
+                            >
+                
                             <i className="fa fa-arrow-left"></i> Prev
                             </button>
                         )}

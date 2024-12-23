@@ -13,9 +13,11 @@ const CarLists = () => {
       <>
         {carList.map(carList => (
           <span>{ carList }</span> 
+          <div key={car}> 
           <CarList
           brand={carList}
           /> 
+          </div> 
         ))}
       </> 
     )

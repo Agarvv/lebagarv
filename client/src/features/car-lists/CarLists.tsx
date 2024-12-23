@@ -15,7 +15,7 @@ const CarLists = () => {
         <div key={car} className={styles.carItem}>
           <span>{car}</span> 
           <CarList
-            brand={car}
+            
           /> 
         </div>
       ))}

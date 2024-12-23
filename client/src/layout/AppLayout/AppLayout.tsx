@@ -1,24 +1,18 @@
 import React from 'react';
 import Header from 'src/layout/header/Header';
-import ContactsAside from 'src/layout/contacts-aside/ContactsAside';
 import styles from './AppLayout.module.css';
 
 interface AppLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode,
+  footer: boolean 
 }
 
-const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+const AppLayout: React.FC<AppLayoutProps> = ({ children, footer }) => {
   return (
     <div className={styles.layoutContainer}>
       <Header /> 
-      <div className={styles.layoutContent}>
-        <div className={styles.layoutAside}>
-          <ContactsAside /> 
-        </div> 
-        <div className={styles.layoutMain}>
-          <main>{children}</main>
-        </div> 
-      </div>
+         <main>{children}</main>
+      
     </div>
   );
 };

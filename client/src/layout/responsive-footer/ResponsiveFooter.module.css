@@ -1,0 +1,26 @@
+.responsiveFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+  background: white;
+  z-index: 999;
+  display: none;
+}
+
+.responsiveFooter div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .responsiveFooter {
+    display: flex;
+  }
+}

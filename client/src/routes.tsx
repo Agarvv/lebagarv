@@ -7,6 +7,7 @@ import ResetPasswordForm from './features/auth/reset-password/ResetPasswordForm'
 import HomePage from "./pages/home/HomePage";
 import ProtectedRoute from 'src/outils/ProtectedRoute';
 import ProfilePage from 'src/pages/profile/ProfilePage';
+import CarForm from 'src/features/car-form/CarForm'
 
 export const AppRoutes = () => (
   <Router>
@@ -17,6 +18,15 @@ export const AppRoutes = () => (
       <Route path="/send-reset-password" element={<SendResetPasswordUrlForm />} />
       <Route path="/reset-password/:token/:email" element={<ResetPasswordForm />} />
       {/* END OF AUTH */}
+      
+      {/* CAR CREATION */}
+      <Route 
+       path="/create"
+       element={
+           <CarForm /> 
+       }
+      /> 
+      {/* END OF CAR CREATION */}
 
       {/* APP ROUTES */}
       <Route 

@@ -16,7 +16,7 @@ public class AuthMiddleware
         this._jwtService = jwtService; 
     }
     
-    public async Task InvoqueAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
         var jwtCookie = context.Request.Cookies["jwt"]; 
         if(string.isNullOrEmpty(jwtCookie))

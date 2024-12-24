@@ -5,12 +5,12 @@ import styles from './CarFormImages.module.css';
 const CarFormImages = () => {
     const [images, setImages] = useState([]); 
 
-    const handleImageClick = () => {
-      const fileInput = document.querySelector('#fileInput');
-      if (images.length < 4 && fileInput) {
-        fileInput.click(); 
-      }
-    };
+     const handleImageClick = () => {
+  const fileInput = document.querySelector<HTMLInputElement>('#fileInput');
+  if (images.length < 4 && fileInput) {
+    fileInput.click(); 
+  }
+};
 
     const handleFileChange = (e: any) => {
       console.log(e.target)

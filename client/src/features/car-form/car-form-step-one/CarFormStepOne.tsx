@@ -23,13 +23,11 @@ const CarFormStepOne = () => {
                         })} 
                         placeholder="Your Title" 
                     />
-                    {
-                    errors.title && 
-                    <small className="formError">
-                    {errors.title.message}
-                    </small>
-                        
-                    }
+                    {errors.title && typeof errors.title === 'object' && (
+                        <small className="formError">
+                            {errors.title.message}
+                        </small>
+                    )}
                 </div>
                 <CarFormImages /> 
             </div>

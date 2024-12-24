@@ -3,7 +3,8 @@ namespace lebagarv.Application.Services.Cars
     using lebagarv.Presentation.Models.Requests.Cars;
     using lebagarv.Core.Domain.Entities.Cars;
     using lebagarv.Infrastructure.Persistence.Repositories.Cars;
-    using lebagarv.Core.Domain.Exceptions;
+    using lebagarv.Core.Domain.Exceptions
+    using lebagarv.Core.Domain.Dto.Cars; 
 
     public class CarsService : ICarsService
     {
@@ -17,6 +18,18 @@ namespace lebagarv.Application.Services.Cars
         public async Task<IEnumerable<Car>> GetCarsAsync()
         {
             return await _carRepository.GetAllAsync();
+        }
+        
+        public Task<CarDTO> GetCarByIdAsync(int id)
+        {
+            var car = _carRepository.FindByIdAsync(id); 
+            
+            if(car == null)
+            {
+                throw new LebagarvException("Car Not Found", 404); 
+            }
+            
+            return car.toDto(); 
         }
 
         public async Task CreateCarAsync(CreateCarRequest request)

@@ -20,8 +20,15 @@ namespace lebagarv.Presentation.Controllers
         public async Task<IActionResult> GetCars()
         {
             var cars = await _carsService.GetCarsAsync();
-            var carsDto = cars.Select(car => car.toDto())
+            var carsDto = cars.Select(car => car.toShowcaseDto())
             return Ok(carsDto);
+        }
+        
+        [HttpGet("/car/{id}")]
+        public async Task<IActionResult> GetCarById()
+        {
+            var car = _carsService.GetCarByIdAsync(); 
+            return Ok(car); 
         }
 
         [HttpPost("create")]

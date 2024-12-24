@@ -57,11 +57,25 @@ public class Car
         [Required]
         public int Kilometers { get; set; } 
         
-    public CarShowcaseDto toDto() 
+    public CarDTO toDto() 
+    {
+        return new CarDTO()
+        {
+             Id=this.Id,
+             Title=this.Title,
+             Price=this.Price,
+             Images=this.Images,
+             CarYear=this.CarYear,
+             FuelType=this.FuelType,
+             Gearbox=this.GearBox
+        }; 
+    }
+        
+    public CarShowcaseDto toShowcaseDto() 
     {
         return new CarShowcaseDto() 
         {
-            Title=this.Title
+            Title=this.Title,
             Price=this.Price,
             Images = this.Images
         }; 

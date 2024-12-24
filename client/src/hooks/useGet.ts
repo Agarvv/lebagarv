@@ -3,11 +3,13 @@ import { useDispatch } from 'react-redux';
 import { setError } from 'src/store/apiStatus/apiStatusSlice';
 import { Contacts } from 'src/types/chat/contacts/Contacts';
 
-export const useGet<T> = (
-    serviceFunc: () => Promise<T>,
-    successFunc?: () => void, 
-    withError: boolean
-) => {
+interface UseGetOptions<T> {
+    serviceFunc: () => Promise<T>;
+    successFunc?: () => void;
+    withError: boolean;
+}
+
+export const useGet = <T>({ serviceFunc, successFunc, withError }: UseGetOptions<T>) => {
     const dispatch = useDispatch();
 
     const { data, error } = useQuery<T>({
@@ -15,9 +17,13 @@ export const useGet<T> = (
         queryFn: serviceFunc,
     });
 
-    data && (successFunc ? successFunc() : console.log('Get Succeded!', data));
+    if (data) {
+        successFunc ? successFunc() : console.log('Get Succeeded!', data);
+    }
 
-    error && withError && dispatch(setError('Something Went Wrong... :c'));
+    if (error && withError) {
+        dispatch(setError('Something Went Wrong... :c'));
+    }
 
     return { data };
 };

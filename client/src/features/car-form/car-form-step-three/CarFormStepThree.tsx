@@ -1,10 +1,14 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, FieldError } from 'react-hook-form';
 import styles from './CarFormStepThree.module.css';
 import sharedCarFormStyles from '../CarForm.module.css';
 
 const CarFormStepThree = () => {
     const { register, formState: { errors } } = useFormContext();
+
+    const renderErrorMessage = (error: FieldError | undefined) => {
+        return error && typeof error.message === 'string' ? error.message : '';
+    };
 
     return (
         <div className="third-step">
@@ -16,7 +20,7 @@ const CarFormStepThree = () => {
                         {...register('description', { required: 'Description is required' })} 
                         placeholder="Describe your car"
                     />
-                    {errors.description && <small className="formError">{errors.description.message}</small>}
+                    {errors.description && <small className="formError">{renderErrorMessage(errors.description)}</small>}
                 </div>
             </div>
         </div>

@@ -1,10 +1,14 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, FieldError } from 'react-hook-form';
 import styles from './CarFormStepTwo.module.css';
 import sharedCarFormStyles from '../CarForm.module.css';
 
 const CarFormStepTwo = () => {
     const { register, formState: { errors } } = useFormContext();
+
+    const renderErrorMessage = (error: FieldError | undefined) => {
+        return error && typeof error.message === 'string' ? error.message : '';
+    };
 
     return (
         <div className="second-step">
@@ -17,7 +21,7 @@ const CarFormStepTwo = () => {
                     <select {...register('carBrand', { required: 'Car brand is required' })}>
                         <option value="BEMVE">BEMVE</option>
                     </select>
-                    {errors.carBrand && <small className="formError">{errors.carBrand.message}</small>}
+                    {errors.carBrand && <small className="formError">{renderErrorMessage(errors.carBrand)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Model</label>
@@ -26,7 +30,7 @@ const CarFormStepTwo = () => {
                         {...register('carModel', { required: 'Car model is required' })} 
                         placeholder="Model" 
                     />
-                    {errors.carModel && <small className="formError">{errors.carModel.message}</small>}
+                    {errors.carModel && <small className="formError">{renderErrorMessage(errors.carModel)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Year</label>
@@ -35,7 +39,7 @@ const CarFormStepTwo = () => {
                         {...register('carYear', { required: 'Car year is required', min: 1900, max: new Date().getFullYear() })} 
                         placeholder="Year" 
                     />
-                    {errors.carYear && <small className="formError">{errors.carYear.message}</small>}
+                    {errors.carYear && <small className="formError">{renderErrorMessage(errors.carYear)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Fuel Type</label>
@@ -47,7 +51,7 @@ const CarFormStepTwo = () => {
                         <option value="Electric">Electric</option>
                         <option value="Other..">Other..</option>
                     </select>
-                    {errors.fuelType && <small className="formError">{errors.fuelType.message}</small>}
+                    {errors.fuelType && <small className="formError">{renderErrorMessage(errors.fuelType)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Gearbox</label>
@@ -55,7 +59,7 @@ const CarFormStepTwo = () => {
                         <option value="Auto">Auto</option>
                         <option value="Manual">Manual</option>
                     </select>
-                    {errors.gearbox && <small className="formError">{errors.gearbox.message}</small>}
+                    {errors.gearbox && <small className="formError">{renderErrorMessage(errors.gearbox)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Bodywork</label>
@@ -73,7 +77,7 @@ const CarFormStepTwo = () => {
                         <option value="roadster">Roadster</option>
                         <option value="limousine">Limousine</option>
                     </select>
-                    {errors.bodywork && <small className="formError">{errors.bodywork.message}</small>}
+                    {errors.bodywork && <small className="formError">{renderErrorMessage(errors.bodywork)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>How Many Doors?</label>
@@ -82,7 +86,7 @@ const CarFormStepTwo = () => {
                         {...register('doors', { required: 'Number of doors is required', min: 2, max: 5 })} 
                         placeholder="Doors" 
                     />
-                    {errors.doors && <small className="formError">{errors.doors.message}</small>}
+                    {errors.doors && <small className="formError">{renderErrorMessage(errors.doors)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>How Many Seats?</label>
@@ -91,7 +95,7 @@ const CarFormStepTwo = () => {
                         {...register('seats', { required: 'Number of seats is required', min: 2, max: 8 })} 
                         placeholder="Seats" 
                     />
-                    {errors.seats && <small className="formError">{errors.seats.message}</small>}
+                    {errors.seats && <small className="formError">{renderErrorMessage(errors.seats)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Horsepower</label>
@@ -100,7 +104,7 @@ const CarFormStepTwo = () => {
                         {...register('horsepower', { required: 'Horsepower is required', min: 50, max: 1000 })} 
                         placeholder="Horsepower" 
                     />
-                    {errors.horsepower && <small className="formError">{errors.horsepower.message}</small>}
+                    {errors.horsepower && <small className="formError">{renderErrorMessage(errors.horsepower)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>How Many KM?</label>
@@ -109,7 +113,7 @@ const CarFormStepTwo = () => {
                         {...register('kilometers', { required: 'Kilometers are required', min: 0 })} 
                         placeholder="KM" 
                     />
-                    {errors.kilometers && <small className="formError">{errors.kilometers.message}</small>}
+                    {errors.kilometers && <small className="formError">{renderErrorMessage(errors.kilometers)}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Color</label>
@@ -127,7 +131,7 @@ const CarFormStepTwo = () => {
                         <option value="gold">Gold</option>
                         <option value="purple">Purple</option>
                     </select>
-                    {errors.color && <small className="formError">{errors.color.message}</small>}
+                    {errors.color && <small className="formError">{renderErrorMessage(errors.color)}</small>}
                 </div>
             </div>
         </div>

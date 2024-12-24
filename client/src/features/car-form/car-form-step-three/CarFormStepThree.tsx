@@ -22,6 +22,13 @@ const CarFormStepThree = () => {
                     />
                     
                 </div>
+                <div className={sharedCarFormStyles.field}>
+                  <label>Price</label> 
+                  <input 
+                   type="number"
+                   placeholder="Price"
+                  />
+                </div> 
             </div>
         </div>
     );

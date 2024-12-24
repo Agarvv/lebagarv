@@ -9,7 +9,11 @@ import styles from './CarForm.module.css'
 
 const CarForm = () => {
     const [step, setStep] = useState(0);
-    const methods = useForm();
+    const methods = useForm({
+        defaultValues: {
+            images: []
+        }
+    });
     const { trigger, handleSubmit } = methods;
 
     const nextStep = async () => {

@@ -6,6 +6,8 @@ import CarFormImages from './car-form-images/CarFormImages';
 
 const CarFormStepOne = () => {
     const { register, formState: { errors } } = useFormContext();
+    
+    
 
     return (
         <div className="first-step">

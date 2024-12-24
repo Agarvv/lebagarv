@@ -24,7 +24,7 @@ const CarFormImages = () => {
                 }
             });
         }
-        const imageUrl = await uploadImage(files?[0])
+        const imageUrl = await uploadImage(files[0])
         setImages(prevImages => [...prevImages, imageUrl])
     };
 

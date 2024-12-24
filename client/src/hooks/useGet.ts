@@ -2,8 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { setError } from 'src/store/apiStatus/apiStatusSlice';
 import { Contacts } from 'src/types/chat/contacts/Contacts';
-/* */ /* */
-/* */ 
+
 /* 
 EXAMPLE OF USE: 
      const { data } = useGet<DataType>(
@@ -12,8 +11,6 @@ EXAMPLE OF USE:
         withError: true 
      ) 
 */
-/* */ 
-/* */ /* */
 const useGet<T> = (
     serviceFunc: () => Promise<any>,
     successFunc?: () => void, 

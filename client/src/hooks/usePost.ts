@@ -5,11 +5,10 @@ import { setLoading, setSuccess, setError } from 'src/store/apiStatus/apiStatusS
 import { AppDispatch } from 'src/store/index';
 
 /* example of use 
-const { mutate } = usePost<FormValue>(data, successMessage, true) 
+const { mutate } = usePost<FormValue>(data, successMessage, true, serviceFunc) 
 mutate()
 */
 export const usePost = <T,>(
-  data: T,
   successMessage: string,
   withError: boolean,
   serviceFunc: (data: T) => Promise<any>
@@ -17,7 +16,7 @@ export const usePost = <T,>(
   const dispatch: AppDispatch = useDispatch();
 
   return useMutation({
-    mutationFn: () => serviceFunc(data),
+    mutationFn: (data: T) => serviceFunc(data),
     onMutate: () => {
       dispatch(setLoading());
     },

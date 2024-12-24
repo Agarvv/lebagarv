@@ -10,16 +10,16 @@ import { loginUser } from 'src/api/services/auth/AuthService';
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
+  const { mutate } = usePost<FormValues>(
+      '',
+      true,
+      loginUser
+  )
+  
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    const { mutate } = usePost<FormValues>(
-      data, 
-      'Login successful!', 
-      true, 
-      loginUser<FormValues>(data)
-    );
-      const response = await mutate();
+      const response = await mutate(data);
       console.log('Server Response:', response);
-  };
+  }; 
 
   return (
     <div className={styles.container}>

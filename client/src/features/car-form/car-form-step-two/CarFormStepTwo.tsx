@@ -1,10 +1,10 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import styles from './CarFormStepTwo.module.css'
+import styles from './CarFormStepTwo.module.css';
 import sharedCarFormStyles from '../CarForm.module.css';
 
 const CarFormStepTwo = () => {
-    const { register } = useFormContext();
+    const { register, formState: { errors } } = useFormContext();
 
     return (
         <div className="second-step">
@@ -14,21 +14,32 @@ const CarFormStepTwo = () => {
             <div className={sharedCarFormStyles.fields}>
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Brand</label>
-                    <select {...register('carBrand')}>
+                    <select {...register('carBrand', { required: 'Car brand is required' })}>
                         <option value="BEMVE">BEMVE</option>
                     </select>
+                    {errors.carBrand && <small className="formError">{errors.carBrand.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Model</label>
-                    <input type="text" {...register('carModel')} placeholder="Model" />
+                    <input 
+                        type="text" 
+                        {...register('carModel', { required: 'Car model is required' })} 
+                        placeholder="Model" 
+                    />
+                    {errors.carModel && <small className="formError">{errors.carModel.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Year</label>
-                    <input type="number" {...register('carYear')} placeholder="Year" />
+                    <input 
+                        type="number" 
+                        {...register('carYear', { required: 'Car year is required', min: 1900, max: new Date().getFullYear() })} 
+                        placeholder="Year" 
+                    />
+                    {errors.carYear && <small className="formError">{errors.carYear.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Fuel Type</label>
-                    <select {...register('fuelType')}>
+                    <select {...register('fuelType', { required: 'Fuel type is required' })}>
                         <option value="Diesel">Diesel</option>
                         <option value="Gasoline">Gasoline</option>
                         <option value="GPL">GPL</option>
@@ -36,17 +47,19 @@ const CarFormStepTwo = () => {
                         <option value="Electric">Electric</option>
                         <option value="Other..">Other..</option>
                     </select>
+                    {errors.fuelType && <small className="formError">{errors.fuelType.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Gearbox</label>
-                    <select {...register('gearbox')}>
+                    <select {...register('gearbox', { required: 'Gearbox is required' })}>
                         <option value="Auto">Auto</option>
                         <option value="Manual">Manual</option>
                     </select>
+                    {errors.gearbox && <small className="formError">{errors.gearbox.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Bodywork</label>
-                    <select {...register('bodywork')}>
+                    <select {...register('bodywork', { required: 'Bodywork is required' })}>
                         <option value="sedan">Sedan</option>
                         <option value="hatchback">Hatchback</option>
                         <option value="suv">SUV</option>
@@ -60,26 +73,47 @@ const CarFormStepTwo = () => {
                         <option value="roadster">Roadster</option>
                         <option value="limousine">Limousine</option>
                     </select>
+                    {errors.bodywork && <small className="formError">{errors.bodywork.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>How Many Doors?</label>
-                    <input type="number" {...register('doors')} placeholder="Doors" />
+                    <input 
+                        type="number" 
+                        {...register('doors', { required: 'Number of doors is required', min: 2, max: 5 })} 
+                        placeholder="Doors" 
+                    />
+                    {errors.doors && <small className="formError">{errors.doors.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>How Many Seats?</label>
-                    <input type="number" {...register('seats')} placeholder="Seats" />
+                    <input 
+                        type="number" 
+                        {...register('seats', { required: 'Number of seats is required', min: 2, max: 8 })} 
+                        placeholder="Seats" 
+                    />
+                    {errors.seats && <small className="formError">{errors.seats.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Horsepower</label>
-                    <input type="number" {...register('horsepower')} placeholder="Horsepower" />
+                    <input 
+                        type="number" 
+                        {...register('horsepower', { required: 'Horsepower is required', min: 50, max: 1000 })} 
+                        placeholder="Horsepower" 
+                    />
+                    {errors.horsepower && <small className="formError">{errors.horsepower.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>How Many KM?</label>
-                    <input type="number" {...register('kilometers')} placeholder="KM" />
+                    <input 
+                        type="number" 
+                        {...register('kilometers', { required: 'Kilometers are required', min: 0 })} 
+                        placeholder="KM" 
+                    />
+                    {errors.kilometers && <small className="formError">{errors.kilometers.message}</small>}
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Color</label>
-                    <select {...register('color')}>
+                    <select {...register('color', { required: 'Car color is required' })}>
                         <option value="white">White</option>
                         <option value="black">Black</option>
                         <option value="red">Red</option>
@@ -93,6 +127,7 @@ const CarFormStepTwo = () => {
                         <option value="gold">Gold</option>
                         <option value="purple">Purple</option>
                     </select>
+                    {errors.color && <small className="formError">{errors.color.message}</small>}
                 </div>
             </div>
         </div>

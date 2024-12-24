@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import { FormValues } from './types';
 import { emailValidation, passwordValidation } from 'src/outils/form-validators';
-import { usePost } from './usePost';
+import { usePost } from 'src/hooks/usePost';
 import { loginUser } from 'src/api/services/auth/AuthService';
 
 const LoginForm: React.FC = () => {

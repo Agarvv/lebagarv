@@ -6,6 +6,7 @@ namespace lebagarv.Core.Application.Services.Auth
     using lebagarv.Core.Domain.Entities;
     using lebagarv.Infrastructure.Security;
     using lebagarv.Infrastructure.Persistence.Repositories;
+    using lebagarv.Core.Domain.Exceptions; 
 
     public class AuthService : IAuthService
     {
@@ -52,6 +53,17 @@ namespace lebagarv.Core.Application.Services.Auth
         public async Task<bool> ResetPasswordAsync(ResetPasswordRequest request)
         {
             return true;
+        }
+
+        public async Task<bool> CheckAuthAsync(string jwt)
+        {
+           var claims = _jwtService.ValidateToken(jwt); 
+           if(claims == null)
+           {
+             throw new LebagarvException("UNAUTHENTICATED", 401); 
+           }
+
+           return true; 
         }
 
         public bool PasswordMatch(User user, string rawPassword)

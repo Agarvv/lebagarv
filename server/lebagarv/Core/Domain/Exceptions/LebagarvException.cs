@@ -1,10 +1,11 @@
 namespace lebagarv.Core.Domain.Exceptions; 
 
-// Custom App Exception
 public class LebagarvException : Exception 
 {
+    public int code { get; }
+
     public LebagarvException(string message, int code): base(message)
     {
-        
+        code = code;
     }
 }

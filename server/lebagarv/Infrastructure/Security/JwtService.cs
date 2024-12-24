@@ -60,10 +60,14 @@ namespace lebagarv.Infrastructure.Security
                     IssuerSigningKey = new SymmetricSecurityKey(key)
                 }, out SecurityToken validatedToken);
 
+                Console.WriteLine($"claims principal: {claimsPrincipal}");
+
+
                 return claimsPrincipal;
             }
             catch
             {
+                Console.WriteLine("bad jwt");
                 return null;
             }
         }

@@ -58,5 +58,13 @@ namespace lebagarv.Presentation.Controllers.Auth
                 return BadRequest("Wrong Password.");
             }
         }
+
+        [HttpGet("check")]
+        public async Task<IActionResult> CheckAuth()
+        {
+            var jwt = Request.Cookies["jwt"]; 
+            await _authService.CheckAuthAsync(jwt); 
+            return Ok("AUTHENTICATED");
+        }
     }
 }

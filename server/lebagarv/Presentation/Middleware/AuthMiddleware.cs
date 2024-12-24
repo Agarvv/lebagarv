@@ -18,8 +18,8 @@ public class AuthMiddleware
     
     public async Task InvokeAsync(HttpContext context)
     {
-        var jwtCookie = context.Request.Cookies["jwt"]; 
-        if(string.isNullOrEmpty(jwtCookie))
+        var jwt = context.Request.Cookies["jwt"]; 
+        if(string.IsNullOrEmpty(jwt))
         {
             // debug 
             Console.WriteLine("JWT cookie not found"); 

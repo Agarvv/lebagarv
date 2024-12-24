@@ -12,5 +12,7 @@ public interface IAuthService
 
     Task<bool> ResetPasswordAsync(ResetPasswordRequest request);
 
+    Task<bool> CheckAuthAsync(string jwt); 
+
     bool PasswordMatch(User user, string rawPassword);
 }

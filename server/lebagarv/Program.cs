@@ -9,6 +9,9 @@ using lebagarv.Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using lebagarv.Infrastructure.Persistence.Repositories;
 using lebagarv.Infrastructure.Repositories.User;
+using lebagarv.Presentation.Middleware;
+using Lebagarv.Presentation.Middleware;
+using lebagarv.Application.Services.Cars;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +19,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICarsService, CarsService>();
 builder.Services.AddSingleton<JwtService>(new JwtService("vM8n3j5V7r9bJ2hQ4w6xYtZ1aG3m9P0s")); // i understand the danger.
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICarRepository, CarRepository>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -38,6 +43,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 
 var app = builder.Build();
+//app.UseMiddleware<AuthMiddleware>(); 
+app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

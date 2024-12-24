@@ -1,32 +1,32 @@
-namespace lebagarv.Presentation.Controllers; 
-
- using Microsoft.AspNetCore.Mvc;
- using lebagarv.Application.Services.Cars;
-using lebagarv.Presentation.Models.Requests.Cars;
-
-using lebagarv.Presentation.Models.Requests.Cars;
-
-[ApiController]
-[Route("api/lebagarv/cars")]
-public class CarController : ControllerBase 
+namespace lebagarv.Presentation.Controllers
 {
-   private readonly ICarsService _carsService; 
+    using Microsoft.AspNetCore.Mvc;
+    using lebagarv.Application.Services.Cars;
+    using lebagarv.Presentation.Models.Requests.Cars;
 
-   public CarController(ICarsService carsService)
-   {
-    _carsService = carsService; 
-   }
+    [ApiController]
+    [Route("api/lebagarv/cars")]
+    public class CarController : ControllerBase
+    {
+        private readonly ICarsService _carsService;
 
-   [HttpGet]
-   public IActionResult GetCars()
-   {
-     return Ok("cars");
-   }
+        public CarController(ICarsService carsService)
+        {
+            _carsService = carsService;
+        }
 
-   [HttpPost("create")]
-   public async Task<IActionResult> CreateCar([FromBody] CreateCarRequest request) 
-   {
-     await _carsService.CreateCarAsync(request); 
-     return Ok("Car Created Sucesfully !"); 
-   }
+        [HttpGet]
+        public async Task<IActionResult> GetCars()
+        {
+            var cars = await _carsService.GetCarsAsync();
+            return Ok(cars);
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateCar([FromBody] CreateCarRequest request)
+        {
+            await _carsService.CreateCarAsync(request);
+            return Ok(new { Message = "Car Created Successfully!" });
+        }
+    }
 }

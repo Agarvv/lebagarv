@@ -13,5 +13,13 @@ public class CarRepository : Repository<Car>, ICarRepository
         _context = context;
     }
 
+    public Task<bool> ExistsCarColorById(int id)
+    {
+        return await _context.CarColor.AnyAsync(c => c.Id == id); 
+    }
     
+    public Task<bool> ExistsCarBrandById(int id)
+    {
+        return await _context.CarBrand.AnyAsync(b => b.Id == id); 
+    }
 }

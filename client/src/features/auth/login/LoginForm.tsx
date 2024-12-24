@@ -4,15 +4,21 @@ import { Link } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import { FormValues } from './types';
 import { emailValidation, passwordValidation } from 'src/outils/form-validators';
-import { useLogin } from './useLogin';
+import { usePost } from './usePost';
+import { loginUser } from 'src/api/services/auth/AuthService';
 
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
-  const { mutate } = useLogin();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log('data to send', data);
-    mutate(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const { mutate } = usePost<FormValues>(
+      data, 
+      'Login successful!', 
+      true, 
+      loginUser<FormValues>(data)
+    );
+      const response = await mutate();
+      console.log('Server Response:', response);
   };
 
   return (

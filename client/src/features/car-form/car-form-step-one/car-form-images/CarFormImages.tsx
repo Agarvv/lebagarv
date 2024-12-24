@@ -8,7 +8,7 @@ const CarFormImages = () => {
 
     const handleImageClick = () => {
       if (images.length < 4) {
-        fileInputRef?.current.click(); 
+        fileInputRef?.current?.click(); 
       }
     };
 

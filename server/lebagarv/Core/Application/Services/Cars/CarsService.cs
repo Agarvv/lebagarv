@@ -20,7 +20,7 @@ namespace lebagarv.Application.Services.Cars
             return await _carRepository.GetAllAsync();
         }
         
-        public Task<CarDTO> GetCarByIdAsync(int id)
+        public Task<Car> GetCarByIdAsync(int id)
         {
             var car = _carRepository.FindByIdAsync(id); 
             
@@ -29,7 +29,7 @@ namespace lebagarv.Application.Services.Cars
                 throw new LebagarvException("Car Not Found", 404); 
             }
             
-            return car.toDto(); 
+            return car
         }
 
         public async Task CreateCarAsync(CreateCarRequest request)

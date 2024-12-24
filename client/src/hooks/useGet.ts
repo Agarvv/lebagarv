@@ -3,16 +3,8 @@ import { useDispatch } from 'react-redux';
 import { setError } from 'src/store/apiStatus/apiStatusSlice';
 import { Contacts } from 'src/types/chat/contacts/Contacts';
 
-/* 
-EXAMPLE OF USE: 
-     const { data } = useGet<DataType>(
-        serviceFunction,
-        successFunction,
-        withError: true 
-     ) 
-*/
-const useGet<T> = (
-    serviceFunc: () => Promise<any>,
+export const useGet<T> = (
+    serviceFunc: () => Promise<T>,
     successFunc?: () => void, 
     withError: boolean
 ) => {

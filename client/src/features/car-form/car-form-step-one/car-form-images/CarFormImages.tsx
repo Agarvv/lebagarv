@@ -1,52 +1,52 @@
 import React, { useState } from 'react';
 import sharedCarFormStyles from '../../CarForm.module.css';
 import styles from './CarFormImages.module.css';
+import useImageUpload from 'src/hooks/useImageUpload';
 
 const CarFormImages = () => {
+    const { uploadImage, imageUrl } = useImageUpload();
     const [images, setImages] = useState([]); 
 
-     const handleImageClick = () => {
-  const fileInput = document.querySelector<HTMLInputElement>('#fileInput');
-  if (images.length < 4 && fileInput) {
-    fileInput.click(); 
-  }
-};
+    const handleImageClick = () => {
+        const fileInput = document.querySelector<HTMLInputElement>('#fileInput');
+        if (images.length < 4 && fileInput) {
+            fileInput.click(); 
+        }
+    };
 
-    const handleFileChange = (e: any) => {
-      console.log(e.target.files)
-      if(e.target.files.length > 1) {
-          console.log('multiple')
-      }
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files= e.target.files;
+        if (files.length > 1) {
+            Array.from(files).forEach(async (file) => {
+                if (file.type.startsWith('image/')) {
+                    const imageUrl = await uploadImage(file); 
+                    setImages(prevImages => [...prevImages, imageUrl]);
+                }
+            });
+        }
+        const imageUrl = await uploadImage(files[0])
+        setImages(prevImages => [...prevImages, imageUrl])
     };
 
     return (
-      <>
         <div className={sharedCarFormStyles.field}>
-          <label htmlFor="fileInput">Car Pictures</label>
-          <input 
-            type="file" 
-            multiple 
-            id="fileInput" 
-            onChange={handleFileChange} 
-            style={{ display: 'none' }} 
-          />
-          <div className={styles.carPictures}>
-            <div onClick={handleImageClick}>
-              {images[0] && <img src={images[0]} alt="Car pic 1" />}
+            <label htmlFor="fileInput">Car Pictures</label>
+            <input 
+                type="file" 
+                multiple 
+                id="fileInput" 
+                onChange={handleFileChange} 
+                style={{ display: 'none' }} 
+            />
+            <div className={styles.carPictures}>
+                {[0, 1, 2, 3].map(index => (
+                    <div key={index} onClick={handleImageClick}>
+                        {images[index] && <img src={images[index]} alt={`Car pic ${index + 1}`} />}
+                    </div>
+                ))}
             </div>
-            <div onClick={handleImageClick}>
-              {images[1] && <img src={images[1]} alt="Car pic 2" />}
-            </div>
-            <div onClick={handleImageClick}>
-              {images[2] && <img src={images[2]} alt="Car pic 3" />}
-            </div>
-            <div onClick={handleImageClick}>
-              {images[3] && <img src={images[3]} alt="Car pic 4" />}
-            </div>
-          </div>
         </div>
-      </>
     );
-}
+};
 
 export default CarFormImages;

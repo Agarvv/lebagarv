@@ -13,7 +13,10 @@ const CarFormImages = () => {
 };
 
     const handleFileChange = (e: any) => {
-      console.log(e)
+      console.log(e.target.files)
+      if(e.target.files.length > 1) {
+          console.log('multiple')
+      }
     };
 
     return (

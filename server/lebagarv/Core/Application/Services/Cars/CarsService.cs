@@ -32,7 +32,7 @@ public class CarsService : ICarsService
             Images = request.Images.ToList() 
         };
 
-        _carRepository.AddAsync(car); 
+        await _carRepository.AddAsync(car); 
         
         return true; 
     }

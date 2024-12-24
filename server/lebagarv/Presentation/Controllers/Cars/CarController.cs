@@ -17,7 +17,13 @@ public class CarController : ControllerBase
     _carsService = carsService; 
    }
 
-   [HttpPost("/create")]
+   [HttpGet]
+   public IActionResult GetCars()
+   {
+     return Ok("cars");
+   }
+
+   [HttpPost("create")]
    public async Task<IActionResult> CreateCar([FromBody] CreateCarRequest request) 
    {
      await _carsService.CreateCarAsync(request); 

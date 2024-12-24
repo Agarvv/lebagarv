@@ -1,29 +1,29 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import sharedCarFormStyles from '../../CarForm.module.css';
 import styles from './CarFormImages.module.css';
 
 const CarFormImages = () => {
     const [images, setImages] = useState([]); 
-    const fileInputRef = useRef(null);
 
     const handleImageClick = () => {
-      if (images.length < 4) {
-        fileInputRef.current?.click(); 
+      const fileInput = document.querySelector('#fileInput');
+      if (images.length < 4 && fileInput) {
+        fileInput.click(); 
       }
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = (e: any) => {
       console.log(e.target)
     };
 
     return (
       <>
         <div className={sharedCarFormStyles.field}>
-          <label htmlFor="Car Pictures">Car Pictures</label>
+          <label htmlFor="fileInput">Car Pictures</label>
           <input 
             type="file" 
             multiple 
-            ref={fileInputRef} 
+            id="fileInput" 
             onChange={handleFileChange} 
             style={{ display: 'none' }} 
           />

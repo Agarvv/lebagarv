@@ -13,7 +13,7 @@ const CarFormImages = () => {
 };
 
     const handleFileChange = (e: any) => {
-      console.log(e.target)
+      console.log(e)
     };
 
     return (

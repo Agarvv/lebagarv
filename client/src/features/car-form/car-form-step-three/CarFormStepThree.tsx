@@ -20,7 +20,7 @@ const CarFormStepThree = () => {
                         {...register('description', { required: 'Description is required' })} 
                         placeholder="Describe your car"
                     />
-                    {errors.description && <small className="formError">{renderErrorMessage(errors.description)}</small>}
+                    
                 </div>
             </div>
         </div>

@@ -4,8 +4,8 @@ import styles from './CarFormImages.module.css';
 import useImageUpload from 'src/hooks/useImageUpload';
 
 const CarFormImages = () => {
-    const { uploadImage, imageUrl } = useImageUpload();
-    const [images, setImages] = useState([]); 
+    const { uploadImage } = useImageUpload();
+    const [images, setImages] = useState<string[]>([]); 
 
     const handleImageClick = () => {
         const fileInput = document.querySelector<HTMLInputElement>('#fileInput');
@@ -15,7 +15,7 @@ const CarFormImages = () => {
     };
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files= e.target.files;
+        const files = e.target.files;
         if (files && files.length > 1) {
             Array.from(files).forEach(async (file) => {
                 if (file.type.startsWith('image/')) {
@@ -23,9 +23,10 @@ const CarFormImages = () => {
                     setImages(prevImages => [...prevImages, imageUrl]);
                 }
             });
+        } else if (files && files.length === 1) {
+            const imageUrl = await uploadImage(files[0], 'image');
+            setImages(prevImages => [...prevImages, imageUrl]);
         }
-        const imageUrl = await uploadImage(files[0], 'image')
-        setImages(prevImages => [...prevImages, imageUrl])
     };
 
     return (

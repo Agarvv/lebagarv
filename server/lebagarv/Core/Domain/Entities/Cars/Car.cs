@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using lebagarv.Core.Domain.Dto.Cars; 
 
 public class Car
 { 
@@ -55,4 +56,14 @@ public class Car
 
         [Required]
         public int Kilometers { get; set; } 
+        
+    public CarShowcaseDto toDto() 
+    {
+        return new CarShowcaseDto() 
+        {
+            Title=this.Title
+            Price=this.Price,
+            Images = this.Images
+        }; 
+    }
 }

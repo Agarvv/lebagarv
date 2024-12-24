@@ -3,6 +3,7 @@ namespace lebagarv.Presentation.Controllers
     using Microsoft.AspNetCore.Mvc;
     using lebagarv.Application.Services.Cars;
     using lebagarv.Presentation.Models.Requests.Cars;
+    using lebagarv.Core.Domain.Dto.Cars; 
 
     [ApiController]
     [Route("api/lebagarv/cars")]
@@ -19,7 +20,8 @@ namespace lebagarv.Presentation.Controllers
         public async Task<IActionResult> GetCars()
         {
             var cars = await _carsService.GetCarsAsync();
-            return Ok(cars);
+            var carsDto = cars.Select(car => car.toDto())
+            return Ok(carsDto);
         }
 
         [HttpPost("create")]

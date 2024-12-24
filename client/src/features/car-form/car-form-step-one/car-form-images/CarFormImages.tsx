@@ -19,12 +19,12 @@ const CarFormImages = () => {
         if (files && files.length > 1) {
             Array.from(files).forEach(async (file) => {
                 if (file.type.startsWith('image/')) {
-                    const imageUrl = await uploadImage(file); 
+                    const imageUrl = await uploadImage(file, 'image'); 
                     setImages(prevImages => [...prevImages, imageUrl]);
                 }
             });
         }
-        const imageUrl = await uploadImage(files[0])
+        const imageUrl = await uploadImage(files[0], 'image')
         setImages(prevImages => [...prevImages, imageUrl])
     };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import styles from './CarFormStepOne.module.css'
 import sharedCarFormStyles from '../CarForm.module.css';
+import CarFormImages from './car-form-images/CarFormImages'
 
 const CarFormStepOne = () => {
     const { register } = useFormContext();
@@ -16,6 +17,7 @@ const CarFormStepOne = () => {
                     <label htmlFor="title">What's The Title Of Your Ad?</label>
                     <input type="text" {...register('title')} placeholder="Your Title" />
                 </div>
+                <CarFormImages /> 
             </div>
         </div>
     );

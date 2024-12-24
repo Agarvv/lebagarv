@@ -16,7 +16,7 @@ const CarFormImages = () => {
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const files= e.target.files;
-        if (files.length > 1) {
+        if (files && files.length > 1) {
             Array.from(files).forEach(async (file) => {
                 if (file.type.startsWith('image/')) {
                     const imageUrl = await uploadImage(file); 
@@ -24,7 +24,7 @@ const CarFormImages = () => {
                 }
             });
         }
-        const imageUrl = await uploadImage(files[0])
+        const imageUrl = await uploadImage(files?[0])
         setImages(prevImages => [...prevImages, imageUrl])
     };
 

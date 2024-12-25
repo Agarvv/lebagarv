@@ -8,7 +8,7 @@ const CarDetails = () => {
     return(
       <main>
           <div className={styles.car}>
-            <div className={carDetails}>
+            <div className={styles.carDetails}>
               <CarData /> 
               <CarUser /> 
             </div> 

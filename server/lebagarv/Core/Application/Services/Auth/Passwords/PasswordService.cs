@@ -64,13 +64,13 @@ public class PasswordService : IPasswordService
         throw new LebagarvException("Your Token is expired, get a new one.", 400); 
        }
 
-       var user = _userRepository.FindByEmailAsync(request.Email); 
-       if(!user) 
+       var user = _userRepository.FindByEmailAsync(request.Email);
+       if(user == null) 
        {
-         throw new LebagarvException("User Not Found"); 
+         throw new LebagarvException("User Not Found", 404);
        }
 
-       var passwordHashed = _passwordHasher.HashPassword(user, newPassword); 
+       var passwordHashed = _passwordHasher.HashPassword(user, request.Password);
        
        user.Password = passwordHashed; 
 

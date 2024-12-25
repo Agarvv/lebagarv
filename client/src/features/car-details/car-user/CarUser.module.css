@@ -40,7 +40,3 @@
   font-weight: bold;
   border-radius: 10px;
 }
-
-.pCarButtons button:hover {
-  transform: scale(1.05);
-}

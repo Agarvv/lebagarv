@@ -7,6 +7,9 @@ import styles from './CarData.module.css';
 const CarData = () => {
     return (
        <div className={styles.carData}>
+          <h4 className={styles.carTitle}>2019 Porsche Cayenne</h4>
+          <strong className={styles.carPrice}>$ 728</strong>
+          <p className={styles.carDate}>26/12/24</p> 
           <CarImages /> 
          
           <div className={styles.carDetails}>

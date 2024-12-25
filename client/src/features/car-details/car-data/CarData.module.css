@@ -1,3 +1,18 @@
+ .carTitle {
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+
+ .carPrice {
+  font-size: 22px;
+  color: #869A59;
+}
+
+ .carDate {
+  color: gray;
+}
+
+
 .carData {
   width: 65%;
 }

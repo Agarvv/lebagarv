@@ -1,3 +1,14 @@
+.carDetails {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
 
 @media(max-width: 600px) {
   .carDetails {

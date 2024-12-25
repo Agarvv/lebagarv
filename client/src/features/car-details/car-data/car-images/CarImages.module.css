@@ -1,0 +1,22 @@
+.carImages {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.carImages .imageIndex {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: white;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.carImages img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}

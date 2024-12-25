@@ -8,6 +8,8 @@ import HomePage from "./pages/home/HomePage";
 import ProtectedRoute from 'src/outils/ProtectedRoute';
 import ProfilePage from 'src/pages/profile/ProfilePage';
 import CarForm from 'src/features/car-form/CarForm'
+import CarDetails from 'src/features/car-details/CarDetails'
+
 
 export const AppRoutes = () => (
   <Router>
@@ -40,6 +42,11 @@ export const AppRoutes = () => (
         path='/profile/:id' 
         element={<ProtectedRoute> <ProfilePage /> </ProtectedRoute>} 
       />
+      
+      <Route 
+        path='/car',
+        element={CarDetails}
+      /> 
       {/* END OF APP ROUTES */}
     </Routes>
   </Router> 

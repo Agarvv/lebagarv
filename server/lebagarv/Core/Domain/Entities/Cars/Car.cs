@@ -60,6 +60,8 @@ public class Car
         [Required]
         public string City { get; set; }
         
+        public DateTime Date; 
+        
     public CarDTO toDto() 
     {
         return new CarDTO()
@@ -71,7 +73,8 @@ public class Car
              CarYear=this.CarYear,
              FuelType=this.FuelType,
              Gearbox=this.GearBox,
-             City=this.City 
+             City=this.City,
+             Date=this.Date
         }; 
     }
         

@@ -9,5 +9,7 @@ public class CarDTO
     public int CarYear { get; set; } 
     public string FuelType { get; set; } 
     public string Gearbox { get; set; } 
+    public DateTime Date { get; set; } 
+    public string City { get; set; } 
 }
 

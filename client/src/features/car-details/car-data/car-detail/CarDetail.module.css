@@ -1,0 +1,19 @@
+.cdd-icon {
+  color: gray;
+}
+
+.carDetailData {
+  display: flex;
+  gap: 5px;
+  
+}
+
+.cddSl{
+  font-weight: 200;
+  font-size: 12px;
+  color: gray;
+}
+
+.cddAt {
+  font-weight: 600;
+}

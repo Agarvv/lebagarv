@@ -61,6 +61,7 @@ namespace lebagarv.Application.Services.Cars
                 Kilometers = request.Kilometers,
                 Images = request.Images,
                 City=request.City
+                Date=DateTime.Now; 
             };
 
             await _carRepository.AddAsync(car);

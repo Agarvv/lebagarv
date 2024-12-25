@@ -1,0 +1,53 @@
+.carData {
+  width: 65%;
+}
+
+.carDetails .carTitle {
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+
+.children-images .car-price {
+  font-size: 22px;
+  color: #869A59;
+}
+
+.children-images .car-date {
+  color: gray;
+}
+
+.cd-p {
+  font-weight: 300;
+}
+
+.car-details { 
+  padding-top: 20px;
+}
+
+.car-details .car-details-data {
+/*  border-bottom: .5px solid gray; */
+/*  border-top: .5px solid gray; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+  grid-gap: 5px;
+}
+
+.carDescription {
+  margin-top: 15px;
+}
+
+.main-product-details {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media(max-width: 600px) {
+  .carData {
+    width: 100%;
+  }
+}

@@ -1,0 +1,7 @@
+
+@media(max-width: 600px) {
+  .carDetails {
+    flex-direction: column;
+    padding: 5px;
+  }
+}

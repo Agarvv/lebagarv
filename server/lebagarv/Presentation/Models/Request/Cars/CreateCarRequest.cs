@@ -45,5 +45,8 @@ namespace lebagarv.Presentation.Models.Requests.Cars
 
         [Required]
         public int Kilometers { get; set; } // Mileage in kilometers
+        
+        [Required]
+        public string City { get; set; } // car city
     }
 }

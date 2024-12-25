@@ -59,7 +59,8 @@ namespace lebagarv.Application.Services.Cars
                 Seats = request.Seats,
                 Horsepower = request.Horsepower,
                 Kilometers = request.Kilometers,
-                Images = request.Images
+                Images = request.Images,
+                City=request.City
             };
 
             await _carRepository.AddAsync(car);

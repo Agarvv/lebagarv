@@ -57,6 +57,9 @@ public class Car
         [Required]
         public int Kilometers { get; set; } 
         
+        [Required]
+        public string City { get; set; }
+        
     public CarDTO toDto() 
     {
         return new CarDTO()
@@ -67,7 +70,8 @@ public class Car
              Images=this.Images,
              CarYear=this.CarYear,
              FuelType=this.FuelType,
-             Gearbox=this.GearBox
+             Gearbox=this.GearBox,
+             City=this.City 
         }; 
     }
         
@@ -77,7 +81,8 @@ public class Car
         {
             Title=this.Title,
             Price=this.Price,
-            Images = this.Images
+            Images = this.Images,
+            City=this.City 
         }; 
     }
 }

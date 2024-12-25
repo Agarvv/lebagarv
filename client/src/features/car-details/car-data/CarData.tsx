@@ -11,7 +11,7 @@ const CarData = () => {
          
           <div className={styles.carDetails}>
               <h4 className="cd-p">Car Details</h4>
-              <div className="car-details-data">
+              <div className={styles.carDetailsData}>
                   <CarDetail 
                       icon={<i className="fa fa-car"></i>}
                       detail="Brand"

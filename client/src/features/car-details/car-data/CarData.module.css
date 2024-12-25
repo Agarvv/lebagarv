@@ -2,6 +2,16 @@
   width: 65%;
 }
 
+.carDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+  grid-gap: 5px;
+}
+
+
 .carDetails .carTitle {
   padding-bottom: 5px;
   padding-top: 10px;
@@ -18,10 +28,6 @@
 
 .cd-p {
   font-weight: 300;
-}
-
-.car-details { 
-  padding-top: 20px;
 }
 
 .car-details .car-details-data {

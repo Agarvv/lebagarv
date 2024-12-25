@@ -22,7 +22,7 @@ const CarFormStepThree = () => {
                         {...register('description', { required: 'Description is required' })} 
                         placeholder="Describe your car"
                     />
-                    {errors.description && <span>{renderErrorMessage(errors.description)}</span>}
+                
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Price</label> 
@@ -31,7 +31,7 @@ const CarFormStepThree = () => {
                         placeholder="Price"
                         {...register('price', { required: 'Price is required' })}
                     />
-                    {errors.price && <span>{renderErrorMessage(errors.price)}</span>}
+                    
                 </div> 
                 
                 <div className={sharedCarFormStyles.field}>
@@ -41,7 +41,7 @@ const CarFormStepThree = () => {
                         placeholder="City"
                         {...register('city', { required: 'City is required' })}
                     />
-                    {errors.city && <span>{renderErrorMessage(errors.city)}</span>}
+
                 </div> 
             </div>
         </div>

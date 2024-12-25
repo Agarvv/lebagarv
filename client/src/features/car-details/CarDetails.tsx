@@ -7,7 +7,7 @@ import styles from './CarDetails.module.css'
 const CarDetails = () => {
     return(
       <main>
-          <div className={car}>
+          <div className={styles.car}>
             <div className={carDetails}>
               <CarData /> 
               <CarUser /> 

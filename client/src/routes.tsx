@@ -45,7 +45,7 @@ export const AppRoutes = () => (
       
       <Route 
         path='/car'
-        element={CarDetails}
+        element={<CarDetails/>}
       /> 
       {/* END OF APP ROUTES */}
     </Routes>

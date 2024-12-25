@@ -14,6 +14,7 @@ const CarDetails = () => {
             </div> 
           </div> 
       </main>
+   )
 }
 
 export default CarDetails; 

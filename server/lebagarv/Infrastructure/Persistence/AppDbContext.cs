@@ -12,4 +12,10 @@ public class AppDbContext : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<Car> Cars { get; set; }
+
+    public DbSet<CarColor> CarColors { get; set; }
+
+    public DbSet<CarBrand> CarBrands { get; set; }
+
+    public DbSet<ResetPasswordToken> ResetPasswordTokens { get; set; }
 }

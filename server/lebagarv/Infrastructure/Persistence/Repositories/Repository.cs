@@ -41,4 +41,10 @@ public class Repository<T> : IRepository<T> where T : class
     {
         return await _dbSet.ToListAsync();
     }
+
+    public async Task SaveAsync(T entity)
+    {
+        await _dbSet.Update(entity);
+        await _context.SaveChangesAsync(); 
+    }
 }

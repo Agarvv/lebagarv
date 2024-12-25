@@ -27,6 +27,20 @@ const CarFormStepThree = () => {
                   <input 
                    type="number"
                    placeholder="Price"
+                   {...register('price', 
+                   required: 'Price is required'
+                   )}
+                  />
+                </div> 
+                
+                <div className={sharedCarFormStyles.field}>
+                  <label>City</label> 
+                  <input 
+                   type="text"
+                   placeholder="City"
+                    {...register('city', 
+                   required: 'City is required'
+                   )}
                   />
                 </div> 
             </div>

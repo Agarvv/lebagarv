@@ -44,7 +44,7 @@ export const AppRoutes = () => (
       />
       
       <Route 
-        path='/car',
+        path='/car'
         element={CarDetails}
       /> 
       {/* END OF APP ROUTES */}

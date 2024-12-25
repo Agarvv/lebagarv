@@ -64,7 +64,7 @@ public class PasswordService : IPasswordService
         throw new LebagarvException("Your Token is expired, get a new one.", 400); 
        }
 
-       var user = _userRepository.FindByEmailAsync(request.Email);
+       var user = await _userRepository.FindByEmailAsync(request.Email);
        if(user == null) 
        {
          throw new LebagarvException("User Not Found", 404);
@@ -79,7 +79,7 @@ public class PasswordService : IPasswordService
        return true; 
     } 
 
-    private string GenerateResetToken()
+    public string GenerateResetToken()
     {
         using (var rng = RandomNumberGenerator.Create())
         {
@@ -89,8 +89,8 @@ public class PasswordService : IPasswordService
         }
     }
 
-    private DateTime GenerateExpiryDate()
+    public DateTime GenerateExpiryDate()
     {
-        return DateTime.Now.AddHours(1); 
+        return DateTime.Now.AddHours(1);
     }
-}
+} 

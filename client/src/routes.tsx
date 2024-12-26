@@ -9,7 +9,7 @@ import ProtectedRoute from 'src/outils/ProtectedRoute';
 import ProfilePage from 'src/pages/profile/ProfilePage';
 import CarForm from 'src/features/car-form/CarForm'
 import CarDetails from 'src/features/car-details/CarDetails'
-import ChatsPage from 'src/pages/chats-page/ChatsPage'
+import ChatsPage from 'src/pages/chats/ChatsPage'
 
 
 export const AppRoutes = () => (

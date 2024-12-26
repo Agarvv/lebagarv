@@ -10,7 +10,8 @@ const Chats = () => {
     //console.log('contacts aside', data);
     
     return (
-        <aside className={styles.chats}>
+      <div className={styles.chatsContainer}> 
+        <main className={styles.chats}>
             <div className={styles['chat-h']}>
                 <SearchChats />
             </div>
@@ -22,7 +23,8 @@ const Chats = () => {
                             <Chat /> 
                     </div>
             </div>
-        </aside>
+        </main>
+      </div> 
     );
 }
 

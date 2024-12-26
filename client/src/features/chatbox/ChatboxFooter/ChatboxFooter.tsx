@@ -21,7 +21,7 @@ const ChatboxFooter = () => {
         <ChatboxFooterImageButton />
       </div>
       <div className={styles.fInp}>
-        <input
+        <input 
           type="text"
           placeholder="Send A Message"
           value={message}

@@ -17,7 +17,6 @@ const Chats = () => {
             </div>
             <div className={styles.asideContent}>
                     <div className={styles['aside-chats']}>
-                        <span>Your Chats</span>
                             <Chat />
                             <Chat /> 
                             <Chat /> 

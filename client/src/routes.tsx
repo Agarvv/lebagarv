@@ -10,6 +10,7 @@ import ProfilePage from 'src/pages/profile/ProfilePage';
 import CarForm from 'src/features/car-form/CarForm'
 import CarDetails from 'src/features/car-details/CarDetails'
 import ChatsPage from 'src/pages/chats/ChatsPage'
+import ChatboxPage from 'src/pages/chatbox/ChatboxPage'
 
 
 export const AppRoutes = () => (
@@ -53,6 +54,11 @@ export const AppRoutes = () => (
         path='/chats'
         element={<ChatsPage />}
       />
+      
+      <Route 
+        path='/chatbox'
+        element={<ChatboxPage />}
+      /> 
       {/* END OF APP ROUTES */}
     </Routes>
   </Router> 

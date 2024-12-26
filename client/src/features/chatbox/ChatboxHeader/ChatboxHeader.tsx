@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 
 const ChatboxHeader = () => {
-  const chat = useSelector((state: RootState) => state.chat.activeChat);
+  // const chat = useSelector((state: RootState) => state.chat.activeChat);
 
   return (
     
@@ -18,7 +18,7 @@ const ChatboxHeader = () => {
           <div className={styles.hUserStatus}></div>
         </div>
         <div className={styles.hUserData}>
-          <p>{ chat?.user_to_display_info.username }</p>
+          <p>Andres el maricon :P</p>
         </div>
       </div>
       <div className={styles.hActions}>

@@ -8,17 +8,17 @@ import { useSelector } from 'react-redux';
 import  { RootState } from 'src/store/index'
 
 const Chatbox = () => {
-   const chat = useSelector((state: RootState) => state.chat.activeChat)
-   console.log('chat from store', chat)
+   // const chat = useSelector((state: RootState) => state.chat.activeChat)
+   // console.log('chat from store', chat)
 
   return (
     <main className={styles.chatbox}>
      <ChatboxHeader />
       
       <div className={styles.messageList}>
-        {chat?.messages?.map((message: any) => (
            <Message />
-        ))}
+           <Message />
+           <Message />
       </div>
       
       <ChatboxFooter />

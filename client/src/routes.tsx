@@ -50,7 +50,7 @@ export const AppRoutes = () => (
       /> 
       
       <Route 
-        path='/chats',
+        path='/chats'
         element={<Chats />}
       />
       {/* END OF APP ROUTES */}

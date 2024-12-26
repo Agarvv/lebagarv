@@ -15,15 +15,10 @@ const ChatboxHeader = () => {
       <div className={styles.hUser}>
         <div className={styles.hUserImg}>
           <img src={logo} alt="Profile" />
-          <div className={styles.hUserStatus}></div>
         </div>
         <div className={styles.hUserData}>
           <p>Andres el maricon :P</p>
         </div>
-      </div>
-      <div className={styles.hActions}>
-        <CallButton />
-        <VideoCallButton />
       </div>
     </header>
   );

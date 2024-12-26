@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarsService, CarsService>();
+builder.Services.AddScoped<IChatService, ChatService>(); 
 builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
 {
     var smtpConfig = builder.Configuration.GetSection("Smtp");
@@ -31,6 +32,7 @@ builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
 builder.Services.AddSingleton<JwtService>(new JwtService("vM8n3j5V7r9bJ2hQ4w6xYtZ1aG3m9P0s")); // i understand the danger.
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoper<IChatRepository, ChatRepository>(); 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

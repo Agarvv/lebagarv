@@ -1,8 +1,7 @@
 import React from 'react';
-import styles from './AsideContact.module.css';
-import { Chat } from 'src/types/chat/Chat';
+import styles from './Chat.module.css';
 import logo from 'src/logo.svg';
-import { useChat } from 'src/hooks/useChat';
+
 
 /*interface Props {
   contact: Chat;

@@ -1,6 +1,7 @@
 import React from 'react'
-import styles from './SearchAsideContacts.module.css' 
+import styles from './SearchChats.module.css' 
 import logo from 'src/logo.svg';
+
 
 const SearchChats = () => {
     return(

@@ -2,6 +2,8 @@ import React from 'react'
 
 import Chat from './chat/Chat'
 import SearchChats from './search-chats/SearchChats'
+import styles from './Chats.module.css'
+
 
 const Chats = () => {
    // const { data } = useContacts();

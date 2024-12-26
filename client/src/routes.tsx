@@ -9,6 +9,7 @@ import ProtectedRoute from 'src/outils/ProtectedRoute';
 import ProfilePage from 'src/pages/profile/ProfilePage';
 import CarForm from 'src/features/car-form/CarForm'
 import CarDetails from 'src/features/car-details/CarDetails'
+import Chats from 'src/features/chats/Chats'
 
 
 export const AppRoutes = () => (
@@ -47,6 +48,11 @@ export const AppRoutes = () => (
         path='/car'
         element={<CarDetails/>}
       /> 
+      
+      <Route 
+        path='/chats',
+        element={<Chats />}
+      />
       {/* END OF APP ROUTES */}
     </Routes>
   </Router> 

@@ -9,7 +9,7 @@ import ProtectedRoute from 'src/outils/ProtectedRoute';
 import ProfilePage from 'src/pages/profile/ProfilePage';
 import CarForm from 'src/features/car-form/CarForm'
 import CarDetails from 'src/features/car-details/CarDetails'
-import Chats from 'src/features/chats/Chats'
+import ChatsPage from 'src/pages/chats-page/ChatsPage'
 
 
 export const AppRoutes = () => (
@@ -51,7 +51,7 @@ export const AppRoutes = () => (
       
       <Route 
         path='/chats'
-        element={<Chats />}
+        element={<ChatsPage />}
       />
       {/* END OF APP ROUTES */}
     </Routes>

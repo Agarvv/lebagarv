@@ -8,7 +8,7 @@ import { useChat } from 'src/hooks/useChat';
   contact: Chat;
 }*/ 
 
-const Chat: React.FC<Props> = () => {
+const Chat: React.FC = () => {
  // const { setChatInState } = useChat();
 
   return (

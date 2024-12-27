@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 using System.ComponentModel.DataAnnotations;
 
+using lebagarv.Core.Domain.Dto.Profile; 
+
+
 public class User 
 {
     [Key]
@@ -19,4 +22,14 @@ public class User
 
     [Required]
     public string Password { get; set; }
+    
+    public string? Banner { get; set; } 
+    
+    public ProfileDTO toProfileDTO() 
+    {
+        return new ProfileDTO()
+        {
+            Username=this.Username
+        }
+    }
 }

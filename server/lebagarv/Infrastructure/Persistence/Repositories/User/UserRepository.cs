@@ -12,6 +12,13 @@ public class UserRepository : Repository<User>, IUserRepository
     {
         _context = context;
     }
+    
+    public async Task<User> FindByIdAsync(int id)
+    {
+        var user = _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        return user; 
+    }
+    
     public async Task<bool> ExistsByEmailAsync(string email)
     {
       return await _context.Users.AnyAsync(u => u.Email == email);
@@ -20,5 +27,8 @@ public class UserRepository : Repository<User>, IUserRepository
     public async Task<User> FindByEmailAsync(string email) 
     {
        return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+       
     }
+    
+    
 }

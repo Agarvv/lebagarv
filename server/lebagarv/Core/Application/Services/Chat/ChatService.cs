@@ -1,6 +1,6 @@
 namespace lebagarv.Core.Application.Services.Chat; 
 
-public class ChatService : IChatService 8 
+public class ChatService : IChatService 
 {
     
 }

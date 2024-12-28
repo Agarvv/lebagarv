@@ -8,8 +8,7 @@ public class ProfileService : IProfileService
 {
     private readonly IUserRepository _userRepository; 
     
-    public ProfileService(IUserRepository _
-    userRepository) 
+    public ProfileService(IUserRepository _userRepository) 
     {
         _userRepository = userRepository; 
     }

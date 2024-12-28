@@ -3,7 +3,7 @@ namespace lebagarv.Application.Services.Cars
     using lebagarv.Presentation.Models.Requests.Cars;
     using lebagarv.Core.Domain.Entities.Cars;
     using lebagarv.Infrastructure.Persistence.Repositories.Cars;
-    using lebagarv.Core.Domain.Exceptions
+    using lebagarv.Core.Domain.Exceptions;
     using lebagarv.Core.Domain.Dto.Cars; 
 
     public class CarsService : ICarsService
@@ -29,7 +29,7 @@ namespace lebagarv.Application.Services.Cars
                 throw new LebagarvException("Car Not Found", 404); 
             }
             
-            return car
+            return car; 
         }
 
         public async Task CreateCarAsync(CreateCarRequest request)
@@ -60,8 +60,8 @@ namespace lebagarv.Application.Services.Cars
                 Horsepower = request.Horsepower,
                 Kilometers = request.Kilometers,
                 Images = request.Images,
-                City=request.City
-                Date=DateTime.Now; 
+                City=request.City,
+                Date=DateTime.Now
             };
 
             await _carRepository.AddAsync(car);

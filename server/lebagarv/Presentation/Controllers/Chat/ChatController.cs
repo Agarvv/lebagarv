@@ -1,6 +1,6 @@
 namespace lebagarv.Presentation.Controllers.Chat; 
 
-using Microsoft.AspNet.Mvc; 
+using Microsoft.AspNetCore.Mvc; 
 using lebagarv.Core.Application.Services.Chat; 
 
 [ApiController]

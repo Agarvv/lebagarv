@@ -1,11 +1,11 @@
-namespace lebagarv.Core.Domain.Entities
+namespace lebagarv.Core.Domain.Entities.Users
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata;
     using System.ComponentModel.DataAnnotations;
     using lebagarv.Core.Domain.Dto.Profile;
 
-    public class User
+    public class AppUser
     {
         [Key]
         public int Id { get; set; }
@@ -27,7 +27,7 @@ namespace lebagarv.Core.Domain.Entities
         {
             return new ProfileDTO
             {
-                Username = this.Username 
+                Username = this.Username
             };
         }
     }

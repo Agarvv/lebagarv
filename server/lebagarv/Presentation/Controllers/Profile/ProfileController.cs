@@ -1,42 +1,46 @@
-namespace lebagarv.Presentation.Controllers.Profile; 
-using Microsoft.AspNet.Mvc; 
-using lebagarv.Core.Application.Services.Profile; 
-using lebagarv.Presentation.Models.Request.Profile; 
+using Microsoft.AspNetCore.Mvc;
+using lebagarv.Core.Application.Services.Profile;
+using lebagarv.Presentation.Models.Request.Profile;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+
+namespace lebagarv.Presentation.Controllers.Profile;
 
 [ApiController]
 [Route("/api/lebagarv/profile")]
-public class ProfileController 
+public class ProfileController : ControllerBase
 {
-    private readonly IProfileService _profileService; 
-    
-    public ProfileController(IProfileService profileService) 
+    private readonly IProfileService _profileService;
+
+    public ProfileController(IProfileService profileService)
     {
-        _profileService = profileService; 
+        _profileService = profileService;
     }
-    
+
     [HttpGet]
-    public async Task<IActionResult>() 
+    public async Task<IActionResult> GetProfile()
     {
-        var userId = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
-        var user = _profileService.GetUserProfile(userId); 
-        return Ok(user); 
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
+        
+        var user = await _profileService.GetUserProfile(userId);
+        return Ok(user);
     }
-    
-    [HttpPost("/set_profile_picture")]
-    public async Task<IActionResult> (SetProfilePictureRequest request) 
+
+    [HttpPost("set-profile-picture")]
+    public async Task<IActionResult> SetProfilePicture(SetProfilePictureRequest request)
     {
-        return Ok("Profile picture setted"); 
-        var userId = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
-        await _profileService.SetUserProfilePicture(userId, request.ProfilePicture); 
-        return Ok("Your Profile Picture has ben changed !"); 
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
+
+        await _profileService.SetUserProfilePicture(userId, request.ProfilePicture);
+        return Ok("Your profile picture has been updated!");
     }
-    
-    [HttpPost("/set_banner")]
-    public async Task<IActionResult>
-    (SetBannerRequest request) 
+
+    [HttpPost("set-banner")]
+    public async Task<IActionResult> SetBanner(SetBannerRequest request)
     {
-        var userId = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
-        await _profileService.SetUserBanner(userId, request.Banner); 
-        return Ok("Banner setted"); 
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
+
+        await _profileService.SetUserBanner(userId, request.Banner);
+        return Ok("Your banner has been updated!");
     }
 }

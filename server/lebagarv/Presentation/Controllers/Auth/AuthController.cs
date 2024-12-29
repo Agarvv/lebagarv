@@ -1,22 +1,25 @@
-namespace lebagarv.Presentation.Controllers.Auth
-{
+namespace lebagarv.Presentation.Controllers.Auth; 
+
     using Microsoft.AspNetCore.Mvc;
     using lebagarv.Presentation.Models.Requests.Auth;
     using lebagarv.Core.Application.Services.Auth;
     using lebagarv.Infrastructure.Persistence.Repositories;
     using lebagarv.Infrastructure.Repositories.User;
+    using lebagarv.Application.Services.Auth.Passwords;
 
     [ApiController]
     [Route("api/lebagarv/auth")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService; 
+        private readonly IPasswordService _passwordService; 
         private readonly IUserRepository _userRepository; 
 
-        public AuthController(IAuthService authService, IUserRepository userRepository)
+        public AuthController(IAuthService authService, IPasswordService passwordService, IUserRepository userRepository)
         {
             _authService = authService; 
             _userRepository = userRepository; 
+            _passwordService = passwordService; 
         }
 
         [HttpPost("register")]
@@ -66,5 +69,12 @@ namespace lebagarv.Presentation.Controllers.Auth
             await _authService.CheckAuthAsync(jwt); 
             return Ok("AUTHENTICATED");
         }
-    }
+    
+     [HttpPost("send_reset_email")]
+     public async Task<IActionResult> SendResetPasswordEmail(SendResetPasswordEmailRequest request)
+     {
+        await _passwordService.SendResetPasswordEmailAsync(request.Email); 
+        return Ok("Go verify your email"); 
+     }
+
 }

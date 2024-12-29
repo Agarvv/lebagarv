@@ -61,6 +61,9 @@ public class Car
         public string City { get; set; }
         
         public DateTime Date; 
+
+        [Required]
+        public int Price; 
         
     public CarDTO toDto() 
     {
@@ -72,15 +75,15 @@ public class Car
              Images=this.Images,
              CarYear=this.CarYear,
              FuelType=this.FuelType,
-             Gearbox=this.GearBox,
+             Gearbox=this.Gearbox,
              City=this.City,
              Date=this.Date
         }; 
     }
         
-    public CarShowcaseDto toShowcaseDto() 
+    public CarShowcaseDTO toShowcaseDto() 
     {
-        return new CarShowcaseDto() 
+        return new CarShowcaseDTO() 
         {
             Title=this.Title,
             Price=this.Price,

@@ -1,8 +1,10 @@
-namespace lebagarv.Infrastructure.Repositories.User; 
+namespace lebagarv.Infrastructure.Repositories.Cars; 
+
 using lebagarv.Core.Domain.Entities.Cars; 
 using lebagarv.Infrastructure.Persistence.Repositories; 
 using lebagarv.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using lebagarv.Infrastructure.Persistence.Repositories.Cars;
 
 public class CarRepository : Repository<Car>, ICarRepository
 {
@@ -13,13 +15,13 @@ public class CarRepository : Repository<Car>, ICarRepository
         _context = context;
     }
 
-    public Task<bool> ExistsCarColorById(int id)
+    public async Task<bool> ExistsCarColorById(int id)
     {
-        return await _context.CarColor.AnyAsync(c => c.Id == id); 
+        return await _context.CarColors.AnyAsync(c => c.Id == id); 
     }
     
-    public Task<bool> ExistsCarBrandById(int id)
+    public async Task<bool> ExistsCarBrandById(int id)
     {
-        return await _context.CarBrand.AnyAsync(b => b.Id == id); 
+        return await _context.CarBrands.AnyAsync(b => b.Id == id); 
     }
 }

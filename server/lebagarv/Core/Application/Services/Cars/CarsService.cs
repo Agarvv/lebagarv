@@ -2,9 +2,10 @@ namespace lebagarv.Application.Services.Cars
 {
     using lebagarv.Presentation.Models.Requests.Cars;
     using lebagarv.Core.Domain.Entities.Cars;
-    using lebagarv.Infrastructure.Persistence.Repositories.Cars;
+    using lebagarv.Infrastructure.Persistence.Repositories;
     using lebagarv.Core.Domain.Exceptions;
-    using lebagarv.Core.Domain.Dto.Cars; 
+    using lebagarv.Core.Domain.Dto.Cars;
+    using lebagarv.Infrastructure.Persistence.Repositories.Cars;
 
     public class CarsService : ICarsService
     {
@@ -20,9 +21,9 @@ namespace lebagarv.Application.Services.Cars
             return await _carRepository.GetAllAsync();
         }
         
-        public Task<Car> GetCarByIdAsync(int id)
+        public async Task<Car> GetCarByIdAsync(int id)
         {
-            var car = _carRepository.FindByIdAsync(id); 
+            var car = await _carRepository.GetByIdAsync(id); 
             
             if(car == null)
             {
@@ -32,14 +33,14 @@ namespace lebagarv.Application.Services.Cars
             return car; 
         }
 
-        public async Task CreateCarAsync(CreateCarRequest request)
+        public async Task<bool> CreateCarAsync(CreateCarRequest request)
         {
-            if (!_carRepository.ExistsCarColorById(request.Color))
+            if (!await _carRepository.ExistsCarColorById(request.Color))
             {
                 throw new LebagarvException("Car color does not exist.", 404);
             }
 
-            if (!_carRepository.ExistsCarBrandById(request.CarBrand))
+            if (!await _carRepository.ExistsCarBrandById(request.CarBrand))
             {
                 throw new LebagarvException("Car brand does not exist.", 404);
             }
@@ -65,6 +66,8 @@ namespace lebagarv.Application.Services.Cars
             };
 
             await _carRepository.AddAsync(car);
+
+            return true; 
         }
     }
 }

@@ -1,4 +1,7 @@
-namespace lebagarv.Application.Services.Auth.Passwords; 
+namespace lebagarv.Application.Services.Auth.Passwords;
+
+using lebagarv.Presentation.Models.Requests.Auth;
+
 
 public interface IPasswordService 
 {

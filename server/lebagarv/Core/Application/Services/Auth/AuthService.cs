@@ -3,7 +3,7 @@ namespace lebagarv.Core.Application.Services.Auth
     using lebagarv.Presentation.Models.Requests.Auth;
     using Microsoft.AspNetCore.Identity;
     using lebagarv.Infrastructure.Persistence;
-    using lebagarv.Core.Domain.Entities;
+    using lebagarv.Core.Domain.Entities.Users;
     using lebagarv.Infrastructure.Security;
     using lebagarv.Infrastructure.Persistence.Repositories;
     using lebagarv.Core.Domain.Exceptions; 
@@ -11,19 +11,19 @@ namespace lebagarv.Core.Application.Services.Auth
     public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepository;
-        private readonly PasswordHasher<User> _passwordHasher;
+        private readonly PasswordHasher<AppUser> _passwordHasher;
         private readonly JwtService _jwtService;
 
         public AuthService(JwtService jwtService, IUserRepository userRepository)
         {
-            _passwordHasher = new PasswordHasher<User>();
+            _passwordHasher = new PasswordHasher<AppUser>();
             _jwtService = jwtService;
             _userRepository = userRepository;
         }
 
         public async Task<bool> RegisterAsync(RegisterRequest request)
         {
-            var user = new User
+            var user = new AppUser
             {
                 Username = request.Username,
                 Email = request.Email
@@ -35,7 +35,7 @@ namespace lebagarv.Core.Application.Services.Auth
             return true;
         }
 
-        public Task<string?> LoginAsync(LoginRequest request, User user)
+        public Task<string?> LoginAsync(LoginRequest request, AppUser user)
         {
             if (PasswordMatch(user, request.Password))
             {
@@ -66,7 +66,7 @@ namespace lebagarv.Core.Application.Services.Auth
            return true; 
         }
 
-        public bool PasswordMatch(User user, string rawPassword)
+        public bool PasswordMatch(AppUser user, string rawPassword)
         {
             var result = _passwordHasher.VerifyHashedPassword(user, user.Password, rawPassword);
             return result == PasswordVerificationResult.Success;

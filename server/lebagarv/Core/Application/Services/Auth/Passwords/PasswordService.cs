@@ -9,15 +9,16 @@ using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
 using lebagarv.Infrastructure.Persistence.Repositories.User;
 using lebagarv.Infrastructure.Persistence.Repositories;
 using lebagarv.Core.Domain.Exceptions; 
-using lebagarv.Core.Domain.Entities;
+using lebagarv.Core.Domain.Entities.Users;
 using Microsoft.AspNetCore.Identity;
+using lebagarv.Core.Domain.Entities;
 
 public class PasswordService : IPasswordService 
 {
     private readonly IEmailSender _mailSender; 
     private readonly IResetPasswordTokenRepository _tokenRepository; 
     private readonly IUserRepository _userRepository; 
-    private readonly IPasswordHasher<User> _passwordHasher; 
+    private readonly IPasswordHasher<AppUser> _passwordHasher; 
 
     public PasswordService
     (
@@ -29,14 +30,14 @@ public class PasswordService : IPasswordService
         _mailSender = mailSender; 
         _tokenRepository = tokenRepository; 
         _userRepository = userRepository; 
-        _passwordHasher = new PasswordHasher<User>(); 
+        _passwordHasher = new PasswordHasher<AppUser>(); 
     }
 
     public async Task<bool> SendResetPasswordEmailAsync(string email) 
     {
        if(!await _userRepository.ExistsByEmailAsync(email))
        {
-          return true; // dont want to send info to the atacant, so return true as the email has ben seet IF EMAIL EXISTS
+          return true; // for security purposes
        }
        
        ResetPasswordToken token = new()
@@ -47,6 +48,10 @@ public class PasswordService : IPasswordService
        }; 
 
        await _tokenRepository.AddAsync(token);        
+       
+       var url = $"https://lebagarv.vercel.app/reset_passord/{email}/{token.ResetToken}"; 
+       var mailMessage = $"Hi, Use this URL to reset your password at Lebagarv: {url}"; 
+       await _mailSender.SendEmailAsync(email, "YOUR PASSWORD AT LEBAGARV", mailMessage); 
 
        return true; 
     }

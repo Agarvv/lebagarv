@@ -1,11 +1,11 @@
 namespace lebagarv.Infrastructure.Persistence.Repositories; 
 
-using lebagarv.Core.Domain.Entities; 
+using lebagarv.Core.Domain.Entities.Users; 
 using lebagarv.Infrastructure.Persistence.Repositories; 
 
-public interface IUserRepository : IRepository<User>
+public interface IUserRepository : IRepository<AppUser>
 {
    Task<bool> ExistsByEmailAsync(string email);
-   Task<User> FindByEmailAsync(string email); 
-   Task<User> FindByIdAsync(int id); 
+   Task<AppUser> FindByEmailAsync(string email); 
+   Task<AppUser> FindByIdAsync(int id); 
 }

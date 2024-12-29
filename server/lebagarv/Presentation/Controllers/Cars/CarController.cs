@@ -25,9 +25,9 @@ namespace lebagarv.Presentation.Controllers
         }
         
         [HttpGet("/car/{id}")]
-        public async Task<IActionResult> GetCarById()
+        public async Task<IActionResult> GetCarById(int id)
         {
-            var car = _carsService.GetCarByIdAsync(); 
+            var car = _carsService.GetCarByIdAsync(id); 
             return Ok(car); 
         }
 

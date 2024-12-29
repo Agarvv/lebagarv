@@ -1,4 +1,4 @@
-namespace lebagarv.Infrastructure.Persistence.Repositories; 
+namespace lebagarv.Infrastructure.Persistence.Repositories.Cars; 
 
 using lebagarv.Core.Domain.Entities.Cars; 
 using lebagarv.Infrastructure.Persistence.Repositories; 

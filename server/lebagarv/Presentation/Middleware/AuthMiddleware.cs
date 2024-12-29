@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using lebagarv.Infrastructure.Security;
+using System.Security.Claims;
 
 public class AuthMiddleware
 {
@@ -28,11 +29,18 @@ public class AuthMiddleware
             try
             {
                 var claimsPrincipal = _jwtService.ValidateToken(jwt);
-
                 if (claimsPrincipal != null)
                 {
+                    var claims = claimsPrincipal.Claims;
+
+                    foreach (var claim in claims)
+                    {
+                      Console.WriteLine($"{claim.Type}: {claim.Value}");
+                    }
+                    var userId = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    Console.WriteLine($"user id, {userId}");
                     context.User = claimsPrincipal;
-                    Console.WriteLine("JWT validated and user set.");
+                    Console.WriteLine(claimsPrincipal);
                 }
             }
             catch (Exception ex)

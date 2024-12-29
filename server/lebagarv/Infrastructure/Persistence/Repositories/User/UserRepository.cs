@@ -1,10 +1,10 @@
 namespace lebagarv.Infrastructure.Repositories.User; 
-using lebagarv.Core.Domain.Entities; 
+using lebagarv.Core.Domain.Entities.Users; 
 using lebagarv.Infrastructure.Persistence.Repositories; 
 using lebagarv.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-public class UserRepository : Repository<User>, IUserRepository
+public class UserRepository : Repository<AppUser>, IUserRepository
 {   
     private readonly AppDbContext _context;
 
@@ -13,9 +13,9 @@ public class UserRepository : Repository<User>, IUserRepository
         _context = context;
     }
     
-    public async Task<User> FindByIdAsync(int id)
+    public async Task<AppUser> FindByIdAsync(int id)
     {
-        var user = _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         return user; 
     }
     
@@ -24,7 +24,7 @@ public class UserRepository : Repository<User>, IUserRepository
       return await _context.Users.AnyAsync(u => u.Email == email);
     }
 
-    public async Task<User> FindByEmailAsync(string email) 
+    public async Task<AppUser> FindByEmailAsync(string email) 
     {
        return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
        

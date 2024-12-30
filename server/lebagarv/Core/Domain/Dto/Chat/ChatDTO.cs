@@ -12,4 +12,5 @@ public class ChatDTO
     public int SenderId { get; set; }
     public int ReceiverId { get; set; } 
     public ICollection<MessageDTO> Messages { get; set; } = new List<MessageDTO>();
+    public int UserToDisplayInfo; 
 }

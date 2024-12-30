@@ -5,6 +5,7 @@ namespace lebagarv.Core.Domain.Entities.Chat
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using lebagarv.Core.Domain.Dto.Chat; 
+    using lebagarv.Core.Domain.Entities.Users; 
 
     public class Chat
     {
@@ -16,15 +17,26 @@ namespace lebagarv.Core.Domain.Entities.Chat
 
         [Required]
         public int ReceiverId { get; set; }
+        
+        [Required]
+        public int CarId { get; set; }
 
         public ICollection<Message> Messages { get; set; } = new List<Message>();
         
-        public ChatDTO toChatDto(Chat chat) 
+        public ChatDTO toChatDto(Chat chat, int userId) 
         {
             Id=chat.Id;
             SenderId=chat.SenderId; 
             ReceiverId=chat.ReceiverId;
             Messages=chat.Messages.Select(message => message.toMessageDto(message)); 
+            UserToDisplayInfo=GetUserToDisplayInfo(userId); 
+            Messages=chat.Messages; 
+        }
+        
+        private int GetUserToDisplayInfo(int userId) 
+        {
+            var userToDisplayInfoId = this.SenderId == userId ? this.ReceiverId : this.SenderId; 
+            return userToDisplayInfoId; 
         }
     }
 }

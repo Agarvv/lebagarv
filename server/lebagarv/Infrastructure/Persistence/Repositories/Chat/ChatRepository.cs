@@ -19,4 +19,9 @@ public class ChatRepository : Repository<Chat>, IChatRepository
     {
         return _context.Chats.Where(c => c.user_id == userId).ToList();
     }
+    
+    public async Task<bool> ExistsByCarId(int carId)
+    {
+        return await _context.Chats.AnyAsync(c => c.carId == carId); 
+    }
 }

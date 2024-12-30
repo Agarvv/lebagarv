@@ -19,4 +19,5 @@ public class AppDbContext : DbContext
     public DbSet<CarBrand> CarBrands { get; set; }
 
     public DbSet<ResetPasswordToken> ResetPasswordTokens { get; set; }
+    public DbSet<Chat> Chats { get; set; }
 }

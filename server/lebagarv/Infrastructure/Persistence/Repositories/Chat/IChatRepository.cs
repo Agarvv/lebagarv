@@ -5,5 +5,6 @@ using lebagarv.Infrastructure.Persistence.Repositories;
 
 public interface IChatRepository : IRepository<Chat>
 {
+    IEnumerable<Chat> GetAllByUserId(int userId); 
     
 }

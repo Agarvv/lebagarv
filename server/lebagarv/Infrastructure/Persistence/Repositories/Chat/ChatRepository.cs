@@ -14,4 +14,9 @@ public class ChatRepository : Repository<Chat>, IChatRepository
     {
         _context = context;
     }
+    
+    public IEnumerable<Chat> GetAllByUserId(int userId)
+    {
+        return _context.Chats.Where(c => c.user_id == userId).ToList();
+    }
 }

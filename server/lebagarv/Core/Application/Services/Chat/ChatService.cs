@@ -2,8 +2,8 @@ namespace lebagarv.Core.Application.Services.Chat;
 
 using lebagarv.Infrastructure.Persistence.Repositories.Chat; 
 using lebagarv.Core.Domain.Exceptions; 
-using lebagarv.Core.Domain.Entities.Chat; 
-
+using lebagarv.Core.Domain.Entities.Chat;
+using lebagarv.Core.Domain.Dto.Chat;
 
 public class ChatService : IChatService 
 {
@@ -13,16 +13,16 @@ public class ChatService : IChatService
         _chatRepository = chatRepository; 
     }
     
-    public async Task GetUserChatsAsync(int userId) 
+    public async Task<IEnumerable<ChatDTO>> GetUserChats(int userId)
     {
-        var chats = _chatRepository.GetAllByUserId(userId); 
-        
-        return chats.Select(c => c.toChatDto(c, userId))
+        var chats = _chatRepository.GetAllByUserId(userId);
+        return chats.Select(c => c.toChatDto(c, userId));
     }
+
     
     public async Task CreateChat(int carId, int receiverId, int userId)
     {
-        if(_chatRepository.ExistsByCarId(carId))
+        if(await _chatRepository.ExistsByCarIdAsync(carId))
         {
             throw new LebagarvException("You Cant Chat to this car because you already have a chat with.", 409); 
         }
@@ -32,7 +32,7 @@ public class ChatService : IChatService
             SenderId=userId,
             ReceiverId=receiverId,
             CarId=carId
-        }
+        };
         
         await _chatRepository.AddAsync(chat); 
     }

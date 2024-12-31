@@ -81,6 +81,8 @@ public class PasswordService : IPasswordService
 
        await _userRepository.SaveAsync(user); 
 
+       await _tokenRepository.DeleteAsync(token.Id);
+
        return true; 
     } 
 

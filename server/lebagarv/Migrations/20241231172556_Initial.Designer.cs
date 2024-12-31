@@ -12,8 +12,8 @@ using lebagarv.Infrastructure.Persistence;
 namespace lebagarv.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241229233307_Initia")]
-    partial class Initia
+    [Migration("20241231172556_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,6 +126,52 @@ namespace lebagarv.Migrations
                     b.ToTable("CarColors");
                 });
 
+            modelBuilder.Entity("lebagarv.Core.Domain.Entities.Chat.Chat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceiverId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Chats");
+                });
+
+            modelBuilder.Entity("lebagarv.Core.Domain.Entities.Chat.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ChatId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceiverId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
+
+                    b.ToTable("Message");
+                });
+
             modelBuilder.Entity("lebagarv.Core.Domain.Entities.ResetPasswordToken", b =>
                 {
                     b.Property<int>("Id")
@@ -198,6 +244,22 @@ namespace lebagarv.Migrations
                     b.Navigation("CarBrand");
 
                     b.Navigation("CarColor");
+                });
+
+            modelBuilder.Entity("lebagarv.Core.Domain.Entities.Chat.Message", b =>
+                {
+                    b.HasOne("lebagarv.Core.Domain.Entities.Chat.Chat", "Chat")
+                        .WithMany("Messages")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chat");
+                });
+
+            modelBuilder.Entity("lebagarv.Core.Domain.Entities.Chat.Chat", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

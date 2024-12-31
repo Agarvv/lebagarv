@@ -77,4 +77,11 @@ namespace lebagarv.Presentation.Controllers.Auth;
         return Ok("Go verify your email"); 
      }
 
+     [HttpPost("reset")]
+     public async Task<IActionResult> ResetPassword(ResetPasswordRequest request)
+     {
+         await _passwordService.ResetPasswordAsync(request); 
+         return Ok("You're All Set!"); 
+     }
+
 }

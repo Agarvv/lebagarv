@@ -17,11 +17,11 @@ public class ChatRepository : Repository<Chat>, IChatRepository
     
     public IEnumerable<Chat> GetAllByUserId(int userId)
     {
-        return _context.Chats.Where(c => c.user_id == userId).ToList();
+        return _context.Chats.Where(c => c.ReceiverId == userId || c.SenderId == userId).ToList();
     }
     
-    public async Task<bool> ExistsByCarId(int carId)
+    public async Task<bool> ExistsByCarIdAsync(int carId)
     {
-        return await _context.Chats.AnyAsync(c => c.carId == carId); 
+        return await _context.Chats.AnyAsync(c => c.CarId == carId); 
     }
 }

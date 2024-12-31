@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using lebagarv.Core.Application.Services.Chat; 
 using lebagarv.Core.Domain.Dto.Chat; 
 using lebagarv.Presentation.Models.Request.Chat;
-
+using System.Security.Claims;
 
 [ApiController]
 [Route("/api/lebagarv/chats")]
@@ -20,9 +20,9 @@ public class ChatController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetChats() 
     {
-        var userId = Int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         
-        var chats = _chatService.GetUserChatsAsync(userId);
+        var chats = _chatService.GetUserChats(userId);
         
         return Ok(chats); 
     
@@ -31,10 +31,10 @@ public class ChatController : ControllerBase
     [HttpPost("new")]
     public async Task<IActionResult> CreateNewChat(CreateChatRequest request) 
     {
-        var userId = Int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         
         await _chatService.CreateChat(request.CarId, request.ReceiverId, userId); 
         
-        return Ok($"Chat with car id: {carId} created"); 
+        return Ok($"Chat created"); 
     }
 }

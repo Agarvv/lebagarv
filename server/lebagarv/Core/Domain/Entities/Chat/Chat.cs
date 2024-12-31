@@ -25,12 +25,15 @@ namespace lebagarv.Core.Domain.Entities.Chat
         
         public ChatDTO toChatDto(Chat chat, int userId) 
         {
-            Id=chat.Id;
-            SenderId=chat.SenderId; 
-            ReceiverId=chat.ReceiverId;
-            Messages=chat.Messages.Select(message => message.toMessageDto(message)); 
-            UserToDisplayInfo=GetUserToDisplayInfo(userId); 
-            Messages=chat.Messages; 
+            return new ChatDTO()
+            {
+               Id=chat.Id,
+               SenderId=chat.SenderId,
+               ReceiverId=chat.ReceiverId,
+               //Messages=chat.Messages.Select(message => message.toMessageDto(message)),
+               UserToDisplayInfo=GetUserToDisplayInfo(userId),
+               // Messages=chat.Messages
+            };
         }
         
         private int GetUserToDisplayInfo(int userId) 

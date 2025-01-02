@@ -89,7 +89,7 @@ public class Car
             Price=this.Price,
             Images = this.Images,
             City=this.City,
-            Brand=this.CarBrand.value; 
+            Brand=this.CarBrand.value
         }; 
     }
 }

@@ -37,7 +37,6 @@ const CarFormStepTwo = () => {
                         {...register('carYear', { required: 'Car year is required', min: 1900, max: new Date().getFullYear() })} 
                         placeholder="Year" 
                     />
-                    
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Fuel Type</label>
@@ -49,7 +48,6 @@ const CarFormStepTwo = () => {
                         <option value="Electric">Electric</option>
                         <option value="Other..">Other..</option>
                     </select>
-                   
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Gearbox</label>
@@ -90,7 +88,6 @@ const CarFormStepTwo = () => {
                         {...register('seats', { required: 'Number of seats is required', min: 2, max: 8 })} 
                         placeholder="Seats" 
                     />
-                
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>Horsepower</label>
@@ -99,7 +96,6 @@ const CarFormStepTwo = () => {
                         {...register('horsepower', { required: 'Horsepower is required', min: 50, max: 1000 })} 
                         placeholder="Horsepower" 
                     />
-                    
                 </div>
                 <div className={sharedCarFormStyles.field}>
                     <label>How Many KM?</label>
@@ -113,19 +109,18 @@ const CarFormStepTwo = () => {
                     <label>Car Color</label>
                     <select {...register('color', { required: 'Car color is required' })}>
                         <option value={1}>Red</option>
-                        <option value="black">Black</option>
-                        <option value="red">Red</option>
-                        <option value="blue">Blue</option>
-                        <option value="silver">Silver</option>
-                        <option value="gray">Gray</option>
-                        <option value="yellow">Yellow</option>
-                        <option value="green">Green</option>
-                        <option value="orange">Orange</option>
-                        <option value="brown">Brown</option>
-                        <option value="gold">Gold</option>
-                        <option value="purple">Purple</option>
+                        <option value={2}>Black</option>
+                        <option value={3}>Red</option>
+                        <option value={4}>Blue</option>
+                        <option value={5}>Silver</option>
+                        <option value={6}>Gray</option>
+                        <option value={7}>Yellow</option>
+                        <option value={8}>Green</option>
+                        <option value={9}>Orange</option>
+                        <option value={10}>Brown</option>
+                        <option value={11}>Gold</option>
+                        <option value={12}>Purple</option>
                     </select>
-                    
                 </div>
             </div>
         </div>

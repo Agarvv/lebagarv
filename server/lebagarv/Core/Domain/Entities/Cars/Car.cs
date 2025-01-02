@@ -8,62 +8,62 @@ using lebagarv.Core.Domain.Dto.Cars;
 
 public class Car
 { 
-        [Key]
-        public int Id { get; set; }
+    [Key]
+    public int Id { get; set; }
     
-        [Required]
-        [MaxLength(255)]
-        public string Title { get; set; }
+    [Required]
+    [MaxLength(255)]
+    public string Title { get; set; }
 
-        public List<string> Images; 
+    public List<string> Images { get; set; } = new List<string>(); 
 
-        [Required]
-        [ForeignKey("CarBrand")]
-        public int CarBrandId { get; set; } 
-        public virtual CarBrand CarBrand { get; set; }
+    [Required]
+    [ForeignKey("CarBrand")]
+    public int CarBrandId { get; set; } 
+    public virtual CarBrand CarBrand { get; set; }
 
-        [Required]
-        public string CarModel { get; set; } 
+    [Required]
+    public string CarModel { get; set; } 
 
-        [Required]
-        public int CarYear { get; set; } 
+    [Required]
+    public int CarYear { get; set; } 
 
-        [Required]
-        public string FuelType { get; set; } 
+    [Required]
+    public string FuelType { get; set; } 
 
-        [Required]
-        public string Gearbox { get; set; } 
+    [Required]
+    public string Gearbox { get; set; } 
 
-        [Required]
-        public string Bodywork { get; set; }
+    [Required]
+    public string Bodywork { get; set; }
 
-        [Required]
-        [ForeignKey("CarColor")]
-        public int Color { get; set; }
-        public virtual CarColor CarColor { get; set; }
+    [Required]
+    [ForeignKey("CarColor")]
+    public int Color { get; set; }
+    public virtual CarColor CarColor { get; set; }
 
-        [Required]
-        public string Description { get; set; } 
+    [Required]
+    public string Description { get; set; } 
 
-        [Required]
-        public int Doors { get; set; } 
+    [Required]
+    public int Doors { get; set; } 
 
-        [Required]
-        public int Seats { get; set; } 
+    [Required]
+    public int Seats { get; set; } 
 
-        [Required]
-        public int Horsepower { get; set; } 
+    [Required]
+    public int Horsepower { get; set; } 
 
-        [Required]
-        public int Kilometers { get; set; } 
+    [Required]
+    public int Kilometers { get; set; } 
         
-        [Required]
-        public string City { get; set; }
-        
-        public DateTime Date; 
+    [Required]
+    public string City { get; set; }
+    
+    public DateTime Date { get; set; } = DateTime.Now; 
 
-        [Required]
-        public int Price; 
+    [Required]
+    public int Price { get; set; } 
         
     public CarDTO toDto() 
     {
@@ -88,7 +88,8 @@ public class Car
             Title=this.Title,
             Price=this.Price,
             Images = this.Images,
-            City=this.City 
+            City=this.City,
+            Brand=this.CarBrand.value; 
         }; 
     }
 }

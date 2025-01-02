@@ -20,9 +20,9 @@ export const usePost = <T,>(
     onMutate: () => {
       dispatch(setLoading());
     },
-    onError: (error: Error) => {
+    onError: (error: any) => {
       console.error(error);
-      if (withError) dispatch(setError(error.message));
+      if (withError) dispatch(setError(error.response?.data));
     },
     onSuccess: (response: any) => {
       if (successMessage) {

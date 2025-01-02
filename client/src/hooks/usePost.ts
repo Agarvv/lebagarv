@@ -22,7 +22,7 @@ export const usePost = <T,>(
     },
     onError: (error: Error) => {
       console.error(error);
-      if (withError) dispatch(setError('Something went wrong...'));
+      if (withError) dispatch(setError(error.message));
     },
     onSuccess: (response: any) => {
       if (successMessage) {

@@ -4,10 +4,13 @@ import { useForm, FormProvider } from 'react-hook-form';
 import CarFormStepOne from './car-form-step-one/CarFormStepOne';
 import CarFormStepTwo from './car-form-step-two/CarFormStepTwo';
 import CarFormStepThree from './car-form-step-three/CarFormStepThree';
-
+import { usePost } from 'src/hooks/usePost';
 import styles from './CarForm.module.css'
+import { createCar } from 'src/api/services/cars/CarService';
 
 const CarForm = () => {
+    const { mutate } = usePost('Car created successfully', true, createCar);
+
     const [step, setStep] = useState(0);
     const methods = useForm({
         defaultValues: {
@@ -29,6 +32,7 @@ const CarForm = () => {
 
     const onSubmit = (data: any) => {
         console.log('La multi ani!!!', data);
+        mutate(data);
     };
 
     return (

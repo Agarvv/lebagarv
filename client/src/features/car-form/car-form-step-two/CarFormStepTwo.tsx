@@ -19,7 +19,7 @@ const CarFormStepTwo = () => {
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Brand</label>
                     <select {...register('carBrand', { required: 'Car brand is required' })}>
-                        <option value="BEMVE">BEMVE</option>
+                        <option value="1">BEMVE</option>
                     </select>
                 </div>
                 <div className={sharedCarFormStyles.field}>
@@ -112,7 +112,7 @@ const CarFormStepTwo = () => {
                 <div className={sharedCarFormStyles.field}>
                     <label>Car Color</label>
                     <select {...register('color', { required: 'Car color is required' })}>
-                        <option value="white">White</option>
+                        <option value="1">Red</option>
                         <option value="black">Black</option>
                         <option value="red">Red</option>
                         <option value="blue">Blue</option>

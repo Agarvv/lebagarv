@@ -11,12 +11,12 @@ const LoginForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
   const { mutate } = usePost<FormValues>(
-      '',
+      'Welcome Back',
       true,
       loginUser
   )
   
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
       const response = await mutate(data);
       console.log('Server Response:', response);
   }; 

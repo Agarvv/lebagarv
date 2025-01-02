@@ -77,7 +77,9 @@ public class Car
              FuelType=this.FuelType,
              Gearbox=this.Gearbox,
              City=this.City,
-             Date=this.Date
+             Date=this.Date,
+             Color=this.CarColor.value,
+             Brand=this.CarBrand.value 
         }; 
     }
         

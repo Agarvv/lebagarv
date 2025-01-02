@@ -11,5 +11,7 @@ public class CarDTO
     public string Gearbox { get; set; } 
     public DateTime Date { get; set; } 
     public string City { get; set; } 
+    public string Brand { get; set; } 
+    public string Color { get; set; } 
 }
 

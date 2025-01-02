@@ -1,20 +1,16 @@
+import React from 'react';
 import styles from './SendResetPasswordForm.module.css';
 import { FormValues } from './types'
 import { useForm } from 'react-hook-form';
 import { emailValidation } from 'src/outils/form-validators';
-import useSubmit from 'src/hooks/useSubmit';
+import { usePost } from 'src/hooks/usePost';
+import { sendResetEmail } from 'src/api/services/auth/AuthService';
 
 import { Link } from 'react-router-dom';
 
 const SendResetPasswordUrlForm: React.FC = () => {
-    
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
-  
-  const { mutate } = useSubmit({
-      url: '/auth/send_reset_url/',
-      successMessage: 'Check Your Email.',
-      errorMessage: 'Could not send email...'
-  });
+  const { mutate } = usePost('Check your email for the reset link', true, sendResetEmail);
   
   const onSubmit = (data: FormValues) => {
       mutate(data); 

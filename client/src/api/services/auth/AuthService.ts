@@ -11,3 +11,9 @@ export const registerUser = <T>(data: T) => {
         withCredentials: true 
     });
 }
+
+export const sendResetEmail = <T>(data: T) => {
+    return axiosInstance.post('/auth/send_reset_email', data, {
+        withCredentials: true 
+    });
+}

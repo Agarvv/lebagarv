@@ -16,7 +16,7 @@ public class ChatService : IChatService
     public async Task<IEnumerable<ChatDTO>> GetUserChats(int userId)
     {
         var chats = _chatRepository.GetAllByUserId(userId);
-        return chats.Select(c => c.toChatDto(c, userId));
+        return chats.Select(c => c.toChatDto(c, userId)).ToList(); 
     }
 
     

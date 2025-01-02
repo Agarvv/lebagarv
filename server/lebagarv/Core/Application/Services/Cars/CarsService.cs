@@ -18,7 +18,7 @@ namespace lebagarv.Application.Services.Cars
 
         public async Task<IEnumerable<Car>> GetCarsAsync()
         {
-            return await _carRepository.GetAllAsync();
+            return await _carRepository.GetAllCarsAsync();
         }
         
         public async Task<Car> GetCarByIdAsync(int id)

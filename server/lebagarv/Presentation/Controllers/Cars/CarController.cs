@@ -28,7 +28,7 @@ namespace lebagarv.Presentation.Controllers
         public async Task<IActionResult> GetCarById(int id)
         {
             var car = _carsService.GetCarByIdAsync(id); 
-            return Ok(car); 
+            return Ok(car.toDto()); 
         }
 
         [HttpPost("create")]

@@ -85,11 +85,11 @@ public class Car
     {
         return new CarShowcaseDTO() 
         {
-            Title=this.Title,
-            Price=this.Price,
-            Images = this.Images,
-            City=this.City,
-            Brand=this.CarBrand.value
+        Title = this.Title ?? string.Empty,
+        Price = this.Price,
+        Images = this.Images ?? new List<string>(),
+        City = this.City ?? string.Empty, 
+        Brand = this.CarBrand?.value ?? string.Empty 
         }; 
-    }
+   }
 }

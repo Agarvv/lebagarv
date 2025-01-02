@@ -48,5 +48,7 @@ namespace lebagarv.Presentation.Models.Requests.Cars
         
         [Required]
         public string City { get; set; } // car city
+        [Required]
+        public int Price { get; set; } 
     }
 }

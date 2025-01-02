@@ -23,11 +23,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
-        builder.AllowAnyOrigin()
+    options.AddPolicy("AllowSpecificOrigins", builder =>
+        builder.WithOrigins("https://lebagarv.vercel.app")
                .AllowAnyMethod()
-               .AllowAnyHeader()); // i understand the danger.
+               .AllowAnyHeader()
+               .AllowCredentials());
 });
+
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -88,6 +90,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
-app.UseCors("AllowAll");
+app.UseCors("AllowSpecificOrigins");
+
 
 app.Run();

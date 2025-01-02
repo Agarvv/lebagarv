@@ -25,8 +25,9 @@ public class CarRepository : Repository<Car>, ICarRepository
     public async Task<Car> GetCarByIdAsync(int id)
     {
         return await _context.Cars
-            .Include(c => c.CarBrand, c.CarColor) 
-            .FirstOrDefaultAsync(c => c.Id == id); 
+            .Include(c => c.CarBrand)
+            .Include(c => c.CarColor)
+            .FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<bool> ExistsCarColorById(int id)

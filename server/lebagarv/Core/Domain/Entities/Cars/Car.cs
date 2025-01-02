@@ -78,8 +78,8 @@ public class Car
              Gearbox=this.Gearbox,
              City=this.City,
              Date=this.Date,
-             Color=this.CarColor.value,
-             Brand=this.CarBrand.value 
+             Color=this.CarColor?.value ?? string.Empty,
+             Brand=this.CarBrand?.value ?? string.Empty
         }; 
     }
         

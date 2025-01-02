@@ -21,6 +21,13 @@ public class CarRepository : Repository<Car>, ICarRepository
         .Include(c => c.CarBrand) 
         .ToListAsync();
     }
+    
+    public async Task<Car> GetCarByIdAsync(int id)
+    {
+        return await _context.Cars
+            .Include(c => c.CarBrand) 
+            .FirstOrDefaultAsync(c => c.Id == id); 
+    }
 
     public async Task<bool> ExistsCarColorById(int id)
     {

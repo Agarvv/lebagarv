@@ -4,17 +4,16 @@ import { Link } from 'react-router-dom';
 import styles from './RegisterForm.module.css';
 import { FormValues } from './types';
 import { usernameValidation, emailValidation, passwordValidation } from 'src/outils/form-validators';
-import { useRegister } from './useRegister';
+import { usePost } from 'src/hooks/usePost';
+import { registerUser } from 'src/api/services/auth/AuthService';
 
 const RegisterForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
-  const { mutate } = useRegister();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log('data to send', data);
-    console.log('errors', errors);
-    mutate(data);
-  };
+  const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
+    const { mutate } = usePost<FormValues>('Wekcome to Chatssy!', true, registerUser);
+    mutate(); 
+  }
 
   return (
     <div className={styles.container}>

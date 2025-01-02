@@ -5,3 +5,9 @@ export const loginUser = <T>(data: T) => {
         withCredentials: true 
     });
 }
+
+export const registerUser = <T>(data: T) => {
+    return axiosInstance.post('/auth/register', data, {
+        withCredentials: true 
+    });
+}

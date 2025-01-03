@@ -9,7 +9,7 @@ interface Props {
     car: CarDetails 
 }
 
-const CarData: React.FC<Props> = ({ CarDetails }) => {
+const CarData: React.FC<Props> = ({ car }: Props) => {
     return (
        <div className={styles.carData}>
           <CarImages /> 

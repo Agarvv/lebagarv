@@ -6,14 +6,14 @@ import styles from './CarData.module.css';
 import { CarDetails } from 'src/types/cars/CarDetails';
 
 interface Props {
-    car: CarDetails 
+    car: CarDetails;
 }
 
 const CarData: React.FC<Props> = ({ car }: Props) => {
     return (
        <div className={styles.carData}>
           <CarImages /> 
-                    <h4 className={styles.carTitle}>{ car?.title }</h4>
+          <h4 className={styles.carTitle}>{ car?.title }</h4>
           <strong className={styles.carPrice}>$ {car?.price}</strong>
           <p className={styles.carDate}>{car?.date}</p> 
          
@@ -29,7 +29,7 @@ const CarData: React.FC<Props> = ({ car }: Props) => {
                   <CarDetail 
                       icon={<i className="fa fa-bars"></i>}
                       detail="Model"
-                      detailValue="car model"
+                      detailValue={car?.model}
                   />
 
                   <CarDetail 
@@ -71,7 +71,7 @@ const CarData: React.FC<Props> = ({ car }: Props) => {
                   <CarDetail 
                       icon={<i className="fa fa-chair"></i>}
                       detail="Car Seats"
-                      detailValue={car?.seats}`
+                      detailValue={car?.seats}
                   />
 
                   <CarDetail 

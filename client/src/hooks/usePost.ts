@@ -26,10 +26,12 @@ export const usePost = <T,>(
       if (withError) dispatch(setError(error.response?.data));
     },
     onSuccess: (response: any) => {
-      successMessage 
-        ? (dispatch(setSuccess(successMessage)), successFunc ? successFunc() : console.log("Success POST"))
-        : console.log('Post succeeded');
-    
+      if (successMessage) {
+        dispatch(setSuccess(successMessage));
+        successFunc ? successFunc() : console.log("Success POST");
+      } else {
+        console.log('Post succeeded');
+      }
       return response;
     },    
   });

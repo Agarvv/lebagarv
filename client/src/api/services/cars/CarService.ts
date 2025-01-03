@@ -16,7 +16,7 @@ export const getCars = async (): Promise<CarShowcase[]> => {
 };
 
 export const getCarById = async (carId: number): Promise<CarDetails> => {
-    const res = await axiosInstance.post(`/cars/car/${carId}`, carId, {
+    const res = await axiosInstance.get(`/cars/car/${carId}`, carId, {
         withCredentials: true,
     });
     return res.data; 

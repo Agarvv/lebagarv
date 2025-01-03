@@ -1,20 +1,31 @@
-import React from 'react'
-
+import React from 'react';
+import { useParams } from 'react-router-dom'; 
 import CarData from './car-data/CarData'; 
 import CarUser from './car-user/CarUser'; 
-import styles from './CarDetails.module.css'
+import styles from './CarDetails.module.css';
+import { useGet } from 'src/hooks/useGet';
+import { CarDetails } from 'src/types/cars/CarDetails';
+import { getCarById } from 'src/api/services/cars/CarService';
 
 const CarDetails = () => {
-    return(
-      <main>
-          <div className={styles.car}>
-            <div className={styles.carDetails}>
-              <CarData /> 
-              <CarUser /> 
-            </div> 
-          </div> 
-      </main>
-   )
+  const { id } = useParams();  
+ 
+  const { car } = useGet<CarDetails>
+  (
+    serviceFunc: getCarById(id), 
+    successFunc: () => console.log('car fetched successfully!'),
+    withError: true
+  );
+  return(
+    <main>
+      <div className={styles.car}>
+        <div className={styles.carDetails}>
+          <CarData /> 
+          <CarUser /> 
+        </div> 
+      </div> 
+    </main>
+  );
 }
 
-export default CarDetails; 
+export default CarDetails;

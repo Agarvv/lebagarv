@@ -12,17 +12,25 @@ const CarLists = () => {
     withError: true
   });
 
+  const carsByBrand = cars.reduce((groups, car) => {
+    groups[car.brand] = groups[car.brand] || [];
+    groups[car.brand].push(car);
+    return groups;
+  }, {} as Record<string, CarShowcase[]>);
+
   return (
     <div>
-      {cars.length > 0 ? (
-        cars.map((car) => (
-          <div key={car.title} className={styles.carItem}>
-            <span>{car.brand}</span>
-          </div>
-        ))
-      ) : (
-        <p>No cars available</p>
-      )}
+      {Object.entries(carsByBrand).map(([brand, cars]) => (
+        <div key={brand} className={styles.brandSection}>
+          <h2>{brand}</h2>
+          {cars.map((car) => (
+            <div key={car.id} className={styles.carItem}>
+              <span>{car.model}</span>
+              <CarList />
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };

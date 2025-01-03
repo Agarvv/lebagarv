@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { setError } from 'src/store/apiStatus/apiStatusSlice';
-import { Contacts } from 'src/types/chat/contacts/Contacts';
 
 interface UseGetOptions<T> {
     serviceFunc: () => Promise<T>;

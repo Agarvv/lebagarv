@@ -6,31 +6,24 @@ import { getCars } from 'src/api/services/cars/CarService';
 import { CarShowcase } from 'src/types/cars/CarShowcase';
 
 const CarLists = () => {
-    
-  const { data } = useGet<CarShowcase[]>({
-  serviceFunc: getCars,
-  successFunc: () => console.log('Contacts fetched successfully!'),
-  withError: true
-});
-
- 
-  const carList = [
-    'BMW',
-    'Porsche',
-    'Mercedes'
-  ];
+  const { data: cars = [] } = useGet<CarShowcase[]>({
+    serviceFunc: getCars,
+    successFunc: () => console.log('Cars fetched successfully!'),
+    withError: true
+  });
 
   return (
-    <>
-      {carList.map(car => (
-        <div key={car} className={styles.carItem}>
-          <span>{car}</span> 
-          <CarList
-            
-          /> 
-        </div>
-      ))}
-    </>
+    <div>
+      {cars.length > 0 ? (
+        cars.map((car) => (
+          <div key={car.title} className={styles.carItem}>
+            <span>{car.brand}</span>
+          </div>
+        ))
+      ) : (
+        <p>No cars available</p>
+      )}
+    </div>
   );
 };
 

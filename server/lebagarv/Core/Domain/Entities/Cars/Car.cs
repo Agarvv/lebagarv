@@ -79,7 +79,7 @@ public class Car
              City=this.City,
              Date=this.Date,
              Color=this.CarColor?.value ?? string.Empty,
-             Brand=this.CarBrand?.value ?? string.Empty
+             Brand=this.CarBrand?.value ?? string.Empty,
              Model=this.CarModel?? string.Empty,
              Bodywork=this.Bodywork?? string.Empty,
              Doors=this.Doors,

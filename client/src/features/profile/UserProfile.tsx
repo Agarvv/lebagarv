@@ -9,7 +9,7 @@ import ProfilePicture from './profile-picture/ProfilePicture';
 import ProfileUsername from './profile-username/ProfileUsername';
 import ProfileBio from './profile-bio/ProfileBio';
 import { getUserProfile } from 'src/api/services/profile/ProfileService';
-import type { Profile } from 'src/api/services/profile/ProfileService';
+import type { Profile } from 'src/types/profile/Profile';
 
 const UserProfile = () => {
     const [isSelf, setIsSelf] = useState(false);

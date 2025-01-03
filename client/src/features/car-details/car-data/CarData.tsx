@@ -29,7 +29,7 @@ const CarData: React.FC<Props> = ({ car }: Props) => {
                   <CarDetail 
                       icon={<i className="fa fa-bars"></i>}
                       detail="Model"
-                      detailValue={car?.model}
+                      detailValue={car?.carModel}
                   />
 
                   <CarDetail 

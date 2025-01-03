@@ -3,14 +3,19 @@ import React from 'react';
 import CarImages from './car-images/CarImages';
 import CarDetail from './car-detail/CarDetail';
 import styles from './CarData.module.css';
+import { CarDetails } from 'src/types/cars/CarDetails';
 
-const CarData = () => {
+interface Props {
+    car: CarDetails 
+}
+
+const CarData: React.FC<Props> = ({ CarDetails }) => {
     return (
        <div className={styles.carData}>
           <CarImages /> 
-                    <h4 className={styles.carTitle}>2019 Porsche Cayenne</h4>
-          <strong className={styles.carPrice}>$ 728</strong>
-          <p className={styles.carDate}>26/12/24</p> 
+                    <h4 className={styles.carTitle}>{ car?.title }</h4>
+          <strong className={styles.carPrice}>$ {car?.price}</strong>
+          <p className={styles.carDate}>{car?.date}</p> 
          
           <div className={styles.carDetails}>
               <h4 className="cd-p">Car Details</h4>
@@ -18,49 +23,49 @@ const CarData = () => {
                   <CarDetail 
                       icon={<i className="fa fa-car"></i>}
                       detail="Brand"
-                      detailValue="BMW"
+                      detailValue={car?.brand}
                   /> 
                   
                   <CarDetail 
                       icon={<i className="fa fa-bars"></i>}
                       detail="Model"
-                      detailValue="S20"
+                      detailValue="car model"
                   />
 
                   <CarDetail 
                       icon={<i className="fa fa-calendar"></i>}
                       detail="Year"
-                      detailValue="2019"
+                      detailValue={car?.carYear}
                   />
 
                   <CarDetail 
                       icon={<i className="fa fa-cog"></i>}
                       detail="Gearbox"
-                      detailValue="Auto"
+                      detailValue={car?.gearbox}
                   />
 
                   <CarDetail 
                       icon={<i className="fa fa-gas-pump"></i>}
                       detail="Car Fuel"
-                      detailValue="Diesel"
+                      detailValue={car?.fuelType}
                   />
 
                   <CarDetail 
                       icon={<i className="fa fa-car"></i>}
                       detail="Bodywork"
-                      detailValue="Sedan"
+                      detailValue="bodywork"
                   />
 
                   <CarDetail 
                       icon={<i className="fa fa-brush"></i>}
                       detail="Car Color"
-                      detailValue="Red"
+                      detailValue={car?.color}
                   />
 
                   <CarDetail 
                       icon={<i className="fa fa-bars"></i>}
                       detail="Car Doors"
-                      detailValue="5 Doors"
+                      detailValue="5 doors"
                   />
 
                   <CarDetail 
@@ -72,13 +77,13 @@ const CarData = () => {
                   <CarDetail 
                       icon={<i className="fa fa-bolt"></i>}
                       detail="Horsepower"
-                      detailValue="190 HP"
+                      detailValue="0 HP"
                   />
 
                   <CarDetail 
                       icon={<i className="fa fa-tachometer"></i>}
                       detail="Kilometers"
-                      detailValue="193,492"
+                      detailValue="000.000"
                   />
               </div>
 

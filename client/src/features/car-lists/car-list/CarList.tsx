@@ -11,7 +11,7 @@ const CarList: React.FC<Props> = ({ cars }) => {
   return (
     <div className={styles.carList}>
       {cars?.map((car) => (
-        <Car key={car.id} car={car} />
+        <Car key={car.title} car={car} />
       ))}
     </div>
   );

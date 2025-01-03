@@ -9,7 +9,7 @@ const CarLists = () => {
     
   const { data } = useGet<CarShowcase[]>({
   serviceFunc: getCars,
-  successFunc: () => console.log('Contacts fetched successfully!', data),
+  successFunc: () => console.log('Contacts fetched successfully!'),
   withError: true
 });
 

@@ -14,22 +14,19 @@ const CarLists = () => {
 
   const carsByBrand = cars.reduce((groups, car) => {
     const brand = car.brand; 
-    groups[brand] = groups[brand] || [];
+    if (!groups[brand]) {
+      groups[brand] = [];
+    }
     groups[brand].push(car);
     return groups;
   }, {} as Record<string, CarShowcase[]>);
 
   return (
     <div>
-      {Object.entries(carsByBrand).map(([brand, cars]) => (
+      {Object.keys(carsByBrand).map((brand) => (
         <div key={brand} className={styles.brandSection}>
           <h2>{brand}</h2>
-          {cars.map((car) => (
-            <div key={car.title} className={styles.carItem}>
-              <span>{car.title}</span>
-              <CarList />
-            </div>
-          ))}
+          <CarList cars={carsByBrand[brand]} />
         </div>
       ))}
     </div>

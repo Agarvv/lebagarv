@@ -46,7 +46,7 @@ export const AppRoutes = () => (
       />
       
       <Route 
-        path='/car'
+        path='/car/:id'
         element={<CarDetails/>}
       /> 
       

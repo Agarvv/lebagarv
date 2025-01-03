@@ -1,5 +1,5 @@
 import axiosInstance from "src/config/axiosConfig";
-import { CarShowcase } from "src/types/car/CarShowcase";
+import { CarShowcase } from "src/types/cars/CarShowcase";
 
 export const createCar = async <T>(data: T): Promise<void> => {
     await axiosInstance.post('/cars/create', data, {

@@ -4,11 +4,11 @@ import styles from './CarDetail.module.css';
 
 interface CarDetailProps {
     icon: React.ReactNode,
-    detail: string,
+    detail: any,
     detailValue: string 
 }
 
-const CarDetail: React.FC<CarDetailProps> = ({ icon, detail, detailValue }) => {
+const CarDetail: React.FC<CarDetailProps> = ({ icon, detail, detailValue }: CarDetailProps) => {
     return (
        <div className={styles.carDetailData}>
            <div className="cdd-icon">

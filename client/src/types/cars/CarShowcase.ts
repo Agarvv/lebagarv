@@ -1,4 +1,4 @@
-export type CarShowcase {
+export type CarShowcase = {
     title: string,
     price: number,
     images: string[],

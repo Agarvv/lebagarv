@@ -1,8 +1,13 @@
 import React from 'react';
 import styles from './Car.module.css';
 import logo from 'src/logo.svg';
+import { CarShowcase } from 'src/types/cars/CarShowcase';
 
-const Car = () => {
+interface Props {
+  car: CarShowcase;
+}
+
+const Car: React.FC<Props> = ({ car }) => {
   return (
     <div className={styles.car}>
       <div className={styles.carImage}>
@@ -10,10 +15,10 @@ const Car = () => {
       </div>
       <div className={styles.carDetails}>
         <div className={styles.carTitle}>
-          <p>Lamborghini Huracan Performante</p>
+          <p>{car?.title ?? 'Not Provided'}</p>
         </div>
         <div className={styles.carPrice}>
-          <strong>$ 234,488</strong>
+          <strong>$ {car?.price ?? 0}</strong>
         </div>
       </div>
     </div>

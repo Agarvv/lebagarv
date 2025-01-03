@@ -1,23 +1,20 @@
-import React from 'react'
-import styles from './CarList.module.css'
-import Car from 'src/layout/car/Car'
+import React from 'react';
+import styles from './CarList.module.css';
+import Car from 'src/layout/car/Car';
+import { CarShowcase } from 'src/types/cars/CarShowcase';
 
-const CarList = () => {
-    return(
-      <>
-        <div className={styles.carList}>
-           <Car /> 
-           <Car /> 
-           <Car /> 
-           <Car /> 
-           <Car /> 
-           <Car /> 
-           <Car /> 
-           <Car /> 
-           <Car /> 
-        </div> 
-      </> 
-    )
+interface Props {
+  cars: CarShowcase[];
 }
 
-export default CarList; 
+const CarList: React.FC<Props> = ({ cars }) => {
+  return (
+    <div className={styles.carList}>
+      {cars?.map((car) => (
+        <Car key={car.id} car={car} />
+      ))}
+    </div>
+  );
+};
+
+export default CarList;

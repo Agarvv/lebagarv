@@ -11,7 +11,8 @@ mutate()
 export const usePost = <T,>(
   successMessage: string,
   withError: boolean,
-  serviceFunc: (data: T) => Promise<any>
+  serviceFunc: (data: T) => Promise<any>,
+  successFunc?: void 
 ) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -25,12 +26,11 @@ export const usePost = <T,>(
       if (withError) dispatch(setError(error.response?.data));
     },
     onSuccess: (response: any) => {
-      if (successMessage) {
-        dispatch(setSuccess(successMessage));
-      } else {
-        console.log('Post succeeded');
-      }
-      return response; 
-    },
+      successMessage 
+        ? (dispatch(setSuccess(successMessage)), successFunc ? successFunc() : console.log("Success POST"))
+        : console.log('Post succeeded');
+    
+      return response;
+    },    
   });
 };

@@ -86,6 +86,7 @@ public class Car
              Seats=this.Seats,
              Horsepower=this.Horsepower,
              Kilometers=this.Kilometers,
+             Description=this.Description
         }; 
     }
         

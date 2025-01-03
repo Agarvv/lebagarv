@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Profile.module.css';
 import logo from 'src/logo.svg';
-import Profile from 'src/features/profile/UserProfile';
 import { useParams } from 'react-router-dom';
-import useProfile from 'src/hooks/useProfile';
+import { usePost } from 'src/hooks/usePost';
 
-import ProfileBanner from './profile-banner/ProfileBanner'
-import ProfilePicture from './profile-picture/ProfilePicture'
-import ProfileUsername from './profile-username/ProfileUsername'
-import ProfileBio from './profile-bio/ProfileBio'
-
+import ProfileBanner from './profile-banner/ProfileBanner';
+import ProfilePicture from './profile-picture/ProfilePicture';
+import ProfileUsername from './profile-username/ProfileUsername';
+import ProfileBio from './profile-bio/ProfileBio';
+import { getUserProfile } from 'src/api/services/profile/ProfileService';
+import type { Profile } from 'src/api/services/profile/ProfileService';
 
 const UserProfile = () => {
-    // is self user boolean 
-    const [isSelf, setIsSelf] = useState(false)
-    
-    const { id } = useParams();
-    const { profile } = useProfile({ id: Number(id) });
-    
-    // setIsSelf(id == localStorage.getItem('userId') ? true : false)
+    const [isSelf, setIsSelf] = useState(false);
+    const { id } = useParams(); // user id can be a user id or "SELF" meaning the user is viewing their own profile
 
-     
+    useEffect(() => {
+        setIsSelf(id === 'SELF');
+    }, [id]);
+
+    // Use the correct function for fetching the profile
+    const fetchProfile = async () => {
+        if (isSelf) {
+            return await getUserProfile();
+        } else {
+            return await getUserProfile(Number(id));
+        }
+    };
+
+    const { data: profile, error } = usePost<Profile>("", true, fetchProfile);
 
     return (
         <div className={styles.user}>

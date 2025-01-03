@@ -1,8 +1,10 @@
 import axiosInstance from 'src/config/axiosConfig';
+import { Profile } from 'src/types/profile/Profile';
 
-export const getUserProfile = async (userId: number) => {
-    const response = await axiosInstance.get(`/users/${userId}/`);
-    return response.data.profile;
+export const getUserProfile = async (userId?: number) : Promise<Profile> => {
+    const response = await axiosInstance.get
+    (userId ? `/profile/${userId}` : '/profile', { withCredentials: true });
+    return response.data;
 };
 
 export const setUserProfilePicture = async (url: string) => {

@@ -27,8 +27,7 @@ export const usePost = <T,>(
     },
     onSuccess: (response: any) => {
       if (successMessage) {
-        dispatch(setSuccess(successMessage));
-        successFunc ? successFunc() : console.log("Success POST");
+        dispatch(setSuccess(successMessage)); 
       } else {
         console.log('Post succeeded');
       }

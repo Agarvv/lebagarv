@@ -7,11 +7,11 @@ import { CarShowcase } from 'src/types/cars/CarShowcase';
 
 const CarLists = () => {
   const { data } = useGet<CarShowcase[]>({
-    serviceFunc: getCars,
-    successFunc: () => console.log('Contacts fetched successfully!', data),
-    withError: true
-  })
-
+  serviceFunc: getCars,
+  successFunc: (fetchedData) => console.log('Contacts fetched successfully!', fetchedData),
+  withError: true
+});
+ 
   const carList = [
     'BMW',
     'Porsche',

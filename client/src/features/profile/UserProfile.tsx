@@ -16,7 +16,7 @@ const UserProfile = () => {
     const { id } = useParams(); // user id can be a user id or "SELF" meaning the user is viewing their own profile
 
     useEffect(() => {
-        setIsSelf(id === 'SELF');
+        setIsSelf(id === 's');
     }, [id]);
 
     // Use the correct function for fetching the profile

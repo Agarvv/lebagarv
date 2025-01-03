@@ -22,8 +22,10 @@ const UserProfile = () => {
     // Use the correct function for fetching the profile
     const fetchProfile = async () => {
         if (isSelf) {
+            console.log('fetching self profile');
             return await getUserProfile();
         } else {
+            console.log('fetching other profile');
             return await getUserProfile(Number(id));
         }
     };

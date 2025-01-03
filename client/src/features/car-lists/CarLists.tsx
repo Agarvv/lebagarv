@@ -25,7 +25,7 @@ const CarLists = () => {
           <h2>{brand}</h2>
           {cars.map((car) => (
             <div key={car.title} className={styles.carItem}>
-              <span>{car.model}</span>
+              <span>{car.brand}</span>
               <CarList />
             </div>
           ))}

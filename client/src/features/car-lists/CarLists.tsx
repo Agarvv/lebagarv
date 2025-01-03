@@ -24,7 +24,7 @@ const CarLists = () => {
         <div key={brand} className={styles.brandSection}>
           <h2>{brand}</h2>
           {cars.map((car) => (
-            <div key={car.id} className={styles.carItem}>
+            <div key={car.title} className={styles.carItem}>
               <span>{car.model}</span>
               <CarList />
             </div>

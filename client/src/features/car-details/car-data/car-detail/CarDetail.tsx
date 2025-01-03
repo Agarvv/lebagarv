@@ -4,8 +4,8 @@ import styles from './CarDetail.module.css';
 
 interface CarDetailProps {
     icon: React.ReactNode,
-    detail: any,
-    detailValue: string 
+    detail: string,
+    detailValue: any 
 }
 
 const CarDetail: React.FC<CarDetailProps> = ({ icon, detail, detailValue }: CarDetailProps) => {

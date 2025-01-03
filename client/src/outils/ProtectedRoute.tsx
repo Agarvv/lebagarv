@@ -15,7 +15,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
       const response = await axiosInstance.get('/auth/check/', {
         withCredentials: true,
       });
-      return response.data.message === 'OK';
+      return response.data == "AUTHENTICATED";
     } catch (err) {
       setError(err);
       return false;

@@ -85,6 +85,7 @@ public class Car
              Doors=this.Doors,
              Seats=this.Seats,
              Horsepower=this.Horsepower,
+             Kilometers=this.Kilometers,
         }; 
     }
         

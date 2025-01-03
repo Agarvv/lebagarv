@@ -9,5 +9,12 @@ export type CarDetails = {
     date: string,
     city: string,
     brand: string,
-    color: string 
+    color: string,
+    carModel: string,
+    bodywork: string,
+    description: string,
+    doors: number,
+    seats: number,
+    horsepower: number,
+    kilometers: number,
 }

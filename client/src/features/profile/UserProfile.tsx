@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Profile.module.css';
 import logo from 'src/logo.svg';
 import { useParams } from 'react-router-dom';
-import { usePost } from 'src/hooks/usePost';
+import { useGet } from 'src/hooks/useGet';
 
 import ProfileBanner from './profile-banner/ProfileBanner';
 import ProfilePicture from './profile-picture/ProfilePicture';
@@ -30,7 +30,7 @@ const UserProfile = () => {
         }
     };
 
-    const { data: profile, error } = usePost<Profile>("", true, fetchProfile);
+    const { data: profile } = useGet<Profile>({ serviceFunc: fetchProfile, withError: true});
 
     return (
         <div className={styles.user}>

@@ -6,11 +6,13 @@ import { getCars } from 'src/api/services/cars/CarService';
 import { CarShowcase } from 'src/types/cars/CarShowcase';
 
 const CarLists = () => {
+    
   const { data } = useGet<CarShowcase[]>({
   serviceFunc: getCars,
-  successFunc: (fetchedData) => console.log('Contacts fetched successfully!', fetchedData),
+  successFunc: () => console.log('Contacts fetched successfully!', data),
   withError: true
 });
+
  
   const carList = [
     'BMW',

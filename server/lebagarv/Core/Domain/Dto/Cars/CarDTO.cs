@@ -13,5 +13,13 @@ public class CarDTO
     public string City { get; set; } 
     public string Brand { get; set; } 
     public string Color { get; set; } 
+    public string CarModel { get; set; }
+    public string Bodywork { get; set; }
+    public string Description { get; set; }
+    public int Doors { get; set; }
+    public int Seats { get; set; }
+    public int Horsepower { get; set; }
+    public int Kilometers { get; set; }
+    
 }
 

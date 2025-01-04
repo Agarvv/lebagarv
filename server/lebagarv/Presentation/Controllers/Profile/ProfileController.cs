@@ -37,8 +37,8 @@ public class ProfileController : ControllerBase
         }
 
         var user = await _profileService.GetUserProfile(userId);
-        var userCars = await _profileService.GetCarsByUserIdAsync(userId); 
-        return Ok(user.ToProfileDTO(userCars)); 
+    
+        return Ok(user); 
     }
     
     [HttpPost("set-profile-picture")]

@@ -5,20 +5,24 @@ using lebagarv.Core.Domain.Dto.Profile;
 using lebagarv.Infrastructure.Persistence.Repositories;
 using lebagarv.Infrastructure.Repositories.User;
 using lebagarv.Infrastructure.Repositories.Cars; 
+using lebagarv.Core.Domain.Entities.Cars; 
 
 public class ProfileService : IProfileService 
 {
     private readonly IUserRepository _userRepository; 
+    private readonly ICarRepository _carRepository; 
     
-    public ProfileService(IUserRepository userRepository) 
+    public ProfileService(IUserRepository userRepository, ICarRepository carRepository) 
     {
         _userRepository = userRepository; 
+        _carRepository = carRepository; 
     }
     
     public async Task<ProfileDTO> GetUserProfile(int userId)
     {
         var user = await _userRepository.GetByIdAsync(userId); 
-        return user.ToProfileDTO();
+        var userCars = await GetUserCarsAsync(userId): 
+        return user.ToProfileDTO(userCars);
     }
     
     public async Task<bool> SetUserProfilePicture(int userId, string profilePictureUrl)
@@ -37,5 +41,11 @@ public class ProfileService : IProfileService
         user.Banner = bannerUrl; 
         await _userRepository.SaveAsync(user); 
         return true;
+    }
+    
+    public async Task<IEnumerable<Car>>
+    GetUserCarsAsync(int userId)
+    {
+        return await _carRepository.GetCarsByUserIdAsync(userId); 
     }
 }

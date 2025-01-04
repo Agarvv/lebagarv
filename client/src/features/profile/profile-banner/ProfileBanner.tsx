@@ -40,9 +40,9 @@ const ProfileBanner: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
             />
             <img
                 className={styles.banner}
-                src={valueToDisplay || logo}
+                src={valueToDisplay ?? logo}
                 alt="banner"
-                onClick={isSelf && triggerInput}
+                onClick={isSelf ? triggerInput : undefined}
             />
         </>
     );

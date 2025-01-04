@@ -3,13 +3,12 @@ import styles from './Profile.module.css';
 import logo from 'src/logo.svg';
 import { useParams } from 'react-router-dom';
 import { useGet } from 'src/hooks/useGet';
-
 import ProfileBanner from './profile-banner/ProfileBanner';
 import ProfilePicture from './profile-picture/ProfilePicture';
 import ProfileUsername from './profile-username/ProfileUsername';
-import ProfileBio from './profile-bio/ProfileBio';
 import { getUserProfile } from 'src/api/services/profile/ProfileService';
 import type { Profile } from 'src/types/profile/Profile';
+import Cars from 'src/layout/cars/Cars';
 
 const UserProfile = () => {
     const [isSelf, setIsSelf] = useState(false);
@@ -46,19 +45,9 @@ const UserProfile = () => {
                 <div className={styles['user-data']}>
                   <ProfileUsername isSelf={isSelf} valueToDisplay={profile?.username} />  
                 </div>
-
-                <div className={styles['user-actions']}>
-                    <div className={styles['us-chat']}>
-                        <i className="fa fa-comment"></i>
-                    </div>
-                    <div className={styles['us-videocall']}>
-                        <i className="fa fa-video-camera"></i>
-                    </div>
-                    <div className={styles['us-call']}>
-                        <i className="fa fa-phone"></i>
-                    </div>
-                </div>
             </div>
+
+            <Cars cars={profile?.cars}/>
         </div>
     );
 };

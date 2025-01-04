@@ -24,7 +24,7 @@ const UserProfile = () => {
     const fetchProfile = async () => {
         if (isSelf) {
             console.log('fetching self profile');
-            return await getUserProfile();
+            return await getUserProfile('s');
         } else {
             console.log('fetching other profile');
             return await getUserProfile(Number(id));

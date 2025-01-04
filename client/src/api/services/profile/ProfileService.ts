@@ -1,7 +1,8 @@
 import axiosInstance from 'src/config/axiosConfig';
 import { Profile } from 'src/types/profile/Profile';
 
-export const getUserProfile = async (userId?: number) : Promise<Profile> => {
+export const getUserProfile = async (userId?: any) : Promise<Profile> => {
+    console.log('GETTING PROFILE', userId)
     const response = await axiosInstance.get
     (userId ? `/profile/${userId}` : '/profile', { withCredentials: true });
     return response.data;

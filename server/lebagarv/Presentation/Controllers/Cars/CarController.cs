@@ -4,6 +4,7 @@ namespace lebagarv.Presentation.Controllers
     using lebagarv.Application.Services.Cars;
     using lebagarv.Presentation.Models.Requests.Cars;
     using lebagarv.Core.Domain.Dto.Cars; 
+    using System.Security.Claims;
 
     [ApiController]
     [Route("api/lebagarv/cars")]
@@ -34,7 +35,8 @@ namespace lebagarv.Presentation.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateCar([FromBody] CreateCarRequest request)
         {
-            await _carsService.CreateCarAsync(request);
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
+            await _carsService.CreateCarAsync(request, userId);
             return Ok(new { Message = "Car Created Successfully!" });
         }
     }

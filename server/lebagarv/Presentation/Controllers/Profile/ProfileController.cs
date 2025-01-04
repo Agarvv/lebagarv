@@ -17,7 +17,7 @@ public class ProfileController : ControllerBase
         _profileService = profileService;
     }
 
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetProfile(string id)
     {
         if (string.IsNullOrWhiteSpace(id))

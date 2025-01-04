@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using lebagarv.Core.Domain.Dto.Cars; 
+using lebagarv.Core.Domain.Entities.Users; 
 
 public class Car
 { 
@@ -21,6 +22,10 @@ public class Car
     [ForeignKey("CarBrand")]
     public int CarBrandId { get; set; } 
     public virtual CarBrand CarBrand { get; set; }
+
+    [ForeignKey("User")]
+    public int UserId { get; set; } 
+    public virtual AppUser User { get; set; } 
 
     [Required]
     public string CarModel { get; set; } 

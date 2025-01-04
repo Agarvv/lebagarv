@@ -22,6 +22,12 @@ public class CarRepository : Repository<Car>, ICarRepository
         .ToListAsync();
     }
     
+    public async Task<IEnumerable<Car>> 
+    GetCarsByUserIdAsync(int userId)
+    {
+        return await _context.Cars.AnyAsync(c => c.userId == userId)
+    }
+    
     public async Task<Car> GetCarByIdAsync(int id)
     {
         return await _context.Cars

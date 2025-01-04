@@ -33,7 +33,7 @@ namespace lebagarv.Application.Services.Cars
             return car; 
         }
 
-        public async Task<bool> CreateCarAsync(CreateCarRequest request)
+        public async Task<bool> CreateCarAsync(CreateCarRequest request, int userId)
         {
             if (!await _carRepository.ExistsCarColorById(request.Color))
             {
@@ -47,6 +47,7 @@ namespace lebagarv.Application.Services.Cars
 
             var car = new Car
             {
+                UserId=userId, 
                 Title = request.Title,
                 CarBrandId = request.CarBrand,
                 CarModel = request.CarModel,

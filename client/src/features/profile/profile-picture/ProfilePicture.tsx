@@ -42,7 +42,7 @@ const ProfilePicture: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
                 src={logo}
                 alt="Profile"
                 className={styles.profilePicture}
-                onClick={triggerInput}
+                onClick={isSelf && triggerInput}
             />
         </>
     );

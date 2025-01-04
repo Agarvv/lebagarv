@@ -42,7 +42,7 @@ const ProfileBanner: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
                 className={styles.banner}
                 src={valueToDisplay || logo}
                 alt="banner"
-                onClick={triggerInput}
+                onClick={isSelf && triggerInput}
             />
         </>
     );

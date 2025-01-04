@@ -11,14 +11,14 @@ export const getUserProfile = async (userId?: any) : Promise<Profile> => {
 export const setUserProfilePicture = async (url: string) => {
     console.log('SETTING PROFILE PIC', url)
     const response = await axiosInstance.post(
-      '/users/update_profile_picture/', 
-      { picture: url }, 
+      '/profile/set-profile-picture', 
+      { profilePicture: url }, 
       { withCredentials: true }
     );
     return response.data;
 };
 
-export const setUserProfileBio = async (bio: string) => {
+export const setUserProfileBio = async (bio: string)=> {
     console.log('SETTING PROFILE Bio', bio)
     const response = await axiosInstance.post(
       '/users/update_bio/', 
@@ -31,7 +31,7 @@ export const setUserProfileBio = async (bio: string) => {
 export const setUserProfileBanner = async (url: string) => {
     console.log('SETTING PROFILE banner', url)
     const response = await axiosInstance.post(
-      '/users/update_banner/', 
+      '/profile/set-banner', 
       { banner: url }, 
       { withCredentials: true }
     );

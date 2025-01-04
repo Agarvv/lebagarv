@@ -3,11 +3,15 @@ import { isSelfProps } from '../types';
 import styles from './ProfilePicture.module.css';
 import logo from 'src/logo.svg';
 import useImageUpload from 'src/hooks/useImageUpload';
-import useSetProfilePicture from 'src/hooks/useSetProfilePicture';
+import { usePost } from 'src/hooks/usePost';
+import { setUserProfilePicture } from 'src/api/services/profile/ProfileService';
 
 const ProfilePicture: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
     const { imageUrl, uploadImage } = useImageUpload();
-    const { mutate } = useSetProfilePicture();  
+
+    const { mutate } = usePost<string>
+    ("Profile picture updated successfully", true, setUserProfilePicture);
+
     const fileInputRef = React.useRef<HTMLInputElement>(null); 
 
     const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {

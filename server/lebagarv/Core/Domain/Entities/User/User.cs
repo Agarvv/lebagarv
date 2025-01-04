@@ -25,12 +25,12 @@ namespace lebagarv.Core.Domain.Entities.Users
         public string? Banner { get; set; }
 
         public ProfileDTO ToProfileDTO(List<Car> cars) 
-        {
-            return new ProfileDTO
-            {
+         {
+             return new ProfileDTO
+             {
                 Username = this.Username,
-                Cars=cars.Select(c => c.toShowcaseDto())
-            };
+                Cars = cars.Select(c => c.toShowcaseDto()).ToList()
+             };
         }
     }
 }

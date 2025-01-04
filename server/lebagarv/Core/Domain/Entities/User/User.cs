@@ -28,7 +28,7 @@ namespace lebagarv.Core.Domain.Entities.Users
         {
             return new ProfileDTO
             {
-                Username = this.Username
+                Username = this.Username,
                 Cars=cars.Select(c => c.toShowcaseDto())
             };
         }

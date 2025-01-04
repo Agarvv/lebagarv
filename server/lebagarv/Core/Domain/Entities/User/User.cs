@@ -4,6 +4,7 @@ namespace lebagarv.Core.Domain.Entities.Users
     using Microsoft.EntityFrameworkCore.Metadata;
     using System.ComponentModel.DataAnnotations;
     using lebagarv.Core.Domain.Dto.Profile;
+    using lebagarv.Core.Domain.Entities.Cars; 
 
     public class AppUser
     {
@@ -23,11 +24,12 @@ namespace lebagarv.Core.Domain.Entities.Users
 
         public string? Banner { get; set; }
 
-        public ProfileDTO ToProfileDTO() 
+        public ProfileDTO ToProfileDTO(List<Cars> cars) 
         {
             return new ProfileDTO
             {
                 Username = this.Username
+                Cars=cars.Select(c => c.toShowcaseDto())
             };
         }
     }

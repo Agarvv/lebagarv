@@ -37,7 +37,8 @@ public class ProfileController : ControllerBase
         }
 
         var user = await _profileService.GetUserProfile(userId);
-        return user == null ? NotFound() : Ok(user);
+        var userCars = await _profileService.GetCarsByUserIdAsync(userId); 
+        return Ok(user.ToProfileDTO(userCars)); 
     }
     
     [HttpPost("set-profile-picture")]

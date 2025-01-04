@@ -4,6 +4,7 @@ using lebagarv.Infrastructure.Persistence.Repositories.User;
 using lebagarv.Core.Domain.Dto.Profile;
 using lebagarv.Infrastructure.Persistence.Repositories;
 using lebagarv.Infrastructure.Repositories.User;
+using lebagarv.Infrastructure.Repositories.Cars; 
 
 public class ProfileService : IProfileService 
 {

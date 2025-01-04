@@ -22,10 +22,9 @@ public class CarRepository : Repository<Car>, ICarRepository
         .ToListAsync();
     }
     
-    public async Task<IEnumerable<Car>> 
-    GetCarsByUserIdAsync(int userId)
+    public async Task<IEnumerable<Car>> GetCarsByUserIdAsync(int userId)
     {
-        return await _context.Cars.AnyAsync(c => c.userId == userId)
+        return await _context.Cars.Where(c => c.UserId == userId).ToListAsync();
     }
     
     public async Task<Car> GetCarByIdAsync(int id)

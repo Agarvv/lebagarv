@@ -21,6 +21,12 @@ namespace lebagarv.Application.Services.Cars
             return await _carRepository.GetAllCarsAsync();
         }
         
+        public async Task<IEnumerable<Car>> 
+        GetCarsByUserIdAsync(int userId)
+        {
+            return await _carRepository.GetCarsByUserIdAsync(userId); 
+        }
+        
         public async Task<Car> GetCarByIdAsync(int id)
         {
             var car = await _carRepository.GetByIdAsync(id); 
@@ -32,6 +38,7 @@ namespace lebagarv.Application.Services.Cars
             
             return car; 
         }
+    
 
         public async Task<bool> CreateCarAsync(CreateCarRequest request, int userId)
         {

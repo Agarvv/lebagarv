@@ -21,7 +21,7 @@ const ProfilePicture: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
                 const image = await uploadImage(file, 'image');
                 console.log('Image uploaded successfully!', image);
                 mutate(image); 
-                window.location.reload()
+                //window.location.reload()
             } catch (error) {
                 console.error('Error uploading image:', error);
             }

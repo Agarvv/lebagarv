@@ -24,7 +24,7 @@ namespace lebagarv.Core.Domain.Entities.Users
 
         public string? Banner { get; set; }
 
-        public ProfileDTO ToProfileDTO(List<Cars> cars) 
+        public ProfileDTO ToProfileDTO(List<Car> cars) 
         {
             return new ProfileDTO
             {

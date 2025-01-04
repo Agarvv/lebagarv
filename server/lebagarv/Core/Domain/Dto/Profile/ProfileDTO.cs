@@ -1,5 +1,6 @@
 namespace lebagarv.Core.Domain.Dto.Profile; 
-using lebagarv.Core.Domain.Dto.Cars.CarShowcaseDTO; 
+
+using lebagarv.Core.Domain.Dto.Cars; 
 
 public class ProfileDTO 
 {

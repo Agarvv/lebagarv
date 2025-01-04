@@ -17,15 +17,29 @@ public class ProfileController : ControllerBase
         _profileService = profileService;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetProfile()
+    [HttpGet("/{id}")]
+    public async Task<IActionResult> GetProfile(string id)
     {
-        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
-        
-        var user = await _profileService.GetUserProfile(userId);
-        return Ok(user);
-    }
+        if (string.IsNullOrWhiteSpace(id))
+            return BadRequest("Invalid ID");
 
+        int userId;
+
+        if (id == "s")
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdClaim, out userId))
+            return Unauthorized();
+        }
+        else if (!int.TryParse(id, out userId))
+        {
+            return BadRequest("Invalid ID format");
+        }
+
+        var user = await _profileService.GetUserProfile(userId);
+        return user == null ? NotFound() : Ok(user);
+    }
+    
     [HttpPost("set-profile-picture")]
     public async Task<IActionResult> SetProfilePicture(SetProfilePictureRequest request)
     {

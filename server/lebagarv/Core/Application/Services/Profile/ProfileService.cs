@@ -21,7 +21,7 @@ public class ProfileService : IProfileService
     public async Task<ProfileDTO> GetUserProfile(int userId)
     {
         var user = await _userRepository.GetByIdAsync(userId); 
-        var userCars = await GetUserCarsAsync(userId): 
+        var userCars = await GetUserCarsAsync(userId); 
         return user.ToProfileDTO(userCars);
     }
     

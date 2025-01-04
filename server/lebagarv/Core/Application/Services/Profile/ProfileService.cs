@@ -43,7 +43,7 @@ public class ProfileService : IProfileService
         return true;
     }
     
-    public async Task<IEnumerable<Car>>
+    public async Task<List<Car>>
     GetUserCarsAsync(int userId)
     {
         return await _carRepository.GetCarsByUserIdAsync(userId); 

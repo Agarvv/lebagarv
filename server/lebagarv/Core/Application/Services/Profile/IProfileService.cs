@@ -8,6 +8,6 @@ public interface IProfileService
     public Task<ProfileDTO> GetUserProfile(int userId); 
     public Task<bool> SetUserProfilePicture(int userId, string profilePictureUrl);
     public Task<bool> SetUserBanner(int userId, string bannerUrl); 
-    public Task<IEnumerable<Car>>
+    public Task<List<Car>>
     GetUserCarsAsync(int userId); 
 }

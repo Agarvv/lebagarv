@@ -16,7 +16,8 @@ const UserProfile = () => {
     const { id } = useParams(); // user id can be a user id or "SELF" meaning the user is viewing their own profile
 
     useEffect(() => {
-        setIsSelf(id === 's');
+        setIsSelf(id == 's');
+        console.log('isSelf data', isSelf)
     }, [id]);
 
     // Use the correct function for fetching the profile
@@ -44,10 +45,6 @@ const UserProfile = () => {
             <div className={styles['user-details']}>
                 <div className={styles['user-data']}>
                   <ProfileUsername isSelf={isSelf} valueToDisplay={profile?.username} />  
-                  <ProfileBio isSelf={isSelf} valueToDisplay={profile?.bio}/> 
-                    <div className={styles['ud-status']}>
-                        <p>Online</p>
-                    </div>
                 </div>
 
                 <div className={styles['user-actions']}>

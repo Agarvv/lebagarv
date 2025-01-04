@@ -40,7 +40,6 @@
 }
 
 .user-data {
-  color: white;
   padding-top: 30px;
 }
 
@@ -48,10 +47,6 @@
   font-size: 25px;
   font-weight: bold;
 } */ 
-
-.user-data .ud-status {
-  color: green;
-}
 
 .ac-des {
   /*color: white;*/

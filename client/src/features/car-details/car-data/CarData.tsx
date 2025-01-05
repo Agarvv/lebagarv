@@ -12,7 +12,7 @@ interface Props {
 const CarData: React.FC<Props> = ({ car }: Props) => {
     return (
        <div className={styles.carData}>
-          <CarImages /> 
+          <CarImages images={car?.images}/> 
           <h4 className={styles.carTitle}>{ car?.title }</h4>
           <strong className={styles.carPrice}>$ {car?.price}</strong>
           <p className={styles.carDate}>{car?.date}</p> 

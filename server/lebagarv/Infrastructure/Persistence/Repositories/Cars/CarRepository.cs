@@ -32,6 +32,7 @@ public class CarRepository : Repository<Car>, ICarRepository
         return await _context.Cars
             .Include(c => c.CarBrand)
             .Include(c => c.CarColor)
+            .Include(c => c.User)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
 

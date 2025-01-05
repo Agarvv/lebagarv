@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using lebagarv.Core.Domain.Dto.Cars; 
 using lebagarv.Core.Domain.Entities.Users; 
 
+
 public class Car
 { 
     [Key]
@@ -91,7 +92,13 @@ public class Car
              Seats=this.Seats,
              Horsepower=this.Horsepower,
              Kilometers=this.Kilometers,
-             Description=this.Description
+             Description=this.Description,
+             User=new CarOwnerDTO() 
+             {
+                 Id=this.User.Id,
+                 Username=this.User.Username,
+                 ProfilePicture=this.User.ProfilePicture ?? string.Empty
+             }
         }; 
     }
         

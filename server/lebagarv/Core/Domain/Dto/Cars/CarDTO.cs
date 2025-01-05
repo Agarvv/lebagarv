@@ -20,6 +20,6 @@ public class CarDTO
     public int Seats { get; set; }
     public int Horsepower { get; set; }
     public int Kilometers { get; set; }
-    
+    public CarOwnerDTO User { get; set; } 
 }
 

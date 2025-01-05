@@ -7,7 +7,7 @@ interface Props {
     user?: CarOwner
 }
 
-const CallUser: React.FC = ({ user }: Props) => {
+const CarUser: React.FC = ({ user }: Props) => {
   return (
     <div className={styles.mainProductDetails}>
       <div className={styles.carUser}>
@@ -30,4 +30,4 @@ const CallUser: React.FC = ({ user }: Props) => {
   );
 };
 
-export default CallUser;
+export default CarUser;

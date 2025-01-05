@@ -47,7 +47,7 @@ const UserProfile = () => {
                 </div>
             </div>
 
-            <Cars cars={profile?.cars}/>
+            <Cars cars={profile.cars}/>
         </div>
     );
 };

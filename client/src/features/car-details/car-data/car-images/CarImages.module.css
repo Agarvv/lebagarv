@@ -27,12 +27,12 @@
 
 .controlPrev {
     position: absolute;
-    top: 250px;
+    top: 150px;
     left: 15px;
 }
 
 .controlNext {
     position: absolute;
-    top: 250px;
+    top: 150px;
     right: 15px;
 }

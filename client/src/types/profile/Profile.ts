@@ -5,4 +5,4 @@ export type Profile = {
  profilePicture: string,
  banner: string,
  cars: CarShowcase[]
-}
+} 

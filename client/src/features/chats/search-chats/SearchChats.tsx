@@ -11,7 +11,9 @@ const SearchChats = () => {
         </div>
         <div className={styles['chats-search']}>
             <input type="text" placeholder="Search Contacts"/>
-            <i className="fa fa-search"></i>
+            <div className={styles.searchIcon}>
+              <i className="fa fa-search"></i>
+            </div>
         </div>
         </>
     )

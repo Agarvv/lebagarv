@@ -7,7 +7,6 @@
 
 .slider {
     display: flex;
-    transition: transform 0.5s ease-in-out;
 }
 
 .imageIndex {
@@ -26,8 +25,14 @@
     object-fit: cover;
 }
 
-.controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+.controlsLeft {
+    position: absolute;
+    top: 250px;
+    left: 15px;
+}
+
+.controlsRight {
+    position: absolute;
+    top: 250px;
+    right: 15px;
 }

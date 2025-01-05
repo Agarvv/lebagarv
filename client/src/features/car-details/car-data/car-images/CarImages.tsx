@@ -24,15 +24,22 @@ const CarImages: React.FC<Props> = ({ images }: Props) => {
 
     return (
         <div className={styles.carImages}>
+         <div
+           className={styles.controlPrev}
+          onClick={prevImage}>
+            <i className="fa fa-arrow-left"></i>
+         </div>
             <div className={styles.slider}>
               <img src={images[currentIndex]}/>
             </div>
             <div className={styles.imageIndex}>
                 <p>{currentIndex + 1}/{images.length}</p>
             </div>
-            <div className={styles.controls}>
-                <button onClick={prevImage} disabled={currentIndex === 0}>Prev</button>
-                <button onClick={nextImage} disabled={currentIndex === images.length - 1}>Next</button>
+
+
+          <div className={styles.controlNext}
+          onClick={nextImage}>
+            <i className="fa fa-arrow-right"></i>
             </div>
         </div>
     );

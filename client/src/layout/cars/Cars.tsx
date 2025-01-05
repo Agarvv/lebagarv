@@ -19,6 +19,6 @@ const Cars: React.FC<Props> = ({ cars }: Props) => {
       </div> 
     </>
   )
-}
+} 
 
 export default Cars

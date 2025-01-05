@@ -71,36 +71,36 @@ public class Car
     [Required]
     public int Price { get; set; } 
         
-    public CarDTO toDto() 
+    public CarDTO toDto()
+{
+    return new CarDTO()
     {
-        return new CarDTO()
+        Id = this.Id,
+        Title = this.Title,
+        Price = this.Price,
+        Images = this.Images ?? new List<string>(),
+        CarYear = this.CarYear,
+        FuelType = this.FuelType,
+        Gearbox = this.Gearbox,
+        City = this.City ?? string.Empty,
+        Date = this.Date,
+        Color = this.CarColor?.value ?? string.Empty,
+        Brand = this.CarBrand?.value ?? string.Empty,
+        CarModel = this.CarModel ?? string.Empty,
+        Bodywork = this.Bodywork ?? string.Empty,
+        Doors = this.Doors,
+        Seats = this.Seats,
+        Horsepower = this.Horsepower,
+        Kilometers = this.Kilometers,
+        Description = this.Description ?? string.Empty,
+        User = this.User != null ? new CarOwnerDTO() 
         {
-             Id=this.Id,
-             Title=this.Title,
-             Price=this.Price,
-             Images=this.Images,
-             CarYear=this.CarYear,
-             FuelType=this.FuelType,
-             Gearbox=this.Gearbox,
-             City=this.City,
-             Date=this.Date,
-             Color=this.CarColor?.value ?? string.Empty,
-             Brand=this.CarBrand?.value ?? string.Empty,
-             CarModel=this.CarModel?? string.Empty,
-             Bodywork=this.Bodywork?? string.Empty,
-             Doors=this.Doors,
-             Seats=this.Seats,
-             Horsepower=this.Horsepower,
-             Kilometers=this.Kilometers,
-             Description=this.Description,
-             User=new CarOwnerDTO() 
-             {
-                 Id=this.User.Id,
-                 Username=this.User.Username ?? string.Empty,
-                 ProfilePicture=this.User.ProfilePicture ?? string.Empty
-             }
-        }; 
-    }
+            Id = this.User.Id,
+            Username = this.User.Username ?? string.Empty,
+            ProfilePicture = this.User.ProfilePicture ?? string.Empty
+        } : null
+    };
+}
         
     public CarShowcaseDTO toShowcaseDto() 
     {

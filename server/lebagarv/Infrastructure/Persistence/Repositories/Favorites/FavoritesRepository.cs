@@ -23,5 +23,16 @@ namespace lebagarv.Infrastructure.Persistence.Repositories.Favorites
         {
             return await _context.Favorites.AnyAsync(f => f.ProductId == productId);
         }
+
+        public async Task DeleteFavoriteAsync(int userId)
+        {
+           var favorite = await _context.Favorites.FirstOrDefaultAsync(f => f.UserId == userId);
+
+          if (favorite != null)
+          {
+             _context.Favorites.Remove(favorite);
+             await _context.SaveChangesAsync();
+          }
+        }
     }
 }

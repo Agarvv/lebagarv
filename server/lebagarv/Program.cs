@@ -18,8 +18,8 @@ using lebagarv.Presentation.Middleware;
 using lebagarv.Core.Application.Services.Profile;
 using lebagarv.Application.Services.Auth.Passwords;
 using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
-using lebagarv.Core.Application.Services.Favorites.Cars; 
-using lebagarv.Infrastructure.Persistence.Repositories.Favorites.Cars;
+using lebagarv.Core.Application.Services.Favorites; 
+using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
 
 var builder = WebApplication.CreateBuilder(args);
 

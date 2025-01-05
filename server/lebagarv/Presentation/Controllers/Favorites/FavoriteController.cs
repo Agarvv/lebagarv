@@ -9,18 +9,18 @@ namespace lebagarv.Presentation.Controllers.Favorites
     [Route("api/lebagarv/favorites")]
     public class FavoritesController : ControllerBase
     {
-        private readonly IFavoritesService _favoritesService;
+        private readonly IFavoriteService _favoriteService;
 
-        public FavoritesController(IFavoritesService favoritesService)
+        public FavoritesController(IFavoriteService favoriteService)
         {
-            _favoritesService = favoritesService;
+            _favoriteService = favoriteService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var favorites = await _favoritesService.GetUserFavoritesAsync(userId);
+            var favorites = await _favoriteService.GetUserFavoritesAsync(userId);
             return Ok(favorites);
         }
 
@@ -28,7 +28,7 @@ namespace lebagarv.Presentation.Controllers.Favorites
         public IActionResult AddOrRemove([FromBody] FavoriteRequest request)
         {   
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            string addedOrRemoved = _favoritesService.AddFavoriteAsync(userId, request.ProductId);
+            var addedOrRemoved = _favoriteService.AddFavoriteAsync(userId, request.ProductId);
             return Ok(addedOrRemoved); 
         }
     }

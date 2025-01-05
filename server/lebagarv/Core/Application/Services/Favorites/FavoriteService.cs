@@ -1,8 +1,8 @@
 namespace lebagarv.Core.Application.Services.Favorites
 {
     using lebagarv.Core.Domain.Entities.Favorites;
-    using lebagarv.Core.Infrastructure.Persistence.Repositories.Favorites;
-    using lebagarv.Core.Infrastructure.Persistence.Repositories.Cars;
+    using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
+    using lebagarv.Infrastructure.Persistence.Repositories.Cars;
     using lebagarv.Core.Domain.Exceptions;
     public class FavoriteService : IFavoriteService
     {
@@ -14,10 +14,7 @@ namespace lebagarv.Core.Application.Services.Favorites
             _favoritesRepository = favoritesRepository;
             _carRepository = carRepository;
         }
-        {
-            _favoritesRepository = favoritesRepository;
-        }
-        public async Task<List<Favorites>> GetUserFavoritesAsync(int userId)
+        public async Task<IEnumerable<Favorites>> GetUserFavoritesAsync(int userId)
         {
             var favorites = await _favoritesRepository.GetUserFavoritesAsync(userId);
             return favorites; 
@@ -33,7 +30,7 @@ namespace lebagarv.Core.Application.Services.Favorites
             if(await _favoritesRepository.ExistsByProductIdAsync(productId))
             {
                 await _favoritesRepository.DeleteFavoriteAsync(productId);
-                return Task.FromResult("Favorite removed");
+                return "Favorite removed"; 
             }
 
             var favorite = new Favorites
@@ -44,7 +41,7 @@ namespace lebagarv.Core.Application.Services.Favorites
 
             await _favoritesRepository.AddAsync(favorite);
 
-            return Task.FromResult("Favorite added");
+            return "Favorite added"; 
         }
     }
 }

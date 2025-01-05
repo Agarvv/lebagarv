@@ -3,10 +3,14 @@ import styles from './CarImages.module.css';
 
 import logo from 'src/logo.svg'
 
-const CarImages = () => {
+interface Props {
+    images: string[] 
+}
+
+const CarImages: React.FC<Props> = ({ images }: Props) => {
     return (
         <div className={styles.carImages}>
-            <img src={logo} alt="Car Image" />
+            <img src={images[0] ?? logo} alt="Car Image" />
             <div className={styles.imageIndex}>
                 <p>1/3</p>
             </div>

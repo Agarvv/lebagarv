@@ -1,3 +1,5 @@
+import { CarOwner } from './CarOwner'
+
 export type CarDetails = {
     id: number,
     title: string,
@@ -17,4 +19,5 @@ export type CarDetails = {
     seats: number,
     horsepower: number,
     kilometers: number,
+    user: CarOwner 
 }

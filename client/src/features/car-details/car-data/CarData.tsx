@@ -53,7 +53,7 @@ const CarData: React.FC<Props> = ({ car }: Props) => {
                   <CarDetail 
                       icon={<i className="fa fa-car"></i>}
                       detail="Bodywork"
-                      detailValue="bodywork"
+                      detailValue={car?.bodywork}
                   />
 
                   <CarDetail 

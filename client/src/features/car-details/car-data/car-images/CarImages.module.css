@@ -25,13 +25,13 @@
     object-fit: cover;
 }
 
-.controlsLeft {
+.controlsPrev {
     position: absolute;
     top: 250px;
     left: 15px;
 }
 
-.controlsRight {
+.controlsNext {
     position: absolute;
     top: 250px;
     right: 15px;

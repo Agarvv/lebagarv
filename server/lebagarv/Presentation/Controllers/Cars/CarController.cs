@@ -39,5 +39,13 @@ namespace lebagarv.Presentation.Controllers
             await _carsService.CreateCarAsync(request, userId);
             return Ok(new { Message = "Car Created Successfully!" });
         }
+
+        [HttpGet("search/{query}")]
+        public async Task<IActionResult> SearchCars(string query)
+        {
+            var cars = await _carsService.SearchCarsAsync(query);
+            var carsDto = cars.Select(car => car.toShowcaseDto());
+            return Ok(carsDto);
+        }
     }
 }

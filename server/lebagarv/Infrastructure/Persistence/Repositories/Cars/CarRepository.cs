@@ -26,6 +26,20 @@ public class CarRepository : Repository<Car>, ICarRepository
     {
         return await _context.Cars.Where(c => c.UserId == userId).ToListAsync();
     }
+
+    public async Task<IEnumerable<Car>> SearchCarsAsync(string query)
+    {
+        return await _context.Cars
+            .Include(c => c.CarBrand)
+            .Include(c => c.CarColor)
+            .Include(c => c.User)
+            .Where( car =>
+               EF.Functions.Like(car.Title.ToLower(), $"%{query}%") ||
+               EF.Functions.Like(car.CarBrand.value.ToLower(), $"%{query}%") ||
+               EF.Functions.Like(car.CarModel.ToLower(), $"%{query}%")
+            )
+            .ToListAsync();
+    }
     
     public async Task<Car> GetCarByIdAsync(int id)
     {

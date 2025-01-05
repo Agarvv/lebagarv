@@ -7,7 +7,7 @@ interface Props {
     user?: CarOwner
 }
 
-const CarUser: React.FC = ({ user }: Props) => {
+const CarUser: React.FC<Props> = ({ user }: Props) => {
   return (
     <div className={styles.mainProductDetails}>
       <div className={styles.carUser}>

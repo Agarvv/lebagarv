@@ -95,7 +95,7 @@ public class Car
              Description=this.Description,
              User=new CarOwnerDTO() 
              {
-                 Id=this.User.Id ?? 0,
+                 Id=this.User.Id,
                  Username=this.User.Username ?? string.Empty,
                  ProfilePicture=this.User.ProfilePicture ?? string.Empty
              }

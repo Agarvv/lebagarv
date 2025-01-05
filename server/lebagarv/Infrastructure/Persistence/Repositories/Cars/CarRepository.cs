@@ -36,6 +36,11 @@ public class CarRepository : Repository<Car>, ICarRepository
             .FirstOrDefaultAsync(c => c.Id == id);
     }
 
+    public async Task<bool> ExistsCarById(int id)
+    {
+        return await _context.Cars.AnyAsync(c => c.Id == id); 
+    }
+
     public async Task<bool> ExistsCarColorById(int id)
     {
         return await _context.CarColors.AnyAsync(c => c.Id == id); 

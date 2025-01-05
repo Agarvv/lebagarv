@@ -18,6 +18,8 @@ using lebagarv.Presentation.Middleware;
 using lebagarv.Core.Application.Services.Profile;
 using lebagarv.Application.Services.Auth.Passwords;
 using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
+using lebagarv.Core.Application.Services.Favorites.Cars; 
+using lebagarv.Infrastructure.Persistence.Repositories.Favorites.Cars;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,7 @@ builder.Services.AddScoped<ICarsService, CarsService>();
 builder.Services.AddScoped<IChatService, ChatService>(); 
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IPasswordService, PasswordService>(); 
+builder.Services.AddScoped<IFavoriteService, FavoriteService>(); 
 
 builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
 {
@@ -55,6 +58,7 @@ builder.Services.AddSingleton<JwtService>(new JwtService("vM8n3j5V7r9bJ2hQ4w6xYt
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>(); 
+builder.Services.AddScoped<IFavoritesRepository, FavoritesRepository>();
 builder.Services.AddScoped<IResetPasswordTokenRepository, ResetPasswordTokenRepository>();
 
 

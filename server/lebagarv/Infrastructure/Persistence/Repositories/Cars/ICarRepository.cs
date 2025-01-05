@@ -8,6 +8,7 @@ public interface ICarRepository : IRepository<Car>
    Task<IEnumerable<Car>> GetAllCarsAsync(); 
    Task<IEnumerable<Car>> GetCarsByUserIdAsync(int userId); 
    Task<Car> GetCarByIdAsync(int id);
+   Task<bool> ExistsCarById(int id);
    Task<bool> ExistsCarColorById(int id); 
    Task<bool> ExistsCarBrandById(int id); 
    

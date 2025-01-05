@@ -24,7 +24,7 @@ namespace lebagarv.Application.Services.Cars
         
         public async Task<Car> GetCarByIdAsync(int id)
         {
-            var car = await _carRepository.GetByIdAsync(id); 
+            var car = await _carRepository.GetCarByIdAsync(id); 
             
             if(car == null)
             {

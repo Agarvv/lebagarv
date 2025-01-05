@@ -25,9 +25,7 @@ const CarImages: React.FC<Props> = ({ images }: Props) => {
     return (
         <div className={styles.carImages}>
             <div className={styles.slider}>
-                {images.map((image, index) => (
-                    <img key={index} src={image ?? logo} alt={`Car Image ${index + 1}`} />
-                ))}
+              <img src={images[currentIndex]}/>
             </div>
             <div className={styles.imageIndex}>
                 <p>{currentIndex + 1}/{images.length}</p>

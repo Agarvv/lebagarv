@@ -29,10 +29,16 @@
     position: absolute;
     top: 150px;
     left: 15px;
+    padding: 5px; 
+    background: gray;
+    border-radius: 5px;
 }
 
 .controlNext {
     position: absolute;
     top: 150px;
     right: 15px;
+    padding: 5px; 
+    background: white;
+    border-radius: 5px;
 }

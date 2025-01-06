@@ -1,4 +1,4 @@
 
-export type Favorites {
+export type Favorites = {
     id: number
 }

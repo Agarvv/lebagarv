@@ -98,7 +98,7 @@ public class Car
             Id = this.User.Id,
             Username = this.User.Username ?? string.Empty,
             ProfilePicture = this.User.ProfilePicture ?? string.Empty
-        } : null
+        } : null, 
         IsFavorite = isFavorite ?? false 
     };
 }

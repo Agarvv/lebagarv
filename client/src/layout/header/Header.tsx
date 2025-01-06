@@ -1,14 +1,18 @@
 import React from 'react';
 import styles from './Header.module.css';
 
-const Header = () => {
+interface Props {
+    searchQuery?: string
+}
+
+const Header: React.FC<Props> = ({ searchQuery }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
         <h1>lebagarv</h1>
       </div>
       <div className={styles.hSearch}>
-        <input type="text" placeholder="BMW, Audi, Porsche..." />
+        <input type="text" placeholder={searchQuery || "Bemve, Udis, Mermeledes..."} />
         <i className="fa fa-search"></i>
       </div>
       <div className={styles.hUser}>

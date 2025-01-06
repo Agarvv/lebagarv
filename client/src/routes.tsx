@@ -11,7 +11,7 @@ import CarForm from 'src/features/car-form/CarForm'
 import CarDetails from 'src/features/car-details/CarDetails'
 import ChatsPage from 'src/pages/chats/ChatsPage'
 import ChatboxPage from 'src/pages/chatbox/ChatboxPage'
-
+import SearchPage from 'src/pages/search/SearchPage'
 
 export const AppRoutes = () => (
   <Router>
@@ -31,6 +31,15 @@ export const AppRoutes = () => (
        }
       /> 
       {/* END OF CAR CREATION */}
+      
+      {/* SEARCH PAGE */}
+      <Route 
+       path="/search/:query"
+       element={
+       <SearchPage />
+       }
+      />
+      {/* END OF SEARCH PAGE */}
 
       {/* APP ROUTES */}
       <Route 

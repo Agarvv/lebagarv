@@ -27,7 +27,7 @@ namespace lebagarv.Core.Application.Services.Favorites
                 throw new LebagarvException("Car not found", 404);
             }
 
-            if(await _favoritesRepository.ExistsByProductIdAsync(carId))
+            if(await _favoritesRepository.ExistsByCarIdAsync(carId))
             {
                 await _favoritesRepository.DeleteFavoriteAsync(userId, carId);
                 return "Favorite removed"; 

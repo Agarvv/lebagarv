@@ -29,7 +29,7 @@ namespace lebagarv.Presentation.Controllers.Favorites
         [HttpPost]
         public async Task<IActionResult> AddOrRemove([FromBody] FavoriteRequest request)
         {   
-            
+            Console.WriteLine($"car id, {request.CarId}")
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var addedOrRemoved = await _favoriteService.AddFavoriteAsync(userId, request.CarId);
             return Ok(addedOrRemoved); 

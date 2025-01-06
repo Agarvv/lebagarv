@@ -14,7 +14,7 @@ const Favorites = () => {
   
   return (
     <>
-     <Cars cars={favorites}/>
+     { favorites && <Cars cars={favorites}/>}
     </>
   )
 }

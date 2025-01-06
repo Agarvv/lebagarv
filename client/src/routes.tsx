@@ -12,6 +12,7 @@ import CarDetails from 'src/features/car-details/CarDetails'
 import ChatsPage from 'src/pages/chats/ChatsPage'
 import ChatboxPage from 'src/pages/chatbox/ChatboxPage'
 import SearchPage from 'src/pages/search/SearchPage'
+import Favorites from "./features/favorites/Favorites";
 
 export const AppRoutes = () => (
   <Router>
@@ -58,6 +59,14 @@ export const AppRoutes = () => (
         path='/car/:id'
         element={<CarDetails/>}
       /> 
+
+      <Route 
+       path='/favorites'
+       element={
+       <Favorites />
+      }
+
+      />
       
       <Route 
         path='/chats'

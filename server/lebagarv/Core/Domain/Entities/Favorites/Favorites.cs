@@ -23,7 +23,7 @@ namespace lebagarv.Core.Domain.Entities.Favorites
         {
           return new FavoritesDTO
           {
-               Car=this.Car
+               Car=this.Car.toShowcaseDto()
           };
         }
     }

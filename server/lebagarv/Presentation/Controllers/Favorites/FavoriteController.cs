@@ -21,7 +21,7 @@ namespace lebagarv.Presentation.Controllers.Favorites
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var favorites = await _favoriteService.GetUserFavoritesAsync(userId);
-            var cars = favorites.Select(f => f.Car.toShowcaseDTO()).ToList();
+            var cars = favorites.Select(f => f.Car.toShowcaseDto()).ToList();
             return Ok(cars);
         }
 

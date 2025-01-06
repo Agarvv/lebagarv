@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AddToFavorite.module.css';
+import styles from './AddOrRemoveFavorite.module.css';
 import { usePost } from 'src/hooks/usePost';
 import { addOrRemoveFavorite } from 'src/api/services/favorites/FavoritesService';
 
@@ -8,7 +8,7 @@ interface Props {
   isFavorite: boolean;
 }
 
-const AddToFavorite: React.FC<Props> = ({ carId, isFavorite }) => {
+const AddOrRemoveFavorite: React.FC<Props> = ({ carId, isFavorite }) => {
   const { mutate } = usePost<number>(
     'Favorite updated successfully', // successMessage
     true, // withError
@@ -26,4 +26,4 @@ const AddToFavorite: React.FC<Props> = ({ carId, isFavorite }) => {
   );
 };
 
-export default AddToFavorite;
+export default AddOrRemoveFavorite;

@@ -5,7 +5,7 @@ import { CarShowcase } from 'src/types/cars/CarShowcase'
 import { search } from 'src/api/services/search/SearchService'
 
 const Search = () => {
-    const { results } = useGet<CarShowcase[]>
+    const { data: results } = useGet<CarShowcase[]>
     (
     {
         serviceFunc: () => search("bemve"),

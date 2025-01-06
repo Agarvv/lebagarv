@@ -12,7 +12,7 @@ const Header: React.FC<Props> = ({ searchQuery }) => {
         <h1>lebagarv</h1>
       </div>
       <div className={styles.hSearch}>
-        <input type="text" placeholder={searchQuery || "Bemve, Udis, Mermeledes..."} />
+        <input type="text" placeholder="Bemve, Udis, Mermeledes..." value={searchQuery}/>
         <i className="fa fa-search"></i>
       </div>
       <div className={styles.hUser}>

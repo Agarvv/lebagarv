@@ -24,7 +24,8 @@ namespace lebagarv.Core.Application.Services.Favorites
         {
             if(!await _carRepository.ExistsCarById(carId))
             {
-                throw new LebagarvException("Car not found", 404);
+                //throw new LebagarvException("Car not found", 404);
+                throw new Exception("Car not found");  // debug just for now
             }
 
             if(await _favoritesRepository.ExistsByCarIdAsync(carId))

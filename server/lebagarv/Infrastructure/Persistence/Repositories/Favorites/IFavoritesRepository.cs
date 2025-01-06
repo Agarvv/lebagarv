@@ -9,7 +9,7 @@ namespace lebagarv.Infrastructure.Persistence.Repositories.Favorites
         
         Task DeleteFavoriteAsync(int userId, int carId); 
         
-        Task<bool> ExistsByCarIdAsync(int carId); 
+        Task<bool> ExistsByCarIdAndUserId(int carId, int userId); 
 
     }
 }

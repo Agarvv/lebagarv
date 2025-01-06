@@ -21,7 +21,7 @@ namespace lebagarv.Presentation.Controllers.Favorites
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var favorites = await _favoriteService.GetUserFavoritesAsync(userId);
-            var cars = favorites.Select(f => f.Car).ToList();
+            var cars = favorites.Select(f => f.Car.toShowcaseDTO()).ToList();
             return Ok(cars);
         }
 
@@ -29,7 +29,6 @@ namespace lebagarv.Presentation.Controllers.Favorites
         [HttpPost]
         public async Task<IActionResult> AddOrRemove([FromBody] FavoriteRequest request)
         {   
-            Console.WriteLine($"car id, {request.CarId}")
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var addedOrRemoved = await _favoriteService.AddFavoriteAsync(userId, request.CarId);
             return Ok(addedOrRemoved); 

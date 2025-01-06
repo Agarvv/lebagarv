@@ -21,9 +21,9 @@ namespace lebagarv.Infrastructure.Persistence.Repositories.Favorites
             .ToListAsync();
         }
 
-        public async Task<bool> ExistsByCarIdAsync(int carId)
+        public async Task<bool> ExistsByCarIdAndUserId(int carId, int userId)
         {
-            return await _context.Favorites.AnyAsync(f => f.CarId == carId);
+            return await _context.Favorites.AnyAsync(f => f.CarId == carId && f.UserId == userId);
         }
 
         public async Task DeleteFavoriteAsync(int userId, int carId)

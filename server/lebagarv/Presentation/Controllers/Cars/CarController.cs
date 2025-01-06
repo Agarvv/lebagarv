@@ -28,8 +28,10 @@ namespace lebagarv.Presentation.Controllers
         [HttpGet("car/{id}")]
         public async Task<IActionResult> GetCarById(int id)
         {
-            var car = await _carsService.GetCarByIdAsync(id); 
-            return Ok(car.toDto()); 
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
+            var car = await _carsService.GetCarByIdAsync(id, userId); 
+        
+            return Ok(car); 
         }
 
         [HttpPost("create")]

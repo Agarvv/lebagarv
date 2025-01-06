@@ -64,4 +64,9 @@ public class CarRepository : Repository<Car>, ICarRepository
     {
         return await _context.CarBrands.AnyAsync(b => b.Id == id); 
     }
+
+    public async Task<bool> IsFavoriteAsync(int userId, int carId)
+    {
+        return await _context.Favorites.AnyAsync(f => f.UserId == userId && f.CarId == carId);
+    }
 }

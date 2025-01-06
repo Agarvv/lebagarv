@@ -21,5 +21,6 @@ public class CarDTO
     public int Horsepower { get; set; }
     public int Kilometers { get; set; }
     public CarOwnerDTO User { get; set; } 
+    public bool IsFavorite { get; set; }
 }
 

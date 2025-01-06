@@ -71,7 +71,7 @@ public class Car
     [Required]
     public int Price { get; set; } 
         
-    public CarDTO toDto()
+    public CarDTO toDto(bool isFavorite)
 {
     return new CarDTO()
     {
@@ -99,6 +99,7 @@ public class Car
             Username = this.User.Username ?? string.Empty,
             ProfilePicture = this.User.ProfilePicture ?? string.Empty
         } : null
+        IsFavorite = isFavorite ?? false 
     };
 }
         

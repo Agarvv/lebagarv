@@ -12,5 +12,5 @@ public interface ICarRepository : IRepository<Car>
    Task<bool> ExistsCarById(int id);
    Task<bool> ExistsCarColorById(int id); 
    Task<bool> ExistsCarBrandById(int id); 
-   
+   Task<bool> IsFavoriteAsync(int userId, int carId);
 }

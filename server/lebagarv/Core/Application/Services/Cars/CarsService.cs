@@ -26,7 +26,7 @@ namespace lebagarv.Application.Services.Cars
             return await _carRepository.SearchCarsAsync(query);
         }
     
-        public async Task<Car> GetCarByIdAsync(int id)
+        public async Task<CarDTO> GetCarByIdAsync(int id, int userId)
         {
             var car = await _carRepository.GetCarByIdAsync(id); 
             
@@ -35,7 +35,8 @@ namespace lebagarv.Application.Services.Cars
                 throw new LebagarvException("Car Not Found", 404); 
             }
             
-            return car; 
+            var IsFavorite = await _carRepository.IsFavoriteAsync(userId, id);
+            return car.toDto(isFavorite); 
         }
     
 

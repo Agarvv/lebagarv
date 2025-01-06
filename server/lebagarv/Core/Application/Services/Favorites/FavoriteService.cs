@@ -30,7 +30,7 @@ namespace lebagarv.Core.Application.Services.Favorites
             if(await _favoritesRepository.ExistsByCarIdAsync(carId))
             {
                 await _favoritesRepository.DeleteFavoriteAsync(userId, carId);
-                return "Favorite removed"; 
+                return "Favorite removed";  // message
             }
 
             var favorite = new Favorites

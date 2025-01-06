@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj": {}
+    "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv\\server\\lebagarv\\lebagarv.csproj": {}
   },
   "projects": {
-    "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj": {
+    "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv\\server\\lebagarv\\lebagarv.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj",
+        "projectUniqueName": "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv\\server\\lebagarv\\lebagarv.csproj",
         "projectName": "lebagarv",
-        "projectPath": "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj",
-        "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/lebagarv/server/lebagarv/obj/",
+        "projectPath": "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv\\server\\lebagarv\\lebagarv.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv\\server\\lebagarv\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codespace/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -99,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

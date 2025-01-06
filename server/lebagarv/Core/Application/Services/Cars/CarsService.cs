@@ -36,7 +36,7 @@ namespace lebagarv.Application.Services.Cars
             }
             
             var IsFavorite = await _carRepository.IsFavoriteAsync(userId, id);
-            return car.toDto(isFavorite); 
+            return car.toDto(IsFavorite); 
         }
     
 

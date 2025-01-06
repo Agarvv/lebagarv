@@ -99,7 +99,7 @@ public class Car
             Username = this.User.Username ?? string.Empty,
             ProfilePicture = this.User.ProfilePicture ?? string.Empty
         } : null, 
-        IsFavorite = isFavorite ?? false 
+        IsFavorite = isFavorite
     };
 }
         

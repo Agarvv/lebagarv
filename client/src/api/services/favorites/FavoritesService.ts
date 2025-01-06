@@ -1,5 +1,5 @@
 import axiosInstance from "src/config/axiosConfig";
-import { Favorites } from 'src/types/favorites/Favorites'
+import { CarShowcase } from "src/types/cars/CarShowcase";
 
 export const addOrRemoveFavorite = async (carId: number) => {
     await axiosInstance.post('/favorites', { carId: carId }, {
@@ -7,7 +7,7 @@ export const addOrRemoveFavorite = async (carId: number) => {
     });
 };
 
-export const getFavorites = async (): Promise<Favorites> => {
+export const getFavorites = async (): Promise<CarShowcase[]> => {
     const response = await axiosInstance.get('/favorites', {
         withCredentials: true,
     });

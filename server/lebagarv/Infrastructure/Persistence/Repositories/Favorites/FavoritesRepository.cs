@@ -16,7 +16,9 @@ namespace lebagarv.Infrastructure.Persistence.Repositories.Favorites
 
         public async Task<IEnumerable<Favorites>> GetUserFavoritesAsync(int userId)
         {
-            return await _context.Favorites.Where(f => f.UserId == userId).ToListAsync();
+            return await _context.Favorites.Where(f => f.UserId == userId)
+            .Include(f => f.Car)
+            .ToListAsync();
         }
 
         public async Task<bool> ExistsByCarIdAsync(int carId)

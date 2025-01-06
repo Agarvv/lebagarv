@@ -18,13 +18,13 @@ namespace lebagarv.Core.Domain.Entities.Favorites
         [ForeignKey("Car")]
         public int CarId { get; set; }
         public virtual Car Car { get; set; } 
-    }
-    
-    public FavoritesDTO toFavoritesDTO()
-    {
-       return new FavoritesDTO
-       {
-            Car=this.Car
-       };
+
+        public FavoritesDTO toFavoritesDTO()
+        {
+          return new FavoritesDTO
+          {
+               Car=this.Car
+          };
+        }
     }
 }

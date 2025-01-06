@@ -1,4 +1,5 @@
+import { CarShowcase } from "@types/cars/CarShowcase"
 
 export type Favorites = {
-    id: number
+    
 }

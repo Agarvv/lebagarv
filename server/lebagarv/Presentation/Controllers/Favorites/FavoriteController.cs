@@ -28,7 +28,7 @@ namespace lebagarv.Presentation.Controllers.Favorites
         public async Task<IActionResult> AddOrRemove([FromBody] FavoriteRequest request)
         {   
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var addedOrRemoved = await _favoriteService.AddFavoriteAsync(userId, request.ProductId);
+            var addedOrRemoved = await _favoriteService.AddFavoriteAsync(userId, request.CarId);
             return Ok(addedOrRemoved); 
         }
     }

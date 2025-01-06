@@ -19,14 +19,14 @@ namespace lebagarv.Infrastructure.Persistence.Repositories.Favorites
             return await _context.Favorites.Where(f => f.UserId == userId).ToListAsync();
         }
 
-        public async Task<bool> ExistsByProductIdAsync(int productId)
+        public async Task<bool> ExistsByCarIdAsync(int carId)
         {
-            return await _context.Favorites.AnyAsync(f => f.ProductId == productId);
+            return await _context.Favorites.AnyAsync(f => f.CarId == carId);
         }
 
-        public async Task DeleteFavoriteAsync(int userId)
+        public async Task DeleteFavoriteAsync(int userId, int carId)
         {
-           var favorite = await _context.Favorites.FirstOrDefaultAsync(f => f.UserId == userId);
+           var favorite = await _context.Favorites.FirstOrDefaultAsync(f => f.UserId == userId && f.CarId == carId);
 
           if (favorite != null)
           {

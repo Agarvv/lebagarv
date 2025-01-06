@@ -20,23 +20,23 @@ namespace lebagarv.Core.Application.Services.Favorites
             return favorites; 
         }
 
-        public async Task<string> AddFavoriteAsync(int userId, int productId)
+        public async Task<string> AddFavoriteAsync(int userId, int carId)
         {
-            if(!await _carRepository.ExistsCarById(productId))
+            if(!await _carRepository.ExistsCarById(carId))
             {
                 throw new LebagarvException("Car not found", 404);
             }
 
-            if(await _favoritesRepository.ExistsByProductIdAsync(productId))
+            if(await _favoritesRepository.ExistsByProductIdAsync(carId))
             {
-                await _favoritesRepository.DeleteFavoriteAsync(productId);
+                await _favoritesRepository.DeleteFavoriteAsync(userId, carId);
                 return "Favorite removed"; 
             }
 
             var favorite = new Favorites
             {
                 UserId = userId,
-                ProductId = productId
+                CarId = carId
             };
 
             await _favoritesRepository.AddAsync(favorite);

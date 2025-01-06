@@ -6,8 +6,10 @@ namespace lebagarv.Infrastructure.Persistence.Repositories.Favorites
     public interface IFavoritesRepository : IRepository<Favorites>
     {
         Task<IEnumerable<Favorites>> GetUserFavoritesAsync(int userId); 
-        Task DeleteFavoriteAsync(int userId); 
-        Task<bool> ExistsByProductIdAsync(int productId); 
+        
+        Task DeleteFavoriteAsync(int userId, int carId); 
+        
+        Task<bool> ExistsByCarIdAsync(int carId); 
 
     }
 }

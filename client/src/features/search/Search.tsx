@@ -16,7 +16,7 @@ const Search = () => {
     
     return(
       <>
-        <Cars cars={results}/> 
+        {results && <Cars cars={results}/>} 
       </> 
     )
 }

@@ -9,7 +9,7 @@ import styles from './CarForm.module.css'
 import { createCar } from 'src/api/services/cars/CarService';
 
 const CarForm = () => {
-    const { mutate } = usePost({
+    const { mutate } = usePost<any>({
         createCar,
         successMessage: "Car Created!!",
         withError: true,

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SendResetPasswordForm.module.css';
-import { FormValues } from './types'
+import { FormValues } from './types';
 import { useForm } from 'react-hook-form';
 import { emailValidation } from 'src/outils/form-validators';
 import { usePost } from 'src/hooks/usePost';
@@ -10,12 +10,18 @@ import { Link } from 'react-router-dom';
 
 const SendResetPasswordUrlForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
-  const { mutate } = usePost('Check your email for the reset link', true, sendResetEmail);
   
+  const { mutate } = usePost<FormValues>({
+    serviceFunc: sendResetEmail,         
+    successMessage: 'Check your email for the reset link',  
+    withError: true,                     
+    withLoading: true                    
+  });
+
   const onSubmit = (data: FormValues) => {
-      mutate(data); 
+    mutate(data); 
   };
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -30,7 +36,7 @@ const SendResetPasswordUrlForm: React.FC = () => {
                 type="email"
                 placeholder="Email"
                 required
-                {...register("email", emailValidation)} 
+                {...register("email", emailValidation)}  
               />
               {errors.email && <small className="formError">{errors.email.message}</small>}
             </div>

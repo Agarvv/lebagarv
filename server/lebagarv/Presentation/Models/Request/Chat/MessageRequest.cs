@@ -1,6 +1,6 @@
 namespace lebagarv.Presentation.Models.Requests.Chat
 {
-    public class SendMessageRequest
+    public class MessageRequest
     {
         public string Type { get; set; } 
         public string Value { get; set; }

@@ -9,7 +9,13 @@ import { registerUser } from 'src/api/services/auth/AuthService';
 
 const RegisterForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
-  const { mutate } = usePost<FormValues>('Wekcome to Chatssy!', true, registerUser);
+  
+  const { mutate } = usePost<FormValues>({
+      serviceFunc: registerUser,
+      successMessage: "Welcome To Lebagarv!",
+      withError: true,
+      withLoading: true 
+  });
 
   const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
     mutate(data); 

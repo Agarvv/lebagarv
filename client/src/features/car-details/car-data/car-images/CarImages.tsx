@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './CarImages.module.css';
 import { CarDetails } from 'src/types/cars/CarDetails';
+import AddOrRemoveFavorite from '../add-or-remove-favorite/AddOrRemoveFavorite'
 
 interface Props {
     car: CarDetails
@@ -28,6 +29,10 @@ const CarImages: React.FC<Props> = ({ car }: Props) => {
         <i className="fa fa-arrow-left"></i>
       </div>
       <div className={styles.slider}>
+       <AddOrRemoveFavorite 
+        carId={car?.id}
+        isFavorite={car?.isFavorite}
+       /> 
         <img src={car?.images[currentIndex]} alt="Car" />
       </div>
       <div className={styles.imageIndex}>

@@ -1,9 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styles from './CarImages.module.css';
-import { CarDetailsContext } from 'src/context/cars/CarDetailsContext';
+import { CarDetails } from 'src/types/cars/CarDetails';
 
-const CarImages: React.FC = () => {
-  const { car } = useContext(CarDetailsContext) || {}
+interface Props {
+    car: CarDetails
+}
+
+const CarImages: React.FC<Props> = ({ car }: Props) => {
+  
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {

@@ -11,32 +11,20 @@ import { CarDetailsContext } from 'src/context/cars/CarDetailsContext';
 
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const context = useContext(CarDetailsContext);
-
-
-  if (!context) {
-    throw new Error("car details issue debug");
-  }
-
-  const { setCar } = context;  
-
+ 
   const { data: car } = useGet<CarDetailsType>({
     serviceFunc: () => getCarById(Number(id)),
     successFunc: () => console.log('car fetched successfully!'),
     withError: true,
   });
-
-  if(car) {
-    setCar(car)
-  }
-
+  
   return (
     <main>
       <div className={styles.car}>
         <div className={styles.carDetails}>
           <CarDetailsProvider>
-            {car && <CarData />}
-            {car && <CarUser />}
+            {car && <CarData car={car}/>}
+            {car && <CarUser car={car}/>}
           </CarDetailsProvider>
         </div>
       </div>

@@ -1,12 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import CarImages from './car-images/CarImages';
 import CarDetail from './car-detail/CarDetail';
 import styles from './CarData.module.css';
-import { CarDetailsContext } from 'src/context/cars/CarDetailsContext';
 
-const CarData: React.FC = () => {
-  const { car } = useContext(CarDetailsContext) || {}
 
+import { CarDetails } from 'src/types/cars/CarDetails';
+
+interface Props {
+    car: CarDetails
+}
+
+const CarData: React.FC<Props> = ({ car }: Props) => {
+  
   return (
     <div className={styles.carData}>
       <CarImages  />

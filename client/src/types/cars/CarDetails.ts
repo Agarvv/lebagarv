@@ -19,5 +19,6 @@ export type CarDetails = {
     seats: number,
     horsepower: number,
     kilometers: number,
-    user: CarOwner 
+    user: CarOwner,
+    isFavorite: boolean 
 }

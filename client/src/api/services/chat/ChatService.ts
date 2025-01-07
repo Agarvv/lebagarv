@@ -14,7 +14,7 @@ export const getUserContacts = async (): Promise<Chat[]> => {
   return response.data;
 };
 
-export const getChatById(id: number) {
+export const getChatById = async (id: number) => {
   const response = await axiosInstance.get(`/chats/${id}`, { withCredentials: true });
   return response.data;
-}
+};

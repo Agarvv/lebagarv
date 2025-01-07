@@ -17,7 +17,7 @@ const AddOrRemoveFavorite: React.FC<Props> = ({ carId, isFavorite }) => {
 
   const handleFavoritesClick = () => {
     mutate(carId);
-    window.location.reload 
+    window.location.reload()
   };
 
   return (

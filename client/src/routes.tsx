@@ -74,7 +74,7 @@ export const AppRoutes = () => (
       />
       
       <Route 
-        path='/chatbox'
+        path='/chatbox/:id'
         element={<ChatboxPage />}
       /> 
       {/* END OF APP ROUTES */}

@@ -63,7 +63,7 @@ export const usePost = <T,>(
       return response;
     },    
   });
-};q
+};
 
 
 

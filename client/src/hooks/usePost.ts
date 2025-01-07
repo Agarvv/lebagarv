@@ -22,7 +22,7 @@ mutate(data)
 */ 
 
 interface UsePostOptions {
-  serviceFunc: () => Promise,
+  serviceFunc: (data: T) => Promise<any>,
   successFunc?: () => void, 
   successMessage?: string,
   withError: boolean,

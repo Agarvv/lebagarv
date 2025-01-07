@@ -10,21 +10,24 @@ interface Props {
 
 const AddOrRemoveFavorite: React.FC<Props> = ({ carId, isFavorite }) => {
   const { mutate } = usePost<number>(
-    'Favorite updated successfully', // successMessage
-    true, // withError
-    addOrRemoveFavorite // serviceFunc
+    'Favorite updated successfully', 
+    true, 
+    addOrRemoveFavorite 
   );
 
   const handleFavoritesClick = () => {
     mutate(carId);
-    window.location.reload()
+    window.location.reload();
   };
 
   return (
-    <div onClick={handleFavoritesClick} className={styles.favBtn}>
+    <div 
+      onClick={handleFavoritesClick} 
+      className={`${styles.favBtn} ${isFavorite ? styles.favorite : ''}`}
+    >
       <i className="fa fa-heart"></i>
     </div>
   );
 };
 
-export default AddOrRemoveFavorite;
+export default AddOrRemoveFavorite; 

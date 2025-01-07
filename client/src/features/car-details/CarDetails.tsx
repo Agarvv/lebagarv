@@ -13,12 +13,13 @@ const CarDetails = () => {
   const { id } = useParams<{ id: string }>();
   const context = useContext(CarDetailsContext);
 
+
   if (!context) {
-    throw new Error("car detaik context not ok debug");
+    throw new Error("car details issue debug");
   }
 
-  const { setCar } = context; 
-  
+  const { setCar } = context;  
+
   const { data: car } = useGet<CarDetailsType>({
     serviceFunc: () => getCarById(Number(id)),
     successFunc: () => console.log('car fetched successfully!'),
@@ -40,3 +41,5 @@ const CarDetails = () => {
     </main>
   );
 };
+
+export default CarDetails; 

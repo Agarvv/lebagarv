@@ -17,7 +17,7 @@ export const useGet = <T>({ serviceFunc, successFunc, withError }: UseGetOptions
     });
 
     if (data) {
-        successFunc ? successFunc() : console.log('Get Succeeded!', data);
+        successFunc ? successFunc(data) : console.log('Get Succeeded!', data);
     }
 
     if (error && withError) {

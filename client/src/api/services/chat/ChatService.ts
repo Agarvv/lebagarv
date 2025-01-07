@@ -13,3 +13,8 @@ export const getUserContacts = async (): Promise<Chat[]> => {
   const response = await axiosInstance.get('/chats/', { withCredentials: true });
   return response.data;
 };
+
+export const getChatById(id: number) {
+  const response = await axiosInstance.get(`/chats/${id}`, { withCredentials: true });
+  return response.data;
+}

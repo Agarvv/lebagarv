@@ -7,17 +7,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 
 const ChatboxHeader = () => {
-  // const chat = useSelector((state: RootState) => state.chat.activeChat);
+  const chat = useSelector((state: RootState) => state.chat.activeChat);
 
   return (
     
     <header className={styles.header}>
       <div className={styles.hUser}>
         <div className={styles.hUserImg}>
-          <img src={logo} alt="Profile" />
+          <img src={chat?.userToDisplayInfo.profilePicture ?? logo} alt="Profile" />
         </div>
         <div className={styles.hUserData}>
-          <p>Andres el maricon :P</p>
+          <p>{chat?.userToDisplayInfo.username}</p>
         </div>
       </div>
     </header>

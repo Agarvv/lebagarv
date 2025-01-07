@@ -20,7 +20,7 @@ export const SignalRProvider: React.FC<{ children: ReactNode }> = ({ children })
 
       connect.start()
         .then(() => console.log("SignalR connected"))
-        .catch(err => console.error("Error connecting to SignalR:", err));
+        .catch(err => console.error(err));
 
     setConnection(connect);
 

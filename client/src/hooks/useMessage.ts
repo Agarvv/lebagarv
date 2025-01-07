@@ -13,15 +13,14 @@ export const useMessage = () => {
 
   const emitMessage = async (message: Message) => {
     if (!connection) {
-      console.error("no signal r connection at send message");
-      return;
+      throw new Error("SignalR Connection Is Not Ready.")
     }
 
     try {
       await connection.send("SendMessage", message); 
-      console.log("Mensaje send:", message);
+      console.log("Mensaje sucessfully send:", message);
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error while sending message", error);
     }
   };
 

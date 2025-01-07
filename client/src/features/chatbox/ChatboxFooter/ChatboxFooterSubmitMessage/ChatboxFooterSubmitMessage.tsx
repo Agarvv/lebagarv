@@ -16,10 +16,10 @@ const ChatboxFooterSubmitMessage: React.FC<Props> = ({ message }) => {
    
   const sendMessage = () => {
       const finalMessage = {
-         'type': 'text',
-         'value': message,
-         'identifier': chat?.id,
-         'receiver_id': chat?.userToDisplayInfo.id 
+         type: 'text',
+         value: message,
+         chatId: chat?.id,
+         receiverId: chat?.userToDisplayInfo.id 
       }
       
       emitMessage(finalMessage) 

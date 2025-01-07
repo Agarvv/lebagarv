@@ -21,10 +21,10 @@ const ChatboxFooterVideoButton = () => {
                 const url = await uploadImage(file, 'video');
                 console.log('Video uploaded successfully!', url);
                 const message = {
-                  'type': 'video',
-                  'value': url,
-                  'identifier': chat?.id,
-                  'receiver_id': chat?.userToDisplayInfo.id 
+                  type: 'video',
+                  value: url,
+                  chatId: chat?.id,
+                  receiverId: chat?.userToDisplayInfo.id 
                 }
                 emitMessage(message)
             } catch (error) {

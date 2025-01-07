@@ -4,11 +4,11 @@ import { SignalRContext } from "src/context/chat/SignalRContext";
 interface Message {
   type: string; // 'audio', 'video', 'text'
   value: string;
-  chatId: number;
-  receiverId: number;
+  chatId?: number;
+  receiverId?: number;
 }
 
-const useMessage = () => {
+export const useMessage = () => {
   const { connection } = useContext(SignalRContext);
 
   const emitMessage = async (message: Message) => {

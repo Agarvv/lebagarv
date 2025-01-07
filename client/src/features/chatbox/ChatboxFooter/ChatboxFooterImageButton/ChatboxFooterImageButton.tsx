@@ -19,10 +19,10 @@ const ChatboxFooterImageButton = () => {
                 await uploadImage(file, 'image');
                 console.log('Image uploaded successfully!', imageUrl);
                 const message = {
-                  'type': 'image',
-                  'value': imageUrl,
-                  'identifier': chat?.id,
-                  'receiver_id': chat?.userToDisplayInfo.id 
+                  type: 'image',
+                  value: imageUrl ?? '',
+                  chatId: chat?.id,
+                  receiverId: chat?.userToDisplayInfo.id 
                 }
                 emitMessage(message)
             } catch (error) {

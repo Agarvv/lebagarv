@@ -5,7 +5,7 @@ interface SignalRContextType {
   connection: HubConnection | null;
 }
 
-const SignalRContext = createContext<SignalRContextType>({
+export const SignalRContext = createContext<SignalRContextType>({
   connection: null, 
 });
 

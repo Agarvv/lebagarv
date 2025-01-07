@@ -24,7 +24,7 @@ const CarDetails = () => {
         <div className={styles.carDetails}>
           <CarDetailsProvider>
             {car && <CarData car={car}/>}
-            {car && <CarUser car={car}/>}
+            {car && <CarUser user={car?.user}/>}
           </CarDetailsProvider>
         </div>
       </div>

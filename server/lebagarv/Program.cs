@@ -2,6 +2,7 @@ using lebagarv.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Mail; 
 using System.Net;
+using lebagarv.Presentation.Hubs; 
 using lebagarv.Core.Application.Services.Auth;
 using lebagarv.Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,8 +22,9 @@ using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
 using lebagarv.Core.Application.Services.Favorites; 
 using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
 
-var builder = WebApplication.CreateBuilder(args);
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSignalR(); 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins", builder =>
@@ -95,6 +97,6 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 app.UseCors("AllowSpecificOrigins");
-
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

@@ -1,34 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useContext } from "react";
+import { SignalRContext } from "src/context/chat/SignalRContext";
 
-export const useMessage = () => {
-  const [socket, setSocket] = useState<null | WebSocket>(null);
+interface Message {
+  type: string; // 'audio', 'video', 'text'
+  value: string;
+  chatId: number;
+  receiverId: number;
+}
 
-  useEffect(() => {
-    const ws = new WebSocket('wss://chatssy.onrender.com/');
+const useMessage = () => {
+  const { connection } = useContext(SignalRContext);
 
-    ws.onopen = () => {
-      console.log('WebSocket is open now.');
-    };
+  const emitMessage = async (message: Message) => {
+    if (!connection) {
+      console.error("no signal r connection at send message");
+      return;
+    }
 
-    ws.onclose = () => {
-      console.log('WebSocket is closed now.');
-    };
-
-    setSocket((prev) => ws);
-
-    return () => {
-      ws.close();
-    };
-  }, []);
-
-  const emitMessage = (message: any) => {
-      console.log('Sending message', message)
-    if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(message);
-    } else {
-      console.warn('WebSocket not ready.');
+    try {
+      await connection.send("SendMessage", message); 
+      console.log("Mensaje send:", message);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
   return { emitMessage };
 };
+
+export default useMessage;

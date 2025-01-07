@@ -3,6 +3,8 @@ namespace lebagarv.Presentation.Hubs
     using Microsoft.AspNetCore.SignalR;
     using System.Threading.Tasks;
     using lebagarv.Presentation.Models.Requests.Chat; 
+    using System.Security.Claims;
+
 
     public class ChatHub : Hub
     {

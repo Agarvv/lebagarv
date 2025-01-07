@@ -1,22 +1,40 @@
 namespace lebagarv.Core.Application.Services.Chat; 
 
 using lebagarv.Infrastructure.Persistence.Repositories.Chat; 
+using lebagarv.Infrastructure.Persistence.Repositories; 
 using lebagarv.Core.Domain.Exceptions; 
 using lebagarv.Core.Domain.Entities.Chat;
 using lebagarv.Core.Domain.Dto.Chat;
 
+
+
 public class ChatService : IChatService 
 {
     private readonly IChatRepository _chatRepository; 
-    public ChatService(IChatRepository chatRepository) 
+    private readonly IUserRepository _userRepository; 
+    
+    public ChatService(IChatRepository chatRepository, IUserRepository userRepository) 
     {
         _chatRepository = chatRepository; 
+        _userRepository = userRepository; 
     }
     
     public async Task<IEnumerable<ChatDTO>> GetUserChats(int userId)
     {
         var chats = _chatRepository.GetAllByUserId(userId);
-        return chats.Select(c => c.toChatDto(c, userId)).ToList(); 
+        
+        var chatsDto = new List<ChatDTO>(); 
+        
+        foreach(var chat in chats)
+        {
+            var userToDisplayInfoId = chat.SenderId == chat.ReceiverId ? chat.ReceiverId : chat.SenderId; 
+            
+            var userToDisplayInfo = await _userRepository.FindByIdAsync(userToDisplayInfoId); 
+            
+            chatsDto.Add(chat.toChatDto(userToDisplayInfo.toChatUserToDisplayInfo())); 
+        }
+        
+        return chatsDto;  
     }
 
     

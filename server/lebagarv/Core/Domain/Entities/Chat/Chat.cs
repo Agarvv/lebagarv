@@ -6,6 +6,7 @@ namespace lebagarv.Core.Domain.Entities.Chat
     using System.ComponentModel.DataAnnotations;
     using lebagarv.Core.Domain.Dto.Chat; 
     using lebagarv.Core.Domain.Entities.Users; 
+    using lebagarv.Core.Domain.Dto.Chat;
 
     public class Chat
     {
@@ -23,23 +24,23 @@ namespace lebagarv.Core.Domain.Entities.Chat
 
         public ICollection<Message> Messages { get; set; } = new List<Message>();
         
-        public ChatDTO toChatDto(Chat chat, int userId) 
+        public ChatDTO toChatDto(UserToDisplayInfoDTO userToDisplayInfo) 
         {
             return new ChatDTO()
             {
-               Id=chat.Id,
-               SenderId=chat.SenderId,
-               ReceiverId=chat.ReceiverId,
+               Id=this.Id,
+               SenderId=this.SenderId,
+               ReceiverId=this.ReceiverId,
                //Messages=chat.Messages.Select(message => message.toMessageDto(message)),
-               UserToDisplayInfo=GetUserToDisplayInfo(userId),
+               UserToDisplayInfo=userToDisplayInfo,
                // Messages=chat.Messages
             };
         }
         
-        private int GetUserToDisplayInfo(int userId) 
+        /* private int GetUserToDisplayInfo(int userId) 
         {
             var userToDisplayInfoId = this.SenderId == userId ? this.ReceiverId : this.SenderId; 
             return userToDisplayInfoId; 
-        }
+        }*/ 
     }
 }

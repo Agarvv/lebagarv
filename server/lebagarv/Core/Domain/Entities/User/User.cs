@@ -5,6 +5,7 @@ namespace lebagarv.Core.Domain.Entities.Users
     using System.ComponentModel.DataAnnotations;
     using lebagarv.Core.Domain.Dto.Profile;
     using lebagarv.Core.Domain.Entities.Cars; 
+    using lebagarv.Core.Domain.Dto.Chat;
 
     public class AppUser
     {
@@ -31,6 +32,16 @@ namespace lebagarv.Core.Domain.Entities.Users
                 Username = this.Username,
                 Cars = cars.Select(c => c.toShowcaseDto()).ToList()
              };
+        }
+        
+        public UserToDisplayInfoDTO toChatUserToDisplayInfo() 
+        {
+            return new UserToDisplayInfoDTO()
+            {
+                Id=this.Id,
+                Username=this.Username,
+                ProfilePicture=this.ProfilePicture
+            }; 
         }
     }
 }

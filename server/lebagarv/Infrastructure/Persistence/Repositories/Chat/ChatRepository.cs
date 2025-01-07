@@ -5,7 +5,6 @@ using lebagarv.Infrastructure.Persistence.Repositories;
 using lebagarv.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-
 public class ChatRepository : Repository<Chat>, IChatRepository 
 {
     private readonly AppDbContext _context;
@@ -15,18 +14,22 @@ public class ChatRepository : Repository<Chat>, IChatRepository
         _context = context;
     }
     
-    public IEnumerable<Chat> GetAllByUserId(int userId)
+    public async Task<IEnumerable<Chat>> GetAllByUserIdAsync(int userId)
     {
-        return _context.Chats.Where(c => c.ReceiverId == userId || c.SenderId == userId).ToList();
+        return await _context.Chats
+            .Where(c => c.ReceiverId == userId || c.SenderId == userId)
+            .ToListAsync(); 
     }
     
-    public Chat GetChatById(int id)
+    public async Task<Chat> GetChatByIdAsync(int id)
     {
-        return _context.Chats.Where(c => c.Id == id); 
+        return await _context.Chats
+            .FirstOrDefaultAsync(c => c.Id == id);
     }
     
     public async Task<bool> ExistsByCarIdAsync(int carId)
     {
-        return await _context.Chats.AnyAsync(c => c.CarId == carId); 
+        return await _context.Chats
+            .AnyAsync(c => c.CarId == carId); 
     }
 }

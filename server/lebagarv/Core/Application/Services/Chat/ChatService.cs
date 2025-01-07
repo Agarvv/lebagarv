@@ -75,6 +75,6 @@ public class ChatService : IChatService
         
         var userToDisplayInfo = await _userRepository.FindByIdAsync(userToDisplayInfoId); 
         
-        return userToDisplayInfo.ToChatUserToDisplayInfo(); 
+        return userToDisplayInfo.toChatUserToDisplayInfo(); 
     }
 }

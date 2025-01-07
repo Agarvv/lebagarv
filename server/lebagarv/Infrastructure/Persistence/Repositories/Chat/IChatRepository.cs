@@ -5,7 +5,7 @@ using lebagarv.Infrastructure.Persistence.Repositories;
 
 public interface IChatRepository : IRepository<Chat>
 {
-    IEnumerable<Chat> GetAllByUserId(int userId); 
-    Chat GetChatById(int id); 
+    Task<IEnumerable<Chat>> GetAllByUserIdAsync(int userId); 
+    Task<Chat> GetChatByIdAsync(int id);  
     Task<bool> ExistsByCarIdAsync(int carId); 
 }

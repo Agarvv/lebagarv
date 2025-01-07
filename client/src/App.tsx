@@ -5,11 +5,13 @@ import { AppRoutes } from './routes';
 import ErrorComponent  from './layout/error-component/ErrorComponent'
 import LoadingComponent  from './layout/loading-component/LoadingComponent'
 import SuccessComponent from './layout/success-component/SuccessComponent'
+import { SignalRProvider } from "src/context/chat/SignalRContext";
 
 function App() {
   const { isLoading, errorMessage, successMessage } = useSelector((state: RootState) => state.apiStatus);
 
   return (
+    <SignalRProvider> 
     <div className="App">
        {isLoading && <LoadingComponent />}
        
@@ -20,6 +22,7 @@ function App() {
        
        <AppRoutes /> 
     </div>
+    </SignalRProvider>
   );
 }
 

@@ -16,16 +16,16 @@ const Chatbox = () => {
     const dispatch = useDispatch(); 
     const { id } = useParams();
 
-    const { data: chat } = useGet<Chat>({
-        serviceFunc: () => getChatById(Number(id)),
-        successFunc: (chat) => setChatInRedux(chat), 
-        withError: true 
-    });
-
     const setChatInRedux = (chat: Chat) => {
         console.log("Success func trigger");
         dispatch(setChat(chat)); 
-    }
+    };
+
+    const { data: chat } = useGet<Chat>({
+        serviceFunc: () => getChatById(Number(id)),
+        successFunc: (chat) => setChatInRedux(chat),
+        withError: true
+    });
 
     return (
         <main className={styles.chatbox}>

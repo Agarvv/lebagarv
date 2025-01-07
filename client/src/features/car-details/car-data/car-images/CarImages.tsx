@@ -3,7 +3,7 @@ import styles from './CarImages.module.css';
 import { CarDetailsContext } from 'src/context/cars/CarDetailsContext';
 
 const CarImages: React.FC = () => {
-  const { car } = useContext(CarDetailsContext);
+  const { car } = useContext(CarDetailsContext) || {}
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {

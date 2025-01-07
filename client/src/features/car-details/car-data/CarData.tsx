@@ -5,7 +5,7 @@ import styles from './CarData.module.css';
 import { CarDetailsContext } from 'src/context/cars/CarDetailsContext';
 
 const CarData: React.FC = () => {
-  const { car } = useContext(CarDetailsContext);
+  const { car } = useContext(CarDetailsContext) || {}
 
   return (
     <div className={styles.carData}>

@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Chat.module.css';
 import logo from 'src/logo.svg';
-
+import { Chat as ChatType } from 'src/types/chat/Chat'
 
 interface Props {
-  chat: Chat;
+  chat: ChatType;
 } 
 
 const Chat: React.FC<Props> = ({ chat }) => {

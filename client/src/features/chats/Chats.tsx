@@ -26,7 +26,7 @@ const Chats = () => {
                     <div className={styles['aside-chats']}>
                     {
                         chats?.map((chat) => (
-                          <Chat />
+                          <Chat chat={chat}/>
                         ))
                     }
                </div>

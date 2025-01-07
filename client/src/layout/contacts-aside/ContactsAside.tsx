@@ -15,7 +15,6 @@ const ContactsAside = () => {
     return (
         <aside className={styles.aside}>
             {/* 
-                
                 <div className={styles['aside-h']}>
                     <SearchAsideContacts />
                 </div>
@@ -23,7 +22,6 @@ const ContactsAside = () => {
             
             <div className={styles.asideContent}>
                 {/*
-                    
                     {data?.chats && data.chats.length > 0 && (
                         <div className={styles['aside-chats']}>
                             <span>Your Chats</span>
@@ -35,7 +33,6 @@ const ContactsAside = () => {
                 */}
 
                 {/*
-                    
                     {data?.groups && data.groups.length > 0 && (
                         <div className={styles['aside-chats']}>
                             <span>Groups</span>
@@ -47,7 +44,6 @@ const ContactsAside = () => {
                 */}
 
                 {/*
-                    
                     {data?.users && data.users.length > 0 && (
                         <div className={styles['aside-chats']}>
                             <span>¡Meet Them!</span>

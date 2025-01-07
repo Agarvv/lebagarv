@@ -18,14 +18,17 @@ public class ChatRepository : Repository<Chat>, IChatRepository
     {
         return await _context.Chats
             .Where(c => c.ReceiverId == userId || c.SenderId == userId)
+            .Include(c => c.Car)
             .ToListAsync(); 
     }
     
     public async Task<Chat> GetChatByIdAsync(int id)
     {
         return await _context.Chats
-            .FirstOrDefaultAsync(c => c.Id == id);
+            .Include(c => c.Car) 
+            .FirstOrDefaultAsync(c => c.Id == id); 
     }
+
     
     public async Task<bool> ExistsByCarIdAsync(int carId)
     {

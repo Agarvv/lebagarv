@@ -10,7 +10,7 @@ const ProfilePicture: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
     const { imageUrl, uploadImage } = useImageUpload();
 
     const { mutate } = usePost<string>({
-        setUserProfilePicture,
+        serviceFunc: setUserProfilePicture,
         successMessage: "Your Profile Picture Is Set!",
         withError: true,
         withLoading: true

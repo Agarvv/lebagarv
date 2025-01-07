@@ -9,11 +9,15 @@ import { loginUser } from 'src/api/services/auth/AuthService';
 
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+  
 
   const { mutate } = usePost<FormValues>(
-      'Welcome Back',
-      true,
-      loginUser
+      {
+          serviceFunc: loginUser,
+          successMessage: "Welcome Back!",
+          withError: true,
+          withLoading: true 
+      }
   )
   
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {

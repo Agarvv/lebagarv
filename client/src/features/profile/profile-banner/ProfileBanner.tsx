@@ -10,8 +10,8 @@ const ProfileBanner: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
     const { imageUrl, uploadImage } = useImageUpload();
     
     const { mutate } = usePost<string>({
-        setUserProfileBanner,
-        "Your banner is all set!",
+        serviceFunc: setUserProfileBanner,
+        successMessage: "Your banner is all set!",
         withError: true,
         withLoading: true 
     });  

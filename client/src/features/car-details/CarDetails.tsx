@@ -11,7 +11,13 @@ import { CarDetailsContext } from 'src/context/cars/CarDetailsContext';
 
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { setCar } = useContext(CarDetailsContext)!;
+  const context = useContext(CarDetailsContext); 
+  if(!context) {
+      console.log("no context")
+  }
+  
+  const { setCar } = context 
+  
 
   const { data: car } = useGet<CarDetailsType>({
     serviceFunc: () => getCarById(Number(id)),

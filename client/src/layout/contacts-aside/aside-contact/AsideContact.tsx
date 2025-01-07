@@ -17,7 +17,7 @@ const AsideContact: React.FC<Props> = ({ contact }) => {
       <div className={styles['ac-user']}>
         <img src={logo} alt="User" />
         <div className={styles['ac-content']}>
-          <h4>{contact.user_to_display_info.username}</h4>
+          <h4>{contact.userToDisplayInfo.username}</h4>
           <p>Last message</p>
         </div>
       </div>

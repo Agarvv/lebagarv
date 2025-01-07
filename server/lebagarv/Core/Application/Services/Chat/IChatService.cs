@@ -1,12 +1,11 @@
-using lebagarv.Core.Domain.Dto.Chat;
-using lebagarv.Core.Domain.Entities.Chat; 
+namespace lebagarv.Core.Application.Services.Chat;
 
-namespace lebagarv.Core.Application.Services.Chat; 
+using lebagarv.Core.Domain.Dto.Chat;
+using lebagarv.Core.Domain.Entities.Chat;
 
 public interface IChatService 
 {
-    Task<IEnumerable<ChatDTO>> GetUserChats(int userId); 
-    Task<Chat> GetChatByIdAsync(int id, int userId); 
-    Task CreateChat(int carId, int receiverId, int userId);
-    Task<UserToDisplayInfoDTO> GetUserToDisplayInfo(Chat chat, int userId); 
-}
+    Task<IEnumerable<ChatDTO>> GetUserChatsAsync(int userId); 
+    Task<ChatDTO> GetChatByIdAsync(int id, int userId); 
+    Task CreateChatAsync(int carId, int receiverId, int userId);
+} 

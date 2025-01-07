@@ -43,7 +43,7 @@ public class ChatController : ControllerBase
     {
         var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         
-        await _chatService.CreateChat(request.CarId, request.ReceiverId, userId); 
+        await _chatService.CreateChatAsync(request.CarId, request.ReceiverId, userId); 
         
         return Ok($"Chat created"); 
     }

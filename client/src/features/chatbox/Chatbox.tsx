@@ -17,7 +17,7 @@ const Chatbox = () => {
     const { id } = useParams();
 
     const { data: chat } = useGet<Chat>({
-        serviceFunc: () => getChatById(id),
+        serviceFunc: () => getChatById(Number(id)),
         successFunc: (chat) => setChatInRedux(chat), 
         withError: true 
     });

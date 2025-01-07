@@ -7,10 +7,10 @@ const CarImages: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
-    if (currentIndex < car?.images.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
+  if (car?.images?.length && currentIndex < car.images.length - 1) {
+    setCurrentIndex(currentIndex + 1);
+  }
+ };
 
   const prevImage = () => {
     if (currentIndex > 0) {

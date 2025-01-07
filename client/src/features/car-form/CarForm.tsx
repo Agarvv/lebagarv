@@ -10,7 +10,7 @@ import { createCar } from 'src/api/services/cars/CarService';
 
 const CarForm = () => {
     const { mutate } = usePost<any>({
-        createCar,
+        serviceFunc: createCar,
         successMessage: "Car Created!!",
         withError: true,
         withLoading: true 

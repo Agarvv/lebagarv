@@ -10,10 +10,14 @@ interface Props {
 
 const AddOrRemoveFavorite: React.FC<Props> = ({ carId, isFavorite }) => {
   const [favorite, setFavorite] = useState(isFavorite);  
-  const { mutate } = usePost<number>(
-    'Favorite updated successfully', 
-    true, 
-    addOrRemoveFavorite 
+  
+  const { mutate } = usePost<number>
+  (
+    {
+        serviceFunc: addOrRemoveFavorite,
+        withError: true,
+        withLoading: false
+    }
   );
 
   const handleFavoritesClick = () => {

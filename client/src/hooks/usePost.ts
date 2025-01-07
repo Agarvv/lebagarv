@@ -58,7 +58,7 @@ export const usePost = <T,>(
       } else if(successMessage) {
         dispatch(setSuccess(successMessage))
       } else {
-      dispatch(setSuccess("Success."))
+        console.log("Sucess.")
       }
       return response;
     },    

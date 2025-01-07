@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { SignalRContext } from "src/context/chat/SignalRContext";
 
 interface Message {
-  type: string; // 'audio', 'video', 'text'
+  type?: string; // 'audio', 'video', 'text'
   value: string;
   chatId?: number;
   receiverId?: number;

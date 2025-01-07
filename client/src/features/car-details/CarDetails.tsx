@@ -26,7 +26,9 @@ const CarDetails = () => {
     withError: true,
   });
 
-  setCar(car);
+  if(car) {
+    setCar(car)
+  }
 
   return (
     <main>

@@ -27,14 +27,30 @@ public class ChatService : IChatService
         
         foreach(var chat in chats)
         {
-            var userToDisplayInfoId = chat.SenderId == chat.ReceiverId ? chat.ReceiverId : chat.SenderId; 
+            var userToDisplayInfo = await GetUserToDisplayInfo(chat, userId);
             
-            var userToDisplayInfo = await _userRepository.FindByIdAsync(userToDisplayInfoId); 
-            
-            chatsDto.Add(chat.toChatDto(userToDisplayInfo.toChatUserToDisplayInfo())); 
+            chatsDto.Add(chat.toChatDto(userToDisplayInfo)); 
         }
         
         return chatsDto;  
+    }
+    
+    public async Task<Chat> GetChatByIdAsync(int id, int userId)
+    {
+        var chat = _chatRepository.GetChatById(id); 
+        if(chat == null)
+        {
+            throw new LebagarvException("Chat not found!", 404); 
+        }
+        
+        if(userId !== chat.ReceiverId && userId !== chat.SenderId)
+        {
+            throw new LebagarvException("You aren't authorized to read this chat.", 409); 
+        }
+        
+        var userToDisplayInfo = await GetUserToDisplayInfo(chat, userId); 
+        
+        return chat.toChatDto(userToDisplayInfo); 
     }
 
     
@@ -53,5 +69,14 @@ public class ChatService : IChatService
         };
         
         await _chatRepository.AddAsync(chat); 
+    }
+    
+    private async Task<UserToDisplayInfoDTO>  GetUserToDisplayInfo(Chat chat, int userId)
+    {
+        var userToDisplayInfoId = chat.SenderId == userId ?? chat.ReceiverId : chat.SenderId; 
+        
+        var userToDisplayInfo = await _userRepository.FindByIdAsync(userToDisplayInfoId); 
+        
+        return userToDisplayInfo.toChatUserToDisplayInfo(); 
     }
 }

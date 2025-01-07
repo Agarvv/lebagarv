@@ -20,6 +20,11 @@ public class ChatRepository : Repository<Chat>, IChatRepository
         return _context.Chats.Where(c => c.ReceiverId == userId || c.SenderId == userId).ToList();
     }
     
+    public Chat GetChatById(int id)
+    {
+        return _context.Chats.Where(c => c.Id == id); 
+    }
+    
     public async Task<bool> ExistsByCarIdAsync(int carId)
     {
         return await _context.Chats.AnyAsync(c => c.CarId == carId); 

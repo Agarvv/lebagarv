@@ -28,6 +28,16 @@ public class ChatController : ControllerBase
     
     }
     
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetChatById(int id)
+    {
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        
+        var chat = await _chatService.GetChatByIdAsync(id, userId); 
+        
+        return Ok(chat); 
+    }
+    
     [HttpPost("new")]
     public async Task<IActionResult> CreateNewChat(CreateChatRequest request) 
     {

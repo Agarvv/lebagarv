@@ -14,7 +14,7 @@ const CarData: React.FC<Props> = ({ car }: Props) => {
   
   return (
     <div className={styles.carData}>
-      <CarImages  />
+      <CarImages car={car}/>
       <h4 className={styles.carTitle}>{car?.title}</h4>
       <strong className={styles.carPrice}>$ {car?.price}</strong>
       <p className={styles.carDate}>{car?.date}</p>

@@ -14,39 +14,49 @@ const ContactsAside = () => {
     
     return (
         <aside className={styles.aside}>
-            <div className={styles['aside-h']}>
-                <SearchAsideContacts />
-            </div>
+            {/* 
+                
+                <div className={styles['aside-h']}>
+                    <SearchAsideContacts />
+                </div>
+            */}
+            
             <div className={styles.asideContent}>
-                {/* Chat Contacts */}
-                {data?.chats && data.chats.length > 0 && (
-                    <div className={styles['aside-chats']}>
-                        <span>Your Chats</span>
-                        {data.chats.map((chat) => (
-                            <AsideContact key={chat.id} contact={chat} />
-                        ))}
-                    </div>
-                )}
+                {/*
+                    
+                    {data?.chats && data.chats.length > 0 && (
+                        <div className={styles['aside-chats']}>
+                            <span>Your Chats</span>
+                            {data.chats.map((chat) => (
+                                <AsideContact key={chat.id} contact={chat} />
+                            ))}
+                        </div>
+                    )}
+                */}
 
-                {/* Group Contacts */}
-                { /* {data?.groups && data.groups.length > 0 && (
-                    <div className={styles['aside-chats']}>
-                        <span>Groups</span>
-                        {data.groups.map((group) => (
-                            <AsideGroup key={group.id} />
-                        ))}
-                    </div>
-                )} */ }
+                {/*
+                    
+                    {data?.groups && data.groups.length > 0 && (
+                        <div className={styles['aside-chats']}>
+                            <span>Groups</span>
+                            {data.groups.map((group) => (
+                                <AsideGroup key={group.id} />
+                            ))}
+                        </div>
+                    )}
+                */}
 
-                {/* Aside Users May Like */}
-                {data?.users && data.users.length > 0 && (
-                    <div className={styles['aside-chats']}>
-                        <span>¡Meet Them!</span>
-                        {data.users.map((user) => (
-                            <AsideUser key={user.id} user={user} />
-                        ))}
-                    </div>
-                )}
+                {/*
+                    
+                    {data?.users && data.users.length > 0 && (
+                        <div className={styles['aside-chats']}>
+                            <span>¡Meet Them!</span>
+                            {data.users.map((user) => (
+                                <AsideUser key={user.id} user={user} />
+                            ))}
+                        </div>
+                    )}
+                */}
             </div>
         </aside>
     );

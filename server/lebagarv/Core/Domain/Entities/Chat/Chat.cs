@@ -4,8 +4,10 @@ namespace lebagarv.Core.Domain.Entities.Chat
     using Microsoft.EntityFrameworkCore.Metadata;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using lebagarv.Core.Domain.Dto.Chat; 
     using lebagarv.Core.Domain.Entities.Users; 
+    using lebagarv.Core.Domain.Entities.Cars;
     using lebagarv.Core.Domain.Dto.Chat;
 
     public class Chat
@@ -20,7 +22,9 @@ namespace lebagarv.Core.Domain.Entities.Chat
         public int ReceiverId { get; set; }
         
         [Required]
+        [ForeignKey("Car")]
         public int CarId { get; set; }
+        public virtual Car Car { get; set; }
 
         public ICollection<Message> Messages { get; set; } = new List<Message>();
         
@@ -34,7 +38,9 @@ namespace lebagarv.Core.Domain.Entities.Chat
                //Messages=chat.Messages.Select(message => message.toMessageDto(message)),
                UserToDisplayInfo=userToDisplayInfo,
                // Messages=chat.Messages
+               Car=this.Car.toShowcaseDto()
             };
+            
         }
         
         /* private int GetUserToDisplayInfo(int userId) 

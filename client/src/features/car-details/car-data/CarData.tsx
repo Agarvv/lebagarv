@@ -9,7 +9,7 @@ const CarData: React.FC = () => {
 
   return (
     <div className={styles.carData}>
-      <CarImages images={car?.images} />
+      <CarImages  />
       <h4 className={styles.carTitle}>{car?.title}</h4>
       <strong className={styles.carPrice}>$ {car?.price}</strong>
       <p className={styles.carDate}>{car?.date}</p>

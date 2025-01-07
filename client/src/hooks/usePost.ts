@@ -34,7 +34,7 @@ export const usePost = <T,>(
   {
     serviceFunc,
     successFunc,
-    withSuccess,
+    successMessage,
     withError,
     withLoading
   }: UsePostOptions<T>

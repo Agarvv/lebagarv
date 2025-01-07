@@ -21,7 +21,7 @@ const { mutate } = usePost<DataType>({
 mutate(data)
 */ 
 
-interface UsePostOptions {
+interface UsePostOptions<T> {
   serviceFunc: (data: T) => Promise<any>,
   successFunc?: () => void, 
   successMessage?: string,
@@ -37,7 +37,7 @@ export const usePost = <T,>(
     withSuccess,
     withError,
     withLoading
-  }: UsePostOptions 
+  }: UsePostOptions<T>
 ) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -63,7 +63,7 @@ export const usePost = <T,>(
       return response;
     },    
   });
-};
+};q
 
 
 

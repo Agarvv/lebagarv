@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Chat from './chat/Chat
+import Chat from './chat/Chat'
 import { Chat as ChatType } from 'src/types/chat/Chat'
 import SearchChats from './search-chats/SearchChats'
 import styles from './Chats.module.css'

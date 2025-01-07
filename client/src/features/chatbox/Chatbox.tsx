@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { setChat } from 'src/store/chat/chatSlice';
 import ChatboxHeader from './ChatboxHeader/ChatboxHeader';
@@ -11,10 +11,12 @@ import { Chat } from 'src/types/chat/Chat';
 import { useGet } from 'src/hooks/useGet';
 import { getChatById } from 'src/api/services/chat/ChatService';
 import { useParams } from 'react-router-dom';
+import { SignalRContext } from "src/context/chat/SignalRContext";
 
 const Chatbox = () => {
     const dispatch = useDispatch(); 
     const { id } = useParams();
+    const { connection } = useContext(SignalRContext);
 
     const setChatInRedux = (chat: Chat) => {
         console.log("Success func trigger");
@@ -26,6 +28,20 @@ const Chatbox = () => {
         successFunc: (chat) => setChatInRedux(chat),
         withError: true
     });
+
+    useEffect(() => {
+        if (!connection) return;
+
+        connection.on("ReceiveMessage", (message: any) => {
+            console.log("new message!:", message);
+            
+            alert(`New message of ${message.senderId}: ${message.value}`);
+        });
+
+        return () => {
+            connection.off("ReceiveMessage");
+        };
+    }, [connection]);
 
     return (
         <main className={styles.chatbox}>

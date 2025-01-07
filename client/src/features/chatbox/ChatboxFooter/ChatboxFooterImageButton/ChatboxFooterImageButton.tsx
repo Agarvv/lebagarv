@@ -22,7 +22,7 @@ const ChatboxFooterImageButton = () => {
                   'type': 'image',
                   'value': imageUrl,
                   'identifier': chat?.id,
-                  'receiver_id': chat?.user_to_display_info.id 
+                  'receiver_id': chat?.userToDisplayInfo.id 
                 }
                 emitMessage(message)
             } catch (error) {

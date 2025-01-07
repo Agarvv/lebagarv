@@ -24,7 +24,7 @@ const ChatboxFooterVideoButton = () => {
                   'type': 'video',
                   'value': url,
                   'identifier': chat?.id,
-                  'receiver_id': chat?.user_to_display_info.id 
+                  'receiver_id': chat?.userToDisplayInfo.id 
                 }
                 emitMessage(message)
             } catch (error) {

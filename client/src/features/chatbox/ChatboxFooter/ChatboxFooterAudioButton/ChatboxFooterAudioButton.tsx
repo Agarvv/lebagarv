@@ -45,7 +45,7 @@ const ChatboxFooterAudioButton: React.FC = () => {
               type: 'audio',
               value: audio,
               identifier: chat?.id,
-              receiver_id: chat?.user_to_display_info.id,
+              receiver_id: chat?.userToDisplayInfo.id,
             };
             console.log('Final message object', message);
             emitMessage(message);

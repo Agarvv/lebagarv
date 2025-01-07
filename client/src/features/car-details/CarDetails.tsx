@@ -11,25 +11,21 @@ import { CarDetailsContext } from 'src/context/cars/CarDetailsContext';
 
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const context = useContext(CarDetailsContext); 
-  if(!context) {
-      console.log("no context")
-  }
-  
-  const { setCar } = context 
-  
+  const context = useContext(CarDetailsContext);
 
+  if (!context) {
+    throw new Error("car detaik context not ok debug");
+  }
+
+  const { setCar } = context; 
+  
   const { data: car } = useGet<CarDetailsType>({
     serviceFunc: () => getCarById(Number(id)),
-    successFunc: () => console.log('Car fetched successfully!'),
+    successFunc: () => console.log('car fetched successfully!'),
     withError: true,
   });
 
-  useEffect(() => {
-    if (car) {
-      setCar(car);
-    }
-  }, [car, setCar]); 
+  setCar(car);
 
   return (
     <main>
@@ -44,5 +40,3 @@ const CarDetails = () => {
     </main>
   );
 };
-
-export default CarDetails; 

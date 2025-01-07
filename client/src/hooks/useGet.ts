@@ -4,7 +4,7 @@ import { setError } from 'src/store/apiStatus/apiStatusSlice';
 
 interface UseGetOptions<T> {
     serviceFunc: () => Promise<T>;
-    successFunc?: () => void;
+    successFunc?: (data: T) => void;  
     withError: boolean;
 }
 

@@ -4,12 +4,12 @@ import { setContacts } from 'src/store/chat/chatSlice';
 import { AppDispatch } from 'src/store/index';
 import { getUserContacts } from 'src/api/services/chat/ChatService';
 import { setError } from 'src/store/apiStatus/apiStatusSlice';
-import { Contacts } from 'src/types/chat/contacts/Contacts';
+import { Chat } from 'src/types/chat/Chat'
 
 const useContacts = () => {
     const dispatch: AppDispatch = useDispatch();
 
-    const { data, error } = useQuery<Contacts>({
+    const { data, error } = useQuery<Chat[]>({
         queryKey: ['contacts'],
         queryFn: getUserContacts,
     });

@@ -9,8 +9,12 @@ import { setUserProfilePicture } from 'src/api/services/profile/ProfileService';
 const ProfilePicture: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
     const { imageUrl, uploadImage } = useImageUpload();
 
-    const { mutate } = usePost<string>
-    ("Profile picture updated successfully", true, setUserProfilePicture);
+    const { mutate } = usePost<string>({
+        setUserProfilePicture,
+        successMessage: "Your Profile Picture Is Set!",
+        withError: true,
+        withLoading: true
+    });
 
     const fileInputRef = React.useRef<HTMLInputElement>(null); 
 

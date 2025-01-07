@@ -8,7 +8,14 @@ import { setUserProfileBanner } from 'src/api/services/profile/ProfileService';
 
 const ProfileBanner: React.FC<isSelfProps> = ({ isSelf, valueToDisplay }) => {
     const { imageUrl, uploadImage } = useImageUpload();
-    const { mutate } = usePost<string>("Profile Banner Updated !", true, setUserProfileBanner);  
+    
+    const { mutate } = usePost<string>({
+        setUserProfileBanner,
+        "Your banner is all set!",
+        withError: true,
+        withLoading: true 
+    });  
+    
     const fileInputRef = React.useRef<HTMLInputElement>(null);
 
     const handleBannerChange = async (e: React.ChangeEvent<HTMLInputElement>) => {

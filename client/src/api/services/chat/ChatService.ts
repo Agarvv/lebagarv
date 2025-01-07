@@ -9,7 +9,7 @@ export const createChat = async (userId: number) => {
   return response.data.chat
 };
 
-export const getUserContacts: Promise<Chat[]> = async () => {
+export const getUserContacts = async (): Promise<Chat[]> => {
   const response = await axiosInstance.get('/chats/', { withCredentials: true });
-  return response.data; 
+  return response.data;
 };

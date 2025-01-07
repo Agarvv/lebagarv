@@ -7,6 +7,7 @@
 
 .slider {
     display: flex;
+    position: relative;
 }
 
 .imageIndex {

@@ -22,7 +22,7 @@ public class ChatController : ControllerBase
     {
         var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         
-        var chats = await _chatService.GetUserChats(userId);
+        var chats = await _chatService.GetUserChatsAsync(userId);
         
         return Ok(chats); 
     

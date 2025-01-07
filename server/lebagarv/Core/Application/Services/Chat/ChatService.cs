@@ -27,7 +27,7 @@ public class ChatService : IChatService
         {
             var userToDisplayInfo = await GetUserToDisplayInfoAsync(chat, userId);
             
-            chatsDto.Add(chat.ToChatDto(userToDisplayInfo)); 
+            chatsDto.Add(chat.toChatDto(userToDisplayInfo)); 
         }
         
         return chatsDto;  
@@ -48,7 +48,7 @@ public class ChatService : IChatService
         
         var userToDisplayInfo = await GetUserToDisplayInfoAsync(chat, userId); 
         
-        return chat.ToChatDto(userToDisplayInfo); 
+        return chat.toChatDto(userToDisplayInfo); 
     }
 
     

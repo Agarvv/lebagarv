@@ -16,7 +16,7 @@ const useContacts = () => {
 
     if (data) {
         console.log('User contacts', data);
-        dispatch(setContacts(data));
+      //  dispatch(setContacts(data));
     }
 
     if (error) {

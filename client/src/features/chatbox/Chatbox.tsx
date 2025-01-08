@@ -49,7 +49,9 @@ const Chatbox = () => {
     return (
         <main className={styles.chatbox}>
             <ChatboxHeader />
-            
+            <pre style={{ background: '#f4f4f4', padding: '10px', borderRadius: '5px' }}>
+            {JSON.stringify(chat, null, 2)}
+        </pre>
             <div className={styles.messageList}>
                 {
                     chat?.messages.map((message) => (

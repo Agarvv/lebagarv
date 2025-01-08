@@ -27,7 +27,7 @@ export const useLogin = () => {
       
       // i need this for frontend stuff.
       localStorage.setItem('userId', data)
-      navigate('/')
+     // navigate('/')
     },
     onError: (error: Error) => {
       console.error('Something went wrong..:', error); // debug

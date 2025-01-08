@@ -59,7 +59,7 @@ const Chatbox = () => {
         return () => {
             connection.off("ReceiveMessage");
         };
-    }, [connection, dispatch, chat]);
+    }, [connection, dispatch, chat?.messages]);
 
     return (
         <main className={styles.chatbox}>

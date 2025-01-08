@@ -88,7 +88,7 @@ public class ChatService : IChatService
     
     public async Task<Message> CreateMessageAsync(MessageRequest request, int userId)
     {
-        var chat = await _chatRepository.GetChatByIdAsync(id); 
+        var chat = await _chatRepository.GetChatByIdAsync(request.ChatId); 
         if(chat == null)
         {
             throw new LebagarvException("Chat not found!", 404); 
@@ -111,7 +111,7 @@ public class ChatService : IChatService
     
     public void VerifyChatAuthorization(Chat chat, int userId)
     {
-        if(!chat.SenderId == userId || !chat.ReceiverId == userId)
+        if(chat.SenderId != userId && chat.ReceiverId != userId)
         {
             throw new LebagarvException("You aren't authorized to interact with this chat.", 409); 
         }

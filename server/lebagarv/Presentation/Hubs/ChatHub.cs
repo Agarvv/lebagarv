@@ -47,7 +47,7 @@ namespace lebagarv.Presentation.Hubs
 
         public async Task SendMessage(MessageRequest message)
         {
-            var senderId = Context.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var senderId = int.Parse(Context.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
 
             if (string.IsNullOrEmpty(senderId))
             {

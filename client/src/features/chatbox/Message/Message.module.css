@@ -6,6 +6,10 @@
     width: 100%;
   }
   
+.message.self {
+    background: red;
+}
+ 
   .messageUser {
     display: flex;
     align-items: center;

@@ -26,7 +26,7 @@ export const useLogin = () => {
       console.log('Welcome back!:', data);
       
       // i need this for frontend stuff.
-      localStorage.setItem('userId', data)
+      localStorage.setItem('userId', data.id)
      // navigate('/')
     },
     onError: (error: Error) => {

@@ -8,7 +8,8 @@ interface Props {
 }
 
 const Message: React.FC<Props> = ({ message }) => {
-    
+  const userId = localStorage.getItem('userId'); // Obtengo el ID del usuario
+
   const checkMessageTypeAndRenderMessage = () => {
     switch (message?.type) {
       case 'text':
@@ -42,11 +43,13 @@ const Message: React.FC<Props> = ({ message }) => {
     }
   };
 
+  const isSelf = userId == message?.SenderId; 
+
   return (
-    <div className={styles.message}>
+    <div className={`${styles.message} ${isSelf ? styles.self : ''}`}>
       <div className={styles.messageContent}>
         <div className={styles.messageDate}>
-          <p>17 November 14:31</p>
+          <p>17 November 14:31 {isSelf}</p>
         </div>
         {checkMessageTypeAndRenderMessage()}
       </div>

@@ -24,7 +24,12 @@ const chatSlice = createSlice({
             if (state.activeChat) {
                 console.log("Adding message to chat state:", action.payload);
                 console.log("old chat state:", state.activeChat.messages);
-                state.activeChat.messages.push(action.payload);
+                state.activeChat.messages.push({
+                   type: "text",
+                   value: "debug",
+                   senderId: 1,
+                   receiverId: 1,
+                });
                 console.log("new chat state:", state.activeChat.messages);
             }
         },

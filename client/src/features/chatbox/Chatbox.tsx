@@ -18,7 +18,6 @@ const Chatbox = () => {
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
     const chat = useSelector((state: RootState) => state.chat.activeChat);
-    const messages = useSelector((state: RootState) => state.chat.activeChat?.messages);
 
     const setChatInRedux = (chat: Chat) => {
         dispatch(setChat(chat)); 
@@ -36,10 +35,7 @@ const Chatbox = () => {
 
         connection.on("ReceiveMessage", (message: MessageType) => {
             console.log("new message received:", message);
-            //dispatch(addMessageToChat(message));
-            console.log("pushing message received, old messages", messages);
-            messages?.push(message);
-            console.log("pushing message received, new messages", messages);
+            dispatch(addMessageToChat(message));
         });
 
         return () => {
@@ -53,7 +49,7 @@ const Chatbox = () => {
             
             <div className={styles.messageList}>
                 {
-                    messages?.map((message) => (
+                    chat?.messages.map((message) => (
                         <Message message={message} /> 
                     ))
                 }

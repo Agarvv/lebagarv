@@ -101,8 +101,8 @@ public class ChatService : IChatService
             Type=request.Type,
             Value=request.Value,
             SenderId=userId,
-            ReceiverId=request.ReceiverId 
-            ChatId=request.ChatId,
+            ReceiverId=request.ReceiverId,
+            ChatId=request.ChatId
         }; 
         
         await _messageRepository.SaveAsync(message); 

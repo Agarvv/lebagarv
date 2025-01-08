@@ -3,6 +3,7 @@ import { Chat } from 'src/types/chat/Chat';
 import { Message } from 'src/types/chat/Message';
 import { Contacts } from 'src/types/chat/contacts/Contacts'
 
+
 export interface ChatState {
     activeChat: Chat | null;
     contacts: Contacts | null; 
@@ -20,7 +21,7 @@ const chatSlice = createSlice({
         setChat: (state, action: PayloadAction<Chat>) => {
             return { ...state, activeChat: action.payload }; 
         },
-        addMessageToChat: (state, action: PayloadAction<MessageType>) => {
+        addMessageToChat: (state, action: PayloadAction<Message>) => {
             if (state.activeChat) {
                 state.activeChat.messages = [...state.activeChat.messages, action.payload];
             }

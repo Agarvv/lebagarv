@@ -8,9 +8,23 @@
   
 .message.self {
     justify-content: flex-end;
-    
-  }
+}
+
+/* not show the date for self messages */ 
+.message.self .messageDate {
+    display: none;
+}
  
+  .messageImage, .messageVideo{
+      width: 150px;
+      height: 150px;
+  }
+  
+  .messageImage img, .messageVideo video {
+      width: 100%;
+      height: 100%;
+  }
+  
   .messageContent {
     display: flex;
     flex-direction: column;

@@ -37,11 +37,24 @@ const Chatbox = () => {
         if (!connection) return;
 
         connection.on("ReceiveMessage", (message: MessageType) => {
-            console.log("chat before new message:", chat);
-            console.log("new message received:", message);
-            dispatch(addMessageToChat(message));
-            console.log("chat after new message:", chat);
+            if (chat) {
+                console.log("chat before new message:", chat);
+                console.log("new message received:", message);
+        
+                dispatch(
+                    setChat({
+                        ...chat,
+                        messages: [...chat.messages, message], 
+                    })
+                );
+        
+                console.log("chat after new message:", {
+                    ...chat,
+                    messages: [...chat.messages, message],
+                });
+            }
         });
+        
 
         return () => {
             connection.off("ReceiveMessage");

@@ -98,7 +98,6 @@ const ChatboxFooterAudioButton: React.FC = () => {
           <i className="fa fa-microphone" onClick={startRecording}></i>
         )}
       </div>
-      {audioFile && <audio controls src={URL.createObjectURL(audioFile)} />}
     </>
   );
 };

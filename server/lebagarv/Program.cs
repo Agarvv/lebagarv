@@ -21,6 +21,7 @@ using lebagarv.Application.Services.Auth.Passwords;
 using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
 using lebagarv.Core.Application.Services.Favorites; 
 using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
+using lebagarv.Infrastructure.Persistence.Repositories.Chat.Messages; 
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,6 +63,7 @@ builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>(); 
 builder.Services.AddScoped<IFavoritesRepository, FavoritesRepository>();
 builder.Services.AddScoped<IResetPasswordTokenRepository, ResetPasswordTokenRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>(); 
 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

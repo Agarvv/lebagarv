@@ -1,20 +1,26 @@
 namespace lebagarv.Core.Application.Services.Chat; 
 
 using lebagarv.Infrastructure.Persistence.Repositories.Chat; 
+using lebagarv.Infrastructure.Persistence.Repositories.Chat.Messages; 
 using lebagarv.Infrastructure.Persistence.Repositories; 
 using lebagarv.Core.Domain.Exceptions; 
 using lebagarv.Core.Domain.Entities.Chat;
 using lebagarv.Core.Domain.Dto.Chat;
+using lebagarv.Presentation.Models.Requests.Chat; 
+
+
 
 public class ChatService : IChatService 
 {
     private readonly IChatRepository _chatRepository; 
     private readonly IUserRepository _userRepository; 
+    private readonly IMessageRepository _messageRepository; 
     
-    public ChatService(IChatRepository chatRepository, IUserRepository userRepository) 
+    public ChatService(IChatRepository chatRepository, IUserRepository userRepository, IMessageRepository, messageRepository) 
     {
         _chatRepository = chatRepository; 
         _userRepository = userRepository; 
+        _messageRepository = messageRepository; 
     }
     
     public async Task<IEnumerable<ChatDTO>> GetUserChatsAsync(int userId)
@@ -41,10 +47,7 @@ public class ChatService : IChatService
             throw new LebagarvException("Chat not found!", 404); 
         }
         
-        if(userId != chat.ReceiverId && userId != chat.SenderId)
-        {
-            throw new LebagarvException("You aren't authorized to read this chat.", 409); 
-        }
+        VerifyChatAuthorization(chat, userId); 
         
         var userToDisplayInfo = await GetUserToDisplayInfoAsync(chat, userId); 
         
@@ -76,5 +79,36 @@ public class ChatService : IChatService
         var userToDisplayInfo = await _userRepository.FindByIdAsync(userToDisplayInfoId); 
         
         return userToDisplayInfo.toChatUserToDisplayInfo(); 
+    }
+    
+    public async Task<Message> CreateMessageAsync(MessageRequest request, int userId)
+    {
+        var chat = await _chatRepository.GetChatByIdAsync(id); 
+        if(chat == null)
+        {
+            throw new LebagarvException("Chat not found!", 404); 
+        }
+        
+        VerifyChatAuthorization(chat, userId); 
+        
+        Message message = new Message()
+        {
+            Type=request.Type,
+            Value=request.Value,
+            SenderId=userId,
+            ReceiverId=request.ReceiverId 
+        }; 
+        
+        await _messageRepository.SaveAsync(message); 
+        
+        return message; 
+    }
+    
+    public void VerifyChatAuthorization(Chat chat, int userId)
+    {
+        if(!chat.SenderId == userId || !chat.ReceiverId == userId)
+        {
+            throw new LebagarvException("You aren't authorized to interact with this chat.", 409); 
+        }
     }
 }

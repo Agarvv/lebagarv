@@ -6,10 +6,18 @@ namespace lebagarv.Presentation.Hubs
     using System.Security.Claims;
     using System.Linq;
     using System.Collections.Generic;
+    using lebagarv.Core.Application.Services.Chat; 
+    
 
     public class ChatHub : Hub
     {
+        private readonly IChatService _chatService;
         private static Dictionary<string, string> UserConnections = new();
+        
+        public ChatHub(IChatService chatService)
+        {
+            _chatService = chatService; 
+        }
 
         public override Task OnConnectedAsync()
         {
@@ -51,8 +59,10 @@ namespace lebagarv.Presentation.Hubs
                 UserConnections.GetValueOrDefault(message.ReceiverId.ToString()),
                 UserConnections.GetValueOrDefault(senderId)
             };
+            
+            var newMessage = await _chatService.CreateMessageAsync(message, senderId); 
 
-            await Clients.Clients(connectionIds.Where(id => id != null).ToArray()).SendAsync("ReceiveMessage", message);
+            await Clients.Clients(connectionIds.Where(id => id != null).ToArray()).SendAsync("ReceiveMessage", newMessage);
 
             System.Console.WriteLine($"Message sent from {senderId} to {message.ReceiverId} (to all connections)");
         }

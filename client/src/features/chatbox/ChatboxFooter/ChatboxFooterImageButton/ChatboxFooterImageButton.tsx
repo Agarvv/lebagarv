@@ -9,18 +9,18 @@ import { useMessage } from 'src/hooks/useMessage';
 const ChatboxFooterImageButton = () => {
     const { emitMessage } = useMessage() 
     const chat = useSelector((state: RootState) => state.chat.activeChat);
-    const { imageUrl, uploadImage } = useImageUpload();
+    const { uploadImage } = useImageUpload();
     const fileInputRef = React.useRef<HTMLInputElement>(null); 
 
     const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             try {
-                await uploadImage(file, 'image');
-                console.log('Image uploaded successfully!', imageUrl);
+                const fileUrl = await uploadImage(file, 'image');
+                console.log('Image uploaded successfully!', fileUrl);
                 const message = {
                   type: 'image',
-                  value: imageUrl ?? '',
+                  value: fileUrl ?? '',
                   chatId: chat?.id,
                   receiverId: chat?.userToDisplayInfo.id 
                 }

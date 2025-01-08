@@ -49,20 +49,18 @@ namespace lebagarv.Presentation.Hubs
         {
             var senderId = int.Parse(Context.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
 
-            if (string.IsNullOrEmpty(senderId))
-            {
-                throw new HubException("User not authenticated to send message!!!.");
-            }
-
             var connectionIds = new List<string>
             {
                 UserConnections.GetValueOrDefault(message.ReceiverId.ToString()),
-                UserConnections.GetValueOrDefault(senderId)
+                UserConnections.GetValueOrDefault(senderId.ToString())
             };
-            
+
+
+            connectionIds = connectionIds.Where(id => id != null).ToList();
+
             var newMessage = await _chatService.CreateMessageAsync(message, senderId); 
 
-            await Clients.Clients(connectionIds.Where(id => id != null).ToArray()).SendAsync("ReceiveMessage", newMessage);
+            await Clients.Clients(connectionIds.ToArray()).SendAsync("ReceiveMessage", newMessage);
 
             System.Console.WriteLine($"Message sent from {senderId} to {message.ReceiverId} (to all connections)");
         }

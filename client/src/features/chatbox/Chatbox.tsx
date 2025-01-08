@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from 'src/store/index';
-import { setChat, addMessageToChat } from 'src/store/chat/chatSlice';
+import { setChat } from 'src/store/chat/chatSlice';
 import ChatboxHeader from './ChatboxHeader/ChatboxHeader';
 import Message from './Message/Message';
 import ChatboxFooter from './ChatboxFooter/ChatboxFooter';
@@ -18,9 +18,6 @@ const Chatbox = () => {
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
     const chat = useSelector((state: RootState) => state.chat.activeChat);
-
-    
-
 
     const setChatInRedux = (chat: Chat) => {
         dispatch(setChat(chat)); 
@@ -40,26 +37,27 @@ const Chatbox = () => {
             if (chat) {
                 console.log("chat before new message:", chat);
                 console.log("new message received:", message);
-        
+
+
                 dispatch(
                     setChat({
                         ...chat,
                         messages: [...chat.messages, message], 
                     })
                 );
-        
+
                 console.log("chat after new message:", {
                     ...chat,
                     messages: [...chat.messages, message],
                 });
             }
         });
-        
+
 
         return () => {
             connection.off("ReceiveMessage");
         };
-    }, [connection, dispatch, chat?.messages]);
+    }, [connection, dispatch, chat]); 
 
     return (
         <main className={styles.chatbox}>

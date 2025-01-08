@@ -1,5 +1,6 @@
 namespace lebagarv.Core.Domain.Dto.Chat; 
-using lebagarv.Core.Domain.Dto.Chat: 
+
+using lebagarv.Core.Domain.Dto.Chat; 
 
 public class MessageDTO 
 {

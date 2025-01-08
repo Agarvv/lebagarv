@@ -42,7 +42,11 @@ namespace lebagarv.Core.Domain.Entities.Chat
             {
                 Id=this.Id,
                 ReceiverId=this.ReceiverId,
-                Sender=this.User.toUserMessageDto(),
+                /*
+                if some day we want to have the message sender object, its ready here!
+                but for now, we dont need that.
+               // Sender=this.User.toUserMessageDto(),
+               */
                 Type=this.Type,
                 Value=this.Value 
             }; 

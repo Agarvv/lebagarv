@@ -19,6 +19,7 @@ public class ChatRepository : Repository<Chat>, IChatRepository
         return await _context.Chats
             .Where(c => c.ReceiverId == userId || c.SenderId == userId)
             .Include(c => c.Car)
+            .Include(c => c.Messages)
             .ToListAsync(); 
     }
     

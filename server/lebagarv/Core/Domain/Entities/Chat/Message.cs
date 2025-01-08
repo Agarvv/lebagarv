@@ -5,6 +5,7 @@ namespace lebagarv.Core.Domain.Entities.Chat
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using lebagarv.Core.Domain.Entities.Users; 
+    using lebagarv.Core.Domain.Dto.Chat; 
 
     public class Message
     {
@@ -29,5 +30,17 @@ namespace lebagarv.Core.Domain.Entities.Chat
         public int ChatId { get; set; }
         [ForeignKey("ChatId")]
         public Chat Chat { get; set; }
+        
+        public MessageDTO toMessageDto()
+        {
+            return new MessageDTO()
+            {
+                Id=this.Id,
+                ReceiverId=this.ReceiverId,
+                Sender=this.User.toUserMessageDto(),
+                Type=this.Type,
+                Value=this.Value 
+            }; 
+        }
     }
 }

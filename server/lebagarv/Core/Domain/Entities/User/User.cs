@@ -43,5 +43,15 @@ namespace lebagarv.Core.Domain.Entities.Users
                 ProfilePicture=this.ProfilePicture
             }; 
         }
+        
+        public UserMessageDTO toUserMessageDto() 
+        {
+            return new UserMessageDTO()
+            {
+                Id=this.Id,
+                Username=this.Username,
+                ProfilePicture=this.ProfilePicture
+            }; 
+        }
     }
 }

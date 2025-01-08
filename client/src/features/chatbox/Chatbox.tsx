@@ -53,7 +53,7 @@ const Chatbox = () => {
             <div className={styles.messageList}>
                 {
                     chat?.messages.map((message) => (
-                        <Message message={message} /> 
+                        <Message key={message?.id} message={message} /> 
                     ))
                 }
             </div>

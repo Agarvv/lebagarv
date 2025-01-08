@@ -4,7 +4,8 @@ namespace lebagarv.Presentation.Hubs
     using System.Threading.Tasks;
     using lebagarv.Presentation.Models.Requests.Chat; 
     using System.Security.Claims;
-
+    using System.Linq;
+    using System.Collections.Generic;
 
     public class ChatHub : Hub
     {
@@ -17,7 +18,7 @@ namespace lebagarv.Presentation.Hubs
             if (!string.IsNullOrEmpty(userId))
             {
                 UserConnections[userId] = Context.ConnectionId;
-                System.Console.WriteLine($"User connected : {userId}, ConnectionId: {Context.ConnectionId}");
+                System.Console.WriteLine($"User connected: {userId}, ConnectionId: {Context.ConnectionId}");
             }
             
             return base.OnConnectedAsync();
@@ -30,7 +31,7 @@ namespace lebagarv.Presentation.Hubs
             if (!string.IsNullOrEmpty(userId))
             {
                 UserConnections.Remove(userId);
-                System.Console.WriteLine($"user disconnected: {userId}");
+                System.Console.WriteLine($"User disconnected: {userId}");
             }
 
             return base.OnDisconnectedAsync(exception);
@@ -45,16 +46,15 @@ namespace lebagarv.Presentation.Hubs
                 throw new HubException("User not authenticated to send message!!!.");
             }
 
-            if (UserConnections.TryGetValue(message.ReceiverId.ToString(), out var receiverConnectionId))
+            var connectionIds = new List<string>
             {
-                await Clients.Client(receiverConnectionId).SendAsync("ReceiveMessage", message);
-                
-                System.Console.WriteLine($"Message send from {senderId} to {message.ReceiverId}");
-            }
-            else
-            {
-                System.Console.WriteLine($"Receiver not connected!!");
-            }
+                UserConnections.GetValueOrDefault(message.ReceiverId.ToString()),
+                UserConnections.GetValueOrDefault(senderId)
+            };
+
+            await Clients.Clients(connectionIds.Where(id => id != null).ToArray()).SendAsync("ReceiveMessage", message);
+
+            System.Console.WriteLine($"Message sent from {senderId} to {message.ReceiverId} (to all connections)");
         }
     }
 }

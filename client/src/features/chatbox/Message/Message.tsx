@@ -43,7 +43,7 @@ const Message: React.FC<Props> = ({ message }) => {
     }
   };
 
-  const isSelf = userId == message?.SenderId; 
+  const isSelf = userId == message?.senderId; 
 
   return (
     <div className={`${styles.message} ${isSelf ? styles.self : ''}`}>

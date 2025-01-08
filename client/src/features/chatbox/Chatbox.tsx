@@ -17,9 +17,10 @@ const Chatbox = () => {
     const dispatch = useDispatch(); 
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
-    const chat = useSelector((state: RootState) =>
-         state.chat.activeChat, (prev, next) =>
-             prev?.messages.length === next?.messages.length);
+    const chat = useSelector((state: RootState) => state.chat.activeChat, (prev, next) =>
+        prev?.messages.length === next?.messages.length
+    );
+    
 
 
     const setChatInRedux = (chat: Chat) => {
@@ -37,8 +38,10 @@ const Chatbox = () => {
         if (!connection) return;
 
         connection.on("ReceiveMessage", (message: MessageType) => {
+            console.log("chat before new message:", chat);
             console.log("new message received:", message);
             dispatch(addMessageToChat(message));
+            console.log("chat after new message:", chat);
         });
 
         return () => {
@@ -49,9 +52,7 @@ const Chatbox = () => {
     return (
         <main className={styles.chatbox}>
             <ChatboxHeader />
-            <pre style={{ background: '#f4f4f4', padding: '10px', borderRadius: '5px' }}>
-            {JSON.stringify(chat, null, 2)}
-        </pre>
+    
             <div className={styles.messageList}>
                 {
                     chat?.messages.map((message) => (

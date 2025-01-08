@@ -24,7 +24,7 @@ const chatSlice = createSlice({
             if (state.activeChat) {
                 state.activeChat = {
                     ...state.activeChat,
-                    messages: [...state.activeChat.messages, action.payload], // Nuevo array
+                    messages: [...state.activeChat.messages, action.payload], 
                 };
             }
         },   

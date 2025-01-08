@@ -29,7 +29,10 @@ namespace lebagarv.Core.Domain.Entities.Chat
         [Required]
         public int ChatId { get; set; }
         [ForeignKey("ChatId")]
+        
+        [JsonIgnore]
         public Chat Chat { get; set; }
+
         
         public MessageDTO toMessageDto()
         {

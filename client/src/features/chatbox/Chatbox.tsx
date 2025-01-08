@@ -35,21 +35,12 @@ const Chatbox = () => {
 
         connection.on("ReceiveMessage", (message: MessageType) => {
             if (chat) {
-                console.log("chat before new message:", chat);
+                console.log("chat before new message:", chatData);
                 console.log("new message received:", message);
 
-
-                dispatch(
-                  setChat({
-                    ...chat,
-                    messages: [...(chat.messages || []), { ...message }],
-                    })
-                );
-
-                console.log("chat after new message:", {
-                    ...chat,
-                    messages: [...chat.messages, message],
-                });
+                chatData.messages.push(message); 
+                
+                console.log("chat after ne", chatData);
             }
         });
 
@@ -65,7 +56,7 @@ const Chatbox = () => {
     
             <div className={styles.messageList}>
                 {
-                    chat?.messages.map((message) => (
+                    chatData?.messages.map((message) => (
                         <Message key={message?.id} message={message} /> 
                     ))
                 }

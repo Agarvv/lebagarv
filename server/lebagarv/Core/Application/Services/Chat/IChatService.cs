@@ -9,6 +9,6 @@ public interface IChatService
     Task<IEnumerable<ChatDTO>> GetUserChatsAsync(int userId); 
     Task<ChatDTO> GetChatByIdAsync(int id, int userId); 
     Task CreateChatAsync(int carId, int receiverId, int userId);
-    Task<Message> CreateMessageAsync(MessageRequest request, int userId); 
+    Task<MessageDTO> CreateMessageAsync(MessageRequest request, int userId); 
     void VerifyChatAuthorization(Chat chat, int userId); 
 } 

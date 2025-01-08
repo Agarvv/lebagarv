@@ -86,7 +86,7 @@ public class ChatService : IChatService
         return userToDisplayInfo.toChatUserToDisplayInfo(); 
     }
     
-    public async Task<Message> CreateMessageAsync(MessageRequest request, int userId)
+    public async Task<MessageDTO> CreateMessageAsync(MessageRequest request, int userId)
     {
         var chat = await _chatRepository.GetChatByIdAsync(request.ChatId); 
         if(chat == null)
@@ -107,7 +107,7 @@ public class ChatService : IChatService
         
         await _messageRepository.SaveAsync(message); 
         
-        return message; 
+        return message.toMessageDto();
     }
     
     public void VerifyChatAuthorization(Chat chat, int userId)

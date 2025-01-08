@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Message: React.FC<Props> = ({ message }) => {
-  const userId = localStorage.getItem('userId'); // Obtengo el ID del usuario
+  const userId = Number(localStorage.getItem('userId')); 
 
   const checkMessageTypeAndRenderMessage = () => {
     switch (message?.type) {

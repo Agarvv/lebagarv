@@ -22,13 +22,12 @@ const chatSlice = createSlice({
         },
         addMessageToChat: (state, action: PayloadAction<Message>) => {
             if (state.activeChat) {
-                const updatedChat = {
+                state.activeChat = {
                     ...state.activeChat,
-                    messages: [...state.activeChat.messages, action.payload],
+                    messages: [...state.activeChat.messages, action.payload], // Nuevo array
                 };
-                state.activeChat = { ...updatedChat }; 
             }
-        },           
+        },   
         setContacts: (state, action: PayloadAction<Contacts>) => {
             return { ...state, contacts: action.payload }; 
         }

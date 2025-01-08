@@ -42,6 +42,7 @@ namespace lebagarv.Core.Domain.Entities.Chat
             {
                 Id=this.Id,
                 ReceiverId=this.ReceiverId,
+                SenderId=this.SenderId,
                 /*
                 if some day we want to have the message sender object, its ready here!
                 but for now, we dont need that.

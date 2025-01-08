@@ -1,8 +1,13 @@
 import React from 'react';
 import styles from './Message.module.css';
 import logo from 'src/logo.svg';
+import { Message as MessageType } from 'src/types/chat/Message'
 
-const Message = () => {
+interface Props {
+    message: Message 
+}
+
+const Message: React.FC<Props> = ({ message }) => {
   return (
     <div className={styles.message}>
       <div className={styles.messageUser}>
@@ -13,7 +18,7 @@ const Message = () => {
           <p>17 November 14:31</p>
         </div>
         <div className={styles.messageText}>
-          <p>Juan, no te lo dije pero creo que te rayé el coche...</p>
+          <p>{message?.value}</p>
         </div>
       </div>
     </div>

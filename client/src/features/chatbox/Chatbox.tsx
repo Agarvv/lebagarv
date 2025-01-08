@@ -48,9 +48,11 @@ const Chatbox = () => {
             <ChatboxHeader />
             
             <div className={styles.messageList}>
-                <Message />
-                <Message />
-                <Message />
+              {
+                  chat?.messages.map((message) =>(
+                    <Message message={message}/> 
+                  ))
+              }
             </div>
             
             <ChatboxFooter />

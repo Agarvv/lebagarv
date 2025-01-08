@@ -9,7 +9,7 @@ public class MessageRepository : Repository<Message>, IMessageRepository
 {
     private readonly AppDbContext _context;
 
-    public ChatRepository(AppDbContext context) : base(context)
+    public MessageRepository(AppDbContext context) : base(context)
     {
         _context = context;
     }

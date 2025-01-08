@@ -20,7 +20,7 @@ namespace lebagarv.Core.Domain.Entities.Chat
         [Required]
         [ForeignKey("User")]
         public int SenderId { get; set; }
-        public virtual User User { get; set; } 
+        public virtual AppUser User { get; set; } 
 
         [Required]
         public int ReceiverId { get; set; }

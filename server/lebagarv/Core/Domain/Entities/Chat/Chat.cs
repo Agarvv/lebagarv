@@ -35,7 +35,7 @@ namespace lebagarv.Core.Domain.Entities.Chat
                Id=this.Id,
                SenderId=this.SenderId,
                ReceiverId=this.ReceiverId,
-               Messages=this.Messages.Select(m => m.toMessageDto()), 
+               Messages = this.Messages.Select(m => m.toMessageDto()).ToList(),
                UserToDisplayInfo=userToDisplayInfo,
                Car=this.Car.toShowcaseDto()
             };

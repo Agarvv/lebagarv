@@ -16,8 +16,8 @@
 }
  
   .messageImage, .messageVideo{
-      width: 150px;
-      height: 150px;
+      width: 250px;
+      height: 250px;
   }
   
   .messageImage img, .messageVideo video {

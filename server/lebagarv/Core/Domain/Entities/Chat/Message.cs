@@ -6,6 +6,8 @@ namespace lebagarv.Core.Domain.Entities.Chat
     using System.ComponentModel.DataAnnotations.Schema;
     using lebagarv.Core.Domain.Entities.Users; 
     using lebagarv.Core.Domain.Dto.Chat; 
+    using System.Text.Json.Serialization;
+
 
     public class Message
     {
@@ -29,7 +31,7 @@ namespace lebagarv.Core.Domain.Entities.Chat
         [Required]
         public int ChatId { get; set; }
         [ForeignKey("ChatId")]
-        
+
         [JsonIgnore]
         public Chat Chat { get; set; }
 

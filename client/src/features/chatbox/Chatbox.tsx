@@ -12,6 +12,8 @@ import { useGet } from 'src/hooks/useGet';
 import { getChatById } from 'src/api/services/chat/ChatService';
 import { useParams } from 'react-router-dom';
 import { SignalRContext } from "src/context/chat/SignalRContext";
+import { addMessageToChat } from 'src/store/chat/chatSlice';
+import { Message as MessageType } from 'src/types/chat/Message';
 
 const Chatbox = () => {
     const dispatch = useDispatch(); 
@@ -32,10 +34,10 @@ const Chatbox = () => {
     useEffect(() => {
         if (!connection) return;
 
-        connection.on("ReceiveMessage", (message: any) => {
+        connection.on("ReceiveMessage", (message: MessageType) => {
             console.log("new message!:", message);
-            
-            alert(`New message of ${message.senderId}: ${message.value}`);
+            //alert(`New message of ${message.senderId}: ${message.value}`);
+            dispatch(addMessageToChat(message));
         });
 
         return () => {

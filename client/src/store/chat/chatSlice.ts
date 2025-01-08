@@ -20,14 +20,11 @@ const chatSlice = createSlice({
         setChat: (state, action: PayloadAction<Chat>) => {
             return { ...state, activeChat: action.payload }; 
         },
-        addMessageToChat: (state, action: PayloadAction<Message>) => {
+        addMessageToChat: (state, action: PayloadAction<MessageType>) => {
             if (state.activeChat) {
-                state.activeChat = {
-                    ...state.activeChat,
-                    messages: [...state.activeChat.messages, action.payload], 
-                };
+                state.activeChat.messages = [...state.activeChat.messages, action.payload];
             }
-        },   
+        },         
         setContacts: (state, action: PayloadAction<Contacts>) => {
             return { ...state, contacts: action.payload }; 
         }

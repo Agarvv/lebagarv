@@ -16,7 +16,12 @@ public class ChatService : IChatService
     private readonly IUserRepository _userRepository; 
     private readonly IMessageRepository _messageRepository; 
     
-    public ChatService(IChatRepository chatRepository, IUserRepository userRepository, IMessageRepository, messageRepository) 
+    public ChatService
+    (
+        IChatRepository chatRepository,
+        IUserRepository userRepository,
+        IMessageRepository messageRepository
+    ) 
     {
         _chatRepository = chatRepository; 
         _userRepository = userRepository; 

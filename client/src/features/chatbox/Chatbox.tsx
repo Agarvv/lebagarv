@@ -11,6 +11,7 @@ import { useGet } from 'src/hooks/useGet';
 import { getChatById } from 'src/api/services/chat/ChatService';
 import { SignalRContext } from "src/context/chat/SignalRContext";
 import { Message as MessageType } from 'src/types/chat/Message';
+import { Chat } from 'src/types/chat/Chat';
 
 const Chatbox = () => {
     const dispatch = useDispatch(); 

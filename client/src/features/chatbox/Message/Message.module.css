@@ -7,22 +7,10 @@
   }
   
 .message.self {
-    background: red;
-}
+    justify-content: flex-end;
+    
+  }
  
-  .messageUser {
-    display: flex;
-    align-items: center;
-  }
-  
-  .messageUser img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ccc;
-  }
-  
   .messageContent {
     display: flex;
     flex-direction: column;

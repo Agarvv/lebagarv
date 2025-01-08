@@ -54,7 +54,7 @@ namespace lebagarv.Presentation.Controllers.Auth;
                     Expires = DateTime.UtcNow.AddHours(1)
                 }; 
                 Response.Cookies.Append("jwt", token, cookieOptions);
-                return Ok(token);
+                return Ok(user.Id);
             } 
             else 
             {

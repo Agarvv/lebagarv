@@ -23,13 +23,10 @@ export const useLogin = () => {
     }, 
     onSuccess: (data: any) => {
       dispatch(clearMessages())
-      console.log('Welcome back!:', data); // debug
-      // user id will be used if the user enters on his profile page, 
-      // if the user page id is equal to out user id, then we will allow the user to make the http request to the server 
-      // to change his data.
-      // dont worry, even if user changes his user id from the local storage,
-      // the server takes only the user id from the jwt.
-      localStorage.setItem('userId', data.user_id)
+      console.log('Welcome back!:', data);
+      
+      // i need this for frontend stuff.
+      localStorage.setItem('userId', data)
       navigate('/')
     },
     onError: (error: Error) => {

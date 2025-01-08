@@ -5,24 +5,27 @@ import styles from './LoginForm.module.css';
 import { FormValues } from './types';
 import { emailValidation, passwordValidation } from 'src/outils/form-validators';
 import { usePost } from 'src/hooks/usePost';
+import { useLogin } from './useLogin'
 import { loginUser } from 'src/api/services/auth/AuthService';
 
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   
 
-  const { mutate } = usePost<FormValues>(
+  /*const { mutate } = usePost<FormValues>(
       {
           serviceFunc: loginUser,
           successMessage: "Welcome Back!",
           withError: true,
           withLoading: true 
       }
-  )
+  )*/
+  
+  const { mutate } = useLogin(); 
   
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
       const response = await mutate(data);
-      console.log('Server Response:', response);
+    
   }; 
 
   return (

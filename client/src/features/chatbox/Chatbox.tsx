@@ -40,9 +40,9 @@ const Chatbox = () => {
 
 
                 dispatch(
-                    setChat({
-                        ...chat,
-                        messages: [...chat.messages, message], 
+                  setChat({
+                    ...chat,
+                    messages: [...(chat.messages || []), { ...message }],
                     })
                 );
 

@@ -4,7 +4,7 @@ import logo from 'src/logo.svg';
 import { Message as MessageType } from 'src/types/chat/Message'
 
 interface Props {
-    message: Message 
+    message: MessageType
 }
 
 const Message: React.FC<Props> = ({ message }) => {

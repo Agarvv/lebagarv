@@ -31,6 +31,7 @@ const Chatbox = () => {
     });
 
     useEffect(() => {
+        console.log("chatData:", chat);
         if (!connection) return;
 
         connection.on("ReceiveMessage", (message: MessageType) => {
@@ -41,7 +42,7 @@ const Chatbox = () => {
         return () => {
             connection.off("ReceiveMessage");
         };
-    }, [connection, dispatch]);
+    }, [connection, dispatch, chat]);
 
     return (
         <main className={styles.chatbox}>

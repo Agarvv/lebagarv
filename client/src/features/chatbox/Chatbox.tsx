@@ -17,9 +17,8 @@ const Chatbox = () => {
     const dispatch = useDispatch(); 
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
-    const chat = useSelector((state: RootState) => state.chat.activeChat, (prev, next) =>
-        prev?.messages.length === next?.messages.length
-    );
+    const chat = useSelector((state: RootState) => state.chat.activeChat);
+
     
 
 

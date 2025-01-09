@@ -14,7 +14,7 @@ interface CreateChatRequest {
     carId: number 
 }
 
-const CarUserChatButton: React.FC<Props> = ({ userId }) => {
+const CarUserChatButton: React.FC<Props> = ({ userId, carId }) => {
     const { mutate } = usePost<CreateChatRequest>({
         serviceFunc: createChat,
         withError: true,
@@ -23,7 +23,7 @@ const CarUserChatButton: React.FC<Props> = ({ userId }) => {
 
     const handleCreateChatClick = () => {
         mutate(
-            { receiverId: userId },
+            { receiverId: userId, carId: carId },
             {
                 onSuccess: (response) => {
                     console.log("server res:", response);

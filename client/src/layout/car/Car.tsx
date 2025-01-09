@@ -12,19 +12,19 @@ interface Props {
 const Car: React.FC<Props> = ({ car }) => {
   return (
     <div className={styles.car}>
-    <a href={`/car/${car?.id}`} className={styles.carLink}>
-  <div className={styles.carImage}>
-    <img src={logo} alt="Car Image" />
-  </div>
-  <div className={styles.carDetails}>
-    <div className={styles.carTitle}>
-      <p>{car?.title ?? 'Not Provided'}</p>
-    </div>
-    <div className={styles.carPrice}>
-      <strong>$ {car?.price ?? 0}</strong>
-    </div>
-  </div>
-</a>
+    <a href={`/car/${car?.id}`}>
+      <div className={styles.carImage}>
+        <img src={logo} alt="Car Image" />
+      </div>
+      <div className={styles.carDetails}>
+        <div className={styles.carTitle}>
+          <p>{car?.title ?? 'Not Provided'}</p>
+        </div>
+        <div className={styles.carPrice}>
+          <strong>$ {car?.price ?? 0}</strong>
+        </div>
+      </div>
+     </a>
     </div>
   );
 };

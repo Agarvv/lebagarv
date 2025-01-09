@@ -6,10 +6,10 @@ const ResponsiveFooter = () => {
   return (
     <footer className={styles.responsiveFooter}>
       <div className={styles.rsfFavs}>
-      <Link to="/favorites"> 
+      <a href="/favorites"> 
         <i className="fa fa-heart"></i>
         <span>Favorites</span>
-      </Link> 
+      </a> 
       </div>
       <div className={styles.rsfCreate}>
        <Link to="/create"> 
@@ -18,10 +18,10 @@ const ResponsiveFooter = () => {
        </Link> 
       </div>
       <div className={styles.rsfMessages}>
-       <Link to="/chats">
-        <i className="fa fa-comment"></i>
-        <span>Messages</span>
-       </Link> 
+      <a href="/chats">
+         <i className="fa fa-comment"></i>
+         <span>Messages</span>
+      </a>
       </div>
     </footer>
   );

@@ -3,7 +3,7 @@ import styles from './CarUser.module.css';
 import { CarOwner } from 'src/types/cars/CarOwner'
 import logo from 'src/logo.svg'
 
-import { CarUserChatButton } from './car-user-chat-button/CarUserChatButton'
+import CarUserChatButton  from './car-user-chat-button/CarUserChatButton'
 
 interface Props {
     user?: CarOwner

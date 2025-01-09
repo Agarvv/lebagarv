@@ -22,8 +22,8 @@ using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
 using lebagarv.Core.Application.Services.Favorites; 
 using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
 using lebagarv.Infrastructure.Persistence.Repositories.Chat.Messages; 
-//using Microsoft.AspNetCore.Authentication.Cookies;
-//using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSignalR(); 
@@ -37,7 +37,7 @@ builder.Services.AddCors(options =>
 });
 
 
-/*builder.Services.AddAuthentication(options =>
+builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
@@ -45,9 +45,10 @@ builder.Services.AddCors(options =>
     .AddCookie()
     .AddGoogle(options =>
     {
-        options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-        options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-});*/
+        options.CallbackPath = new PathString("/signin-google");
+        options.ClientId = "270009365626-u5tvbmfk0rajbqdkt1e1gg7rcbav9dss.apps.googleusercontent.com"; //Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+        options.ClientSecret = "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";//Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+});
 
 
 builder.Services.AddEndpointsApiExplorer();

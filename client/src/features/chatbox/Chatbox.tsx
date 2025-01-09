@@ -14,7 +14,6 @@ import { setChat } from 'src/store/chat/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Chatbox = () => {
-    const dispatch = useDispatch(); 
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
     
@@ -22,14 +21,20 @@ const Chatbox = () => {
         dispatch(setChat(chat))
         setMessages(chat.messages)
     }
-    
+
     const { data: chatData } = useGet<Chat>({
         serviceFunc: () => getChatById(Number(id)),
         successFunc: (chat) => handleChatGetSuccess(chat),
         withError: true
     });
-    
+
     const [messages, setMessages] = useState<MessageType[]>(chatData?.messages || []);
+
+    useEffect(() => {
+        if (chatData?.messages) {
+            setMessages(chatData.messages); 
+        }
+    }, [chatData]);
 
     useEffect(() => {
         if (!connection) return;
@@ -61,3 +66,6 @@ const Chatbox = () => {
 };
 
 export default Chatbox;
+
+
+

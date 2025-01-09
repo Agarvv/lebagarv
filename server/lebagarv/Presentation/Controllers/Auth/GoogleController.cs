@@ -13,7 +13,7 @@ namespace lebagarv.Presentation.Controllers.Auth
         public IActionResult Login()
         {
           return Challenge(new AuthenticationProperties 
-          { RedirectUri = "/api/lebagarv/auth/google/callback" }, GoogleDefaults.AuthenticationScheme);
+          { RedirectUri = "/signin-google" }, GoogleDefaults.AuthenticationScheme);
         }
 
         [HttpGet("callback")]

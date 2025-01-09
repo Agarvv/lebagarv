@@ -6,13 +6,18 @@ import SearchChats from './search-chats/SearchChats'
 import styles from './Chats.module.css'
 import { useGet } from 'src/hooks/useGet'
 import { getUserContacts } from 'src/api/services/chat/ChatService'
-
+import { useDispatch } from 'react-redux';
+import { setContacts } from 'src/store/chat/chatSlice'
 
 const Chats = () => {
     // const { data } = useContacts();
+    const dispatch = useDispatch(); 
+    const setContactsInRedux = (chats: ChatType[])=> {
+        dispatch(setContacts(chats)); 
+    }
     const { data: chats } = useGet<ChatType[]>({
         serviceFunc: getUserContacts,
-        successFunc: () => console.log("Chats success"),
+        successFunc: (chats) => ,
         withError: true 
      })
        

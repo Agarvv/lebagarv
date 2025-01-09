@@ -22,8 +22,8 @@ using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
 using lebagarv.Core.Application.Services.Favorites; 
 using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
 using lebagarv.Infrastructure.Persistence.Repositories.Chat.Messages; 
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Google;
+//using Microsoft.AspNetCore.Authentication.Cookies;
+//using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSignalR(); 
@@ -37,7 +37,7 @@ builder.Services.AddCors(options =>
 });
 
 
-builder.Services.AddAuthentication(options =>
+/*builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
@@ -47,7 +47,7 @@ builder.Services.AddAuthentication(options =>
     {
         options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
         options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-});
+});*/
 
 
 builder.Services.AddEndpointsApiExplorer();

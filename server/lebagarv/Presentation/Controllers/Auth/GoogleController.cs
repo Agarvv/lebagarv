@@ -1,36 +1,33 @@
-namespace lebagarv.Presentation.Controllers.Auth
+
+namespace lebagarv.Presentation.Controllers.Auth; 
 {
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authentication.Google;
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
     using System.Security.Claims;
 
-    [ApiController]
-    [Route("/api/lebagarv/auth/google")]
-    public class GoogleController : ControllerBase
+    public class AccountController : Controller
     {
-
-        [HttpGet]
-        public IActionResult Login()
+        [Route("signin-google")]
+        public IActionResult SignInWithGoogle()
         {
-            var redirectUrl = Url.Action("Callback", "Google");
+            var redirectUrl = Url.Action("GoogleResponse", "Account");
             var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 
-        [HttpGet("callback")]
-        public IActionResult Callback()
+        [Route("google-response")]
+        public async Task<IActionResult> GoogleResponse()
         {
-            
-            var result = HttpContext.AuthenticateAsync().Result;
-
-            if (result?.Principal != null)
+            var info = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+            if (info?.Principal != null)
             {
-                var email = result.Principal.FindFirst(ClaimTypes.Email)?.Value;
-                return Ok(new { message = "Authentication Success!", email });
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                return Ok(new { email });
             }
 
-            return BadRequest("Error while authenticating");
+            return Unauthorized();
         }
     }
 }

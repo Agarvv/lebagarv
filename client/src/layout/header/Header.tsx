@@ -36,6 +36,7 @@ const Header: React.FC<Props> = ({ searchQuery }) => {
           <i className="fa fa-plus"></i>
           <span>Create</span>
         </div>
+       </a>
        <a href="/profile/s">
         <div className={styles.huProfile}>
           <i className="fa fa-user"></i>

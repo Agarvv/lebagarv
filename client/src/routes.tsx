@@ -64,7 +64,7 @@ export const AppRoutes = () => (
        path='/favorites'
        element={
        <Favorites />
-      }
+      } 
 
       />
       

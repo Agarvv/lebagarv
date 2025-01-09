@@ -10,7 +10,7 @@ interface Props {
     carId?: number 
 }
 
-const CarUser: React.FC<Props> = ({ user }: Props) => {
+const CarUser: React.FC<Props> = ({ user, carId }: Props) => {
   return (
     <div className={styles.mainProductDetails}>
       <div className={styles.carUser}>

@@ -3,7 +3,7 @@ import styles from './ResetPasswordForm.module.css';
 import { FormValues } from './types';
 import { useForm } from 'react-hook-form';
 import { passwordValidation } from 'src/outils/form-validators';
-import usePost from 'src/hooks/usePost';
+import { usePost } from 'src/hooks/usePost';
 import { useParams } from 'react-router-dom';
 import { resetPassword } from 'src/api/services/auth/AuthService'
 import { Link } from 'react-router-dom';

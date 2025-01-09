@@ -1,5 +1,5 @@
 
-namespace lebagarv.Presentation.Controllers.Auth; 
+namespace lebagarv.Presentation.Controllers.Auth
 {
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authentication.Google;

@@ -3,6 +3,7 @@ import styles from './SearchChats.module.css';
 import logo from 'src/logo.svg';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
+import { Chat } from 'src/types/chat/Chat'
 
 const SearchChats = () => {
     const contacts = useSelector((state: RootState) => state.chat.contacts);

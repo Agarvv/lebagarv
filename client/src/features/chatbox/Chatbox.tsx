@@ -38,7 +38,7 @@ const Chatbox = () => {
                 console.log("chat before new message:", chatData);
                 console.log("new message received:", message);
 
-                chatData.messages.push(message); 
+                chatData?.messages.push(message); 
                 
                 console.log("chat after ne", chatData);
             }

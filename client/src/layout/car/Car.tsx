@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Car.module.css';
 import logo from 'src/logo.svg';
 import { CarShowcase } from 'src/types/cars/CarShowcase';
+import { Link } from 'react-router-dom';  
+
 
 interface Props {
   car: CarShowcase;
@@ -10,6 +12,7 @@ interface Props {
 const Car: React.FC<Props> = ({ car }) => {
   return (
     <div className={styles.car}>
+    <Link to={`/car/${car?.id}`}>
       <div className={styles.carImage}>
         <img src={logo} alt="Car Image" />
       </div>
@@ -21,6 +24,7 @@ const Car: React.FC<Props> = ({ car }) => {
           <strong>$ {car?.price ?? 0}</strong>
         </div>
       </div>
+     </Link>
     </div>
   );
 };

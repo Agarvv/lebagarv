@@ -31,6 +31,7 @@ const CarUserChatButton: React.FC<Props> = ({ userId, carId }) => {
             {
                 onSuccess: (response) => {
                     navigate(`/chatbox/${response.chatId}`)
+                    window.location.reload(); 
                 },
             }
         );

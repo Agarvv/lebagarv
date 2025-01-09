@@ -19,18 +19,29 @@ const Header: React.FC<Props> = ({ searchQuery }) => {
         <i className="fa fa-search"></i>
       </div>
       <div className={styles.hUser}>
+       <a href="/chats">
         <div className={styles.huMessages}>
           <i className="fa fa-comment"></i>
           <span>Messages</span>
         </div>
+       </a> 
+       <a href="/favorites">
         <div className={styles.huFavs}>
           <i className="fa fa-heart"></i>
           <span>Favorites</span>
         </div>
+       </a>
+       <a href="/create">
         <div className={styles.huCreate}>
           <i className="fa fa-plus"></i>
           <span>Create</span>
         </div>
+       <a href="/profile/s">
+        <div className={styles.huProfile}>
+          <i className="fa fa-user"></i>
+          <span>Profile</span>
+        </div>
+       </a>
       </div>
     </header>
   );

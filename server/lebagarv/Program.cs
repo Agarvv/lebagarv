@@ -44,7 +44,7 @@ builder.Services.AddAuthentication(options =>
     .AddCookie()
     .AddGoogle(options =>
     {
-        options.CallbackPath = new PathString("/api/lebagarv/auth/google/callback");
+        options.CallbackPath = new PathString("/signin-google");
         options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
         options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
 

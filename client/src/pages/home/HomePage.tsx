@@ -10,7 +10,7 @@ import AppLayout  from 'src/layout/AppLayout/AppLayout'
 const HomePage = () => {
     return(
         <>
-        <AppLayout>
+        <AppLayout footer={true}>
             <CarLists /> 
         </AppLayout> 
         </>

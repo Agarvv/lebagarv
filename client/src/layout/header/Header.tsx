@@ -1,15 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';  
 import styles from './Header.module.css';
 
 interface Props {
-    searchQuery?: string
+  searchQuery?: string;
 }
 
 const Header: React.FC<Props> = ({ searchQuery }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <h1>lebagarv</h1>
+        <Link to="/">
+          <h1>lebagarv</h1>
+        </Link>  
       </div>
       <div className={styles.hSearch}>
         <input type="text" placeholder="Bemve, Udis, Mermeledes..." value={searchQuery}/>

@@ -3,4 +3,9 @@
   flex-direction: row;
   gap: 15px;
   overflow: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.carList::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }

@@ -17,20 +17,19 @@ const Chatbox = () => {
     const dispatch = useDispatch(); 
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
-    const [messages, setMessages] = useState<MessageType[]>(chatData?.messages || []);
     
     const handleChatGetSuccess = (chat: Chat) => {
         dispatch(setChat(chat))
         setMessages(chat.messages)
     }
     
-    
-
     const { data: chatData } = useGet<Chat>({
         serviceFunc: () => getChatById(Number(id)),
         successFunc: (chat) => handleChatGetSuccess(chat),
         withError: true
     });
+    
+    const [messages, setMessages] = useState<MessageType[]>(chatData?.messages || []);
 
     useEffect(() => {
         if (!connection) return;

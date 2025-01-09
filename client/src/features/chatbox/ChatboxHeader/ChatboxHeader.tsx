@@ -14,10 +14,10 @@ const ChatboxHeader = () => {
     <header className={styles.header}>
       <div className={styles.hUser}>
         <div className={styles.hUserImg}>
-          <img src={chat?.userToDisplayInfo.profilePicture ?? logo} alt="Profile" />
+          <img src={chat?.car.images[0] ?? logo} alt="Profile" />
         </div>
         <div className={styles.hUserData}>
-          <p>{chat?.userToDisplayInfo.username}</p>
+          <p>{chat?.car.title}</p>
         </div>
       </div>
     </header>

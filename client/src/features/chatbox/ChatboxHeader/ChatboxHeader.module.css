@@ -19,8 +19,7 @@
   
   .hUserImg img {
     width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    height: 60px; 
     object-fit: cover;
     border: 2px solid #ccc;
   }

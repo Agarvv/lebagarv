@@ -13,6 +13,10 @@ const ChatboxFooter = () => {
     setMessage(event.target.value);
   };
 
+  const clearMessage = () => {
+    setMessage(''); 
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.fMediaButtons}>
@@ -30,7 +34,8 @@ const ChatboxFooter = () => {
       </div>
       <div className={styles.fSubmit}>
         <ChatboxFooterSubmitMessage
-        message={message} 
+          message={message}
+          clearMessage={clearMessage} 
         />
       </div>
     </footer>

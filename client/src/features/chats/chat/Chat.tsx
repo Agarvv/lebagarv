@@ -9,8 +9,9 @@ interface Props {
 
 const Chat: React.FC<Props> = ({ chat }) => {
   return (
+    <>
+  <a href={`/chatbox/${chat?.id}`}>
     <div  className={styles['chat']}>
-      <a href={`/chatbox/${chat?.id}`}>
       <div className={styles['ac-user']}>
         <img src={chat?.car.images[0] ?? logo} alt="Car" />
         <div className={styles['ac-content']}>
@@ -23,8 +24,9 @@ const Chat: React.FC<Props> = ({ chat }) => {
       <div className={styles['ac-date']}>
         <p>15:13</p>
       </div>
-      </a>
     </div>
+  </a>
+    </>
   );
 };
 

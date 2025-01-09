@@ -21,7 +21,7 @@ const ResponsiveFooter = () => {
        <Link to="/chats">
         <i className="fa fa-comment"></i>
         <span>Messages</span>
-       <Link> 
+       </Link> 
       </div>
     </footer>
   );

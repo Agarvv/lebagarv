@@ -1,9 +1,11 @@
 import React from 'react'
 import styles from './SearchChats.module.css' 
 import logo from 'src/logo.svg';
-
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/store';
 
 const SearchChats = () => {
+    const contacts = useSelector((state: RootState) => state.chat.contacts);
     return(
         <>
         <div className={styles['user-img']}>

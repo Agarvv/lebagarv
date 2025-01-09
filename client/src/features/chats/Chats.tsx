@@ -17,7 +17,7 @@ const Chats = () => {
     }
     const { data: chats } = useGet<ChatType[]>({
         serviceFunc: getUserContacts,
-        successFunc: (chats) => ,
+        successFunc: (chats) => setContactsInRedux(chats),
         withError: true 
      })
        

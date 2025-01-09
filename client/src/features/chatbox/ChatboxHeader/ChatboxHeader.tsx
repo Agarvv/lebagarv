@@ -1,6 +1,4 @@
 
-import CallButton from './CallButton/CallButton';
-import VideoCallButton from './VideoCallButton/VideoCallButton';
 import styles from './ChatboxHeader.module.css';
 import logo from 'src/logo.svg';
 import { useSelector } from 'react-redux';

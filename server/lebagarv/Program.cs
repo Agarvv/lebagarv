@@ -49,10 +49,16 @@ builder.Services.AddAuthentication(options =>
         options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
 
         options.Events.OnRedirectToAuthorizationEndpoint = context =>
-        {
-            context.Response.Redirect(context.RedirectUri.Replace("http://", "https://"));
-            return Task.CompletedTask;
-        };
+{
+    if (!context.RedirectUri.StartsWith("https://"))
+    {
+        context.RedirectUri = context.RedirectUri.Replace("http://", "https://");
+    }
+    context.Response.Redirect(context.RedirectUri);
+    return Task.CompletedTask;
+    };
+
+
     });
 
 

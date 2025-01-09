@@ -1,0 +1,12 @@
+.pChat button {
+  background: #f0f0f0;
+  color: #333;
+  width: 100%;
+  height: 40px;
+  border: none;
+  background: var(--logo);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+}

@@ -3,6 +3,8 @@ import styles from './CarUser.module.css';
 import { CarOwner } from 'src/types/cars/CarOwner'
 import logo from 'src/logo.svg'
 
+import { CarUserChatButton } from './car-user-chat-button/CarUserChatButton'
+
 interface Props {
     user?: CarOwner
 }
@@ -21,9 +23,9 @@ const CarUser: React.FC<Props> = ({ user }: Props) => {
       </div>
       <div className={styles.pCar}>
         <div className={styles.pCarButtons}>
-          <div className={styles.pChat}>
-            <button>Chat</button>
-          </div>
+          <CarUserChatButton 
+            userId={user?.id}
+          /> 
         </div>
       </div>
     </div>

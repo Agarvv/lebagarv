@@ -36,7 +36,6 @@ builder.Services.AddCors(options =>
                .AllowCredentials());
 });
 
-
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -48,7 +47,13 @@ builder.Services.AddAuthentication(options =>
         options.CallbackPath = new PathString("/api/lebagarv/auth/google/callback");
         options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
         options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-});
+
+        options.Events.OnRedirectToAuthorizationEndpoint = context =>
+        {
+            context.Response.Redirect(context.RedirectUri.Replace("http://", "https://"));
+            return Task.CompletedTask;
+        };
+    });
 
 
 builder.Services.AddEndpointsApiExplorer();

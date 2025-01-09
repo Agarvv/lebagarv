@@ -9,7 +9,7 @@ const SearchChats = () => {
     const [filteredContacts, setFilteredContacts] = useState(contacts);
 
     const applyFilters = (title: string) => {
-        const newContacts = contacts.filter(c => c?.car.title.toLowerCase().includes(title.toLowerCase()));
+        const newContacts = contacts?.filter(c => c?.car.title.toLowerCase().includes(title.toLowerCase()));
         setFilteredContacts(newContacts);
         console.log("filtered contacts", filteredContacts)
     }

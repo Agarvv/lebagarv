@@ -16,7 +16,7 @@ const Chat: React.FC<Props> = ({ chat }) => {
         <div className={styles['ac-content']}>
           <h4>{chat?.car.title}</h4>
           <p>
-          {chat?.messages[chat?.messages.length]}
+            {chat?.messages[chat?.messages.length - 1]}
           </p>
         </div>
       </div>

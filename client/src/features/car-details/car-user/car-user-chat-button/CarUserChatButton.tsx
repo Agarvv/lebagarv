@@ -3,6 +3,9 @@ import React from 'react'
 import styles from './CarUserChatButton.module.css'
 import { usePost } from 'src/hooks/usePost'
 import { createChat } from 'src/api/services/chat/ChatService'
+import { useNavigate } from 'react-router-dom';
+
+
 
 interface Props {
     userId?: number,
@@ -15,6 +18,7 @@ interface CreateChatRequest {
 }
 
 const CarUserChatButton: React.FC<Props> = ({ userId, carId }) => {
+    const navigate = useNavigate(); 
     const { mutate } = usePost<CreateChatRequest>({
         serviceFunc: createChat,
         withError: true,
@@ -26,7 +30,7 @@ const CarUserChatButton: React.FC<Props> = ({ userId, carId }) => {
             { receiverId: userId, carId: carId },
             {
                 onSuccess: (response) => {
-                    console.log("server res:", response);
+                    navigate(`/chatbox/${response.chatId}`)
                 },
             }
         );

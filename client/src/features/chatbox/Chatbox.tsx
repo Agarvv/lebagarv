@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { setChat } from 'src/store/chat/chatSlice';
 import ChatboxHeader from './ChatboxHeader/ChatboxHeader';
 import Message from './Message/Message';
 import ChatboxFooter from './ChatboxFooter/ChatboxFooter';
@@ -9,23 +11,17 @@ import { getChatById } from 'src/api/services/chat/ChatService';
 import { SignalRContext } from "src/context/chat/SignalRContext";
 import { Message as MessageType } from 'src/types/chat/Message';
 import { Chat } from 'src/types/chat/Chat';
-import { RootState } from 'src/store/index';
-import { setChat } from 'src/store/chat/chatSlice';
-import { useDispatch, useSelector } from 'react-redux';
 
 const Chatbox = () => {
+    const dispatch = useDispatch(); 
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
-    const dispatch = useDispatch(); 
-    
-    const handleChatGetSuccess = (chat: Chat) => {
-        dispatch(setChat(chat))
-        setMessages(chat.messages)
-    }
 
     const { data: chatData } = useGet<Chat>({
         serviceFunc: () => getChatById(Number(id)),
-        successFunc: (chat) => handleChatGetSuccess(chat),
+        successFunc: (chat) => {
+            dispatch(setChat(chat)); 
+        },
         withError: true
     });
 
@@ -67,5 +63,3 @@ const Chatbox = () => {
 };
 
 export default Chatbox;
-
-

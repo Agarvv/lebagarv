@@ -18,9 +18,11 @@ const Chatbox = () => {
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
     
-    const setChatInRedux = (chat: Chat) {
+    const setChatInRedux = (chat: Chat) => {
         dispatch(setChat(chat))
     }
+    
+    
 
     const { data: chatData } = useGet<Chat>({
         serviceFunc: () => getChatById(Number(id)),

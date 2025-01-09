@@ -9,7 +9,7 @@ interface Props {
 }
 
 interface CreateChatRequest {
-    receiverId: number
+    receiverId?: number
 }
 
 const CarUserChatButton: React.FC<Props> = ({ userId }) => {

@@ -46,8 +46,8 @@ builder.Services.AddAuthentication(options =>
     .AddGoogle(options =>
     {
         options.CallbackPath = new PathString("/signin-google");
-        options.ClientId = "270009365626-u5tvbmfk0rajbqdkt1e1gg7rcbav9dss.apps.googleusercontent.com"; //Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-        options.ClientSecret = "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";//Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+        options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+        options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
 });
 
 

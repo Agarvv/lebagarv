@@ -17,3 +17,9 @@ export const sendResetEmail = <T>(data: T) => {
         withCredentials: true 
     });
 }
+
+export const resetPassword = <T>(data: T) => {
+    return axiosInstance.post('/auth/reset', data, {
+        withCredentials: true 
+    });
+}

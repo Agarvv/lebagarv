@@ -3,9 +3,9 @@ import styles from './ResetPasswordForm.module.css';
 import { FormValues } from './types';
 import { useForm } from 'react-hook-form';
 import { passwordValidation } from 'src/outils/form-validators';
-import useSubmit from 'src/hooks/useSubmit';
+import usePost from 'src/hooks/usePost';
 import { useParams } from 'react-router-dom';
-
+import { resetPassword } from 'src/api/services/auth/AuthService'
 import { Link } from 'react-router-dom';
 
 const ResetPasswordForm = () => {
@@ -15,11 +15,12 @@ const ResetPasswordForm = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const { mutate } = useSubmit({
-    url: '/auth/reset_password/',
-    successMessage: 'Your password has been reset!',
-    errorMessage: 'Your URL may have expired or something went wrong...',
-  });
+  const { mutate } = usePost<any>({
+      serviceFunc: resetPassword,
+      successMessage: "Your password is all set.",
+      withError: true,
+      withLoading: true 
+  })
 
   const { token, email } = useParams(); 
 

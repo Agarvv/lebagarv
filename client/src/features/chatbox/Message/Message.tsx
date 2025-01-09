@@ -48,9 +48,9 @@ const Message: React.FC<Props> = ({ message }) => {
   return (
     <div className={`${styles.message} ${isSelf ? styles.self : ''}`}>
       <div className={styles.messageContent}>
-        <div className={styles.messageDate}>
+       { /* <div className={styles.messageDate}>
           <p>17 November 14:31 {isSelf}</p>
-        </div>
+        </div> */}
         {checkMessageTypeAndRenderMessage()}
       </div>
     </div>

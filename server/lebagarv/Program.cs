@@ -36,11 +36,6 @@ builder.Services.AddCors(options =>
                .AllowCredentials());
 });
 
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.HttpsPort = 7172; // Ensure this matches the port in launchSettings.json
-});
-
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -53,18 +48,13 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
         options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
 
-        // Force HTTPS for the redirect URI
         options.Events.OnRedirectToAuthorizationEndpoint = context =>
         {
-            var redirectUri = new UriBuilder(context.RedirectUri)
-            {
-                Scheme = "https",
-                Port = -1 // Default port for the scheme
-            }.Uri.ToString();
-            context.Response.Redirect(redirectUri);
+            context.Response.Redirect(context.RedirectUri.Replace("http://", "https://"));
             return Task.CompletedTask;
         };
     });
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -99,6 +89,7 @@ builder.Services.AddScoped<IFavoritesRepository, FavoritesRepository>();
 builder.Services.AddScoped<IResetPasswordTokenRepository, ResetPasswordTokenRepository>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>(); 
 
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -129,11 +120,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors("AllowSpecificOrigins");
-
 app.MapControllers();
+app.UseCors("AllowSpecificOrigins");
 app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

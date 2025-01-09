@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv2\\lebagarv\\server\\lebagarv\\lebagarv.csproj": {}
+    "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv2\\lebagarv\\server\\lebagarv\\lebagarv.csproj": {
+    "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv2\\lebagarv\\server\\lebagarv\\lebagarv.csproj",
+        "projectUniqueName": "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj",
         "projectName": "lebagarv",
-        "projectPath": "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv2\\lebagarv\\server\\lebagarv\\lebagarv.csproj",
-        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lucas\\OneDrive\\Web Test\\lebagarv8\\lebagarv2\\lebagarv\\server\\lebagarv\\obj\\",
+        "projectPath": "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/lebagarv/server/lebagarv/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.Cookies": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -109,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

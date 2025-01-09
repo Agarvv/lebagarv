@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const Chatbox = () => {
     const { id } = useParams();
     const { connection } = useContext(SignalRContext);
+    const dispatch = useDispatch(); 
     
     const handleChatGetSuccess = (chat: Chat) => {
         dispatch(setChat(chat))
@@ -66,6 +67,5 @@ const Chatbox = () => {
 };
 
 export default Chatbox;
-
 
 

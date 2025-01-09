@@ -29,9 +29,9 @@ namespace lebagarv.Core.Domain.Entities.Users
          {
              return new ProfileDTO
              {
-                 Id=this.id,
+                 Id=this.Id,
                  ProfilePicture=this.ProfilePicture,
-                 Banner=this.banner ?? string.Empty,
+                 Banner=this.Banner ?? string.Empty,
                 Username = this.Username,
                 Cars = cars.Select(c => c.toShowcaseDto()).ToList()
              };

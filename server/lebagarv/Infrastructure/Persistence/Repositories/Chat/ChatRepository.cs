@@ -30,6 +30,11 @@ public class ChatRepository : Repository<Chat>, IChatRepository
             .Include(c => c.Messages)
             .FirstOrDefaultAsync(c => c.Id == id); 
     }
+    
+    public async Task<Chat> GetByCarAndUserIdAsync(int carId, int userId)
+    {
+        return await _context.Chats.FirstOrDefaultAsync(c => c.CarId == carId && c.SenderId == userId); 
+    }
  
     
     public async Task<bool> ExistsByCarIdAsync(int carId)

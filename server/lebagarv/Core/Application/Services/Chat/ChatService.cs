@@ -60,11 +60,12 @@ public class ChatService : IChatService
     }
 
     
-    public async Task CreateChatAsync(int carId, int receiverId, int userId)
+    public async Task<int> CreateChatAsync(int carId, int receiverId, int userId)
     {
-        if(await _chatRepository.ExistsByCarIdAsync(carId))
+        var existentChat = await _chatRepository.GetByCarAndUserIdAsync(carId, userId);
+        if(existentChat == null)
         {
-            throw new LebagarvException("You can't chat about this car because you already have a chat with it.", 409); 
+            return existentChat.Id; 
         }
         
         var chat = new Chat() 
@@ -75,6 +76,8 @@ public class ChatService : IChatService
         };
         
         await _chatRepository.AddAsync(chat); 
+        
+        return chat.Id; 
     }
     
     private async Task<UserToDisplayInfoDTO> GetUserToDisplayInfoAsync(Chat chat, int userId)

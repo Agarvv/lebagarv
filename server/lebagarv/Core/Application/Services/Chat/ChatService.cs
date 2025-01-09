@@ -65,19 +65,19 @@ public class ChatService : IChatService
         var existentChat = await _chatRepository.GetByCarAndUserIdAsync(carId, userId);
         if(existentChat == null)
         {
-            return existentChat.Id; 
+              var chat = new Chat() 
+              {
+                 SenderId = userId,
+                 ReceiverId = receiverId,
+                 CarId = carId
+              };
+        
+              await _chatRepository.AddAsync(chat); 
+        
+              return chat.Id; 
         }
         
-        var chat = new Chat() 
-        {
-            SenderId = userId,
-            ReceiverId = receiverId,
-            CarId = carId
-        };
-        
-        await _chatRepository.AddAsync(chat); 
-        
-        return chat.Id; 
+        return existentChat.Id; 
     }
     
     private async Task<UserToDisplayInfoDTO> GetUserToDisplayInfoAsync(Chat chat, int userId)

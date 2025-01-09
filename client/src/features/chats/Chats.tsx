@@ -10,13 +10,15 @@ import { getUserContacts } from 'src/api/services/chat/ChatService'
 
 const Chats = () => {
     // const { data } = useContacts();
-    useEffect(() => {
-        const { data: chats } = useGet<ChatType[]>({
+    const { data: chats } = useGet<ChatType[]>({
         serviceFunc: getUserContacts,
         successFunc: () => console.log("Chats success"),
         withError: true 
-       })
-    }, [])
+     })
+       
+    useEffect(() => {
+        
+    }, [chats])
     
     return (
       <div className={styles.chatsContainer}> 

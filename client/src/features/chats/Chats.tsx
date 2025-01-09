@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Chat from './chat/Chat'
 import { Chat as ChatType } from 'src/types/chat/Chat'
@@ -10,11 +10,13 @@ import { getUserContacts } from 'src/api/services/chat/ChatService'
 
 const Chats = () => {
     // const { data } = useContacts();
-    const { data: chats } = useGet<ChatType[]>({
+    useEffect(() => {
+        const { data: chats } = useGet<ChatType[]>({
         serviceFunc: getUserContacts,
         successFunc: () => console.log("Chats success"),
         withError: true 
-    })
+       })
+    }, [])
     
     return (
       <div className={styles.chatsContainer}> 

@@ -7,6 +7,7 @@ import CarUserChatButton  from './car-user-chat-button/CarUserChatButton'
 
 interface Props {
     user?: CarOwner
+    carId?: number 
 }
 
 const CarUser: React.FC<Props> = ({ user }: Props) => {
@@ -25,6 +26,7 @@ const CarUser: React.FC<Props> = ({ user }: Props) => {
         <div className={styles.pCarButtons}>
           <CarUserChatButton 
             userId={user?.id}
+            carId={carId ?? 0}
           /> 
         </div>
       </div>

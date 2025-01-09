@@ -5,7 +5,7 @@ import { usePost } from 'src/hooks/usePost'
 import { createChat } from 'src/api/services/chat/ChatService'
 
 interface Props {
-    userId: number
+    userId?: number
 }
 
 interface CreateChatRequest {

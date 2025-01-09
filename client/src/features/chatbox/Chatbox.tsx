@@ -19,15 +19,13 @@ const Chatbox = () => {
     const { connection } = useContext(SignalRContext);
     const chat = useSelector((state: RootState) => state.chat.activeChat);
 
-    // Local state for messages
     const [messages, setMessages] = useState<MessageType[]>([]);
 
-    // Fetch chat data
     const { data: chatData } = useGet<Chat>({
         serviceFunc: () => getChatById(Number(id)),
         successFunc: (chat) => {
-            dispatch(setChat(chat)); 
-            setMessages(chat.messages); // Initialize messages locally
+            dispatch(setChat(chat));
+            setMessages(chat.messages || []); 
         },
         withError: true,
     });
@@ -39,6 +37,7 @@ const Chatbox = () => {
         }
     }, [chatData]);
 
+    // Handle SignalR new messages
     useEffect(() => {
         if (!connection) {
             console.warn('No SignalR connection available');
@@ -60,13 +59,18 @@ const Chatbox = () => {
         };
     }, [connection]);
 
+    if (!messages || !Array.isArray(messages)) {
+        console.error('Messages is not a valid array:', messages);
+        return <p>Failed to load messages.</p>;
+    }
+
     return (
         <main className={styles.chatbox}>
             <ChatboxHeader />
 
             <div className={styles.messageList}>
                 {messages.map((message) => (
-                    <Message key={message?.id} message={message} />
+                    <Message key={message?.id || Math.random()} message={message} />
                 ))}
             </div>
 

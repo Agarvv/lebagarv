@@ -21,7 +21,7 @@ export const AppRoutes = () => (
       <Route path="/register" element={<RegisterForm />} />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/send-reset-password" element={<SendResetPasswordUrlForm />} />
-      <Route path="/reset-password/:token/:email" element={<ResetPasswordForm />} />
+      <Route path="/reset-password/:email/:token" element={<ResetPasswordForm />} />
       {/* END OF AUTH */}
       
       {/* CAR CREATION */}

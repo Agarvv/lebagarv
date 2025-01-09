@@ -50,13 +50,18 @@ builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
 {
     var smtpConfig = builder.Configuration.GetSection("Smtp");
+    
+    var smtpPassword = Environment.GetEnvironmentVariable("SMTP_PASSWORD");
+
     var smtpClient = new SmtpClient(smtpConfig["Host"], int.Parse(smtpConfig["Port"]))
     {
-        Credentials = new NetworkCredential(smtpConfig["UserName"], smtpConfig["Password"]),
+        Credentials = new NetworkCredential(smtpConfig["UserName"], smtpPassword), 
         EnableSsl = bool.Parse(smtpConfig["EnableSsl"])
     };
+
     return new EmailSender(smtpClient);
 });
+
 builder.Services.AddSingleton<JwtService>(new JwtService("vM8n3j5V7r9bJ2hQ4w6xYtZ1aG3m9P0s")); // i understand the danger.
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();

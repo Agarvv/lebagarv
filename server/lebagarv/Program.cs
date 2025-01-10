@@ -33,10 +33,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSignalR(); 
 
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); 
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
 });
+
 
 builder.Services.AddCors(options =>
 {

@@ -1,4 +1,3 @@
-
 namespace lebagarv.Presentation.Controllers.Auth
 {
     using Microsoft.AspNetCore.Authentication;
@@ -14,22 +13,29 @@ namespace lebagarv.Presentation.Controllers.Auth
         [HttpGet]
         public IActionResult SignInWithGoogle()
         {
-            var redirectUrl = Url.Action("GoogleResponse", "Account");
-            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            var properties = new AuthenticationProperties
+            {
+                RedirectUri = "/api/lebagarv/auth/google/callback" 
+            };
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 
         [HttpGet("callback")]
         public async Task<IActionResult> GoogleResponse()
         {
-            var info = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
-            if (info?.Principal != null)
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            if (result?.Principal != null)
             {
-                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                return Ok(new { email });
+                var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+
+                if (!string.IsNullOrEmpty(email))
+                {
+                    return Ok(new { email });
+                }
             }
 
-            return Unauthorized();
+            return Unauthorized(); 
         }
     }
 }

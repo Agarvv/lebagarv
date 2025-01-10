@@ -22,9 +22,11 @@ using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
 using lebagarv.Core.Application.Services.Favorites; 
 using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
 using lebagarv.Infrastructure.Persistence.Repositories.Chat.Messages; 
+using Microsoft.AspNetCore.Authentication; 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.HttpOverrides;
+using System.Security.Claims; 
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -42,7 +42,7 @@ const Chats = () => {
             </div>
         </main>
       </div> 
-     </AppLayout /> 
+     </AppLayout> 
      </>
     );
 }

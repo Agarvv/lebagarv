@@ -51,20 +51,26 @@ builder.Services.AddAuthentication(options =>
 .AddCookie(options =>
 {
     options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.Lax;  
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  
-    options.Cookie.MaxAge = TimeSpan.FromDays(7); 
+    options.Cookie.SameSite = SameSiteMode.None; 
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; 
+    options.Cookie.MaxAge = TimeSpan.FromDays(7);
+    options.Cookie.IsEssential = true; 
 })
 .AddGoogle(options =>
 {
-    options.CallbackPath = new PathString("/api/lebagarv/auth/google/callback"); 
+    options.CallbackPath = new PathString("/api/lebagarv/auth/google/callback");
     options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
     options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-    options.SaveTokens = true; 
+    options.SaveTokens = true;
 
     options.Events.OnCreatingTicket = context =>
     {
        
+        var email = context.Identity?.FindFirstValue(ClaimTypes.Email);
+        if (!string.IsNullOrEmpty(email))
+        {
+            Console.WriteLine($"google email: {email}");
+        }
         return Task.CompletedTask;
     };
 });

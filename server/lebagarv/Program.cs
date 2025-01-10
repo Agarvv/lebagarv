@@ -24,6 +24,7 @@ using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
 using lebagarv.Infrastructure.Persistence.Repositories.Chat.Messages; 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -114,6 +115,10 @@ Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
 
 
 var app = builder.Build();
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedProto
+});
 
 
 app.UseMiddleware<AuthMiddleware>(); 

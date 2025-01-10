@@ -96,14 +96,6 @@ builder.Services.AddScoped<IResetPasswordTokenRepository, ResetPasswordTokenRepo
 builder.Services.AddScoped<IMessageRepository, MessageRepository>(); 
 
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.Authority = "http://agarvvIssuer"; // Use HTTPS in production
-        options.Audience = "agarvvAudience";
-        options.RequireHttpsMetadata = false; // Disable HTTPS requirement for development
-    });
-
 builder.Logging.AddConsole();
 
 Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));

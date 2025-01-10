@@ -12,19 +12,21 @@ const SearchChats = () => {
     
     const contacts = useSelector((state: RootState) => state.chat.contacts); 
     
-    const [filteredContacts, setFilteredContacts] = useState<Chat[] | null>(null); 
+    const [filteredContacts, setFilteredContacts] = useState<Chat[]>([]); 
     
     const applyFilters = (title: string) => {
         if (contacts) { 
             const newContacts = contacts.filter(c => c?.car.title.toLowerCase().includes(title.toLowerCase()));
             
             setFilteredContacts(newContacts); 
+            console.log("new contacts", newContacts)
             
-            console.log("new contags", filteredContacts)
+            dispatch(setContacts(newContacts));
             
-            dispatch(setContacts(filteredContacts))
-            
-            console.log("filtered contacts", filteredContacts)
+            console.log("filtered contacts", newContacts)
+        } else {
+            setFilteredContacts([]);
+            dispatch(setContacts([]));
         }
     }
 

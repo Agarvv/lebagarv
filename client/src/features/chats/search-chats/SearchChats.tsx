@@ -15,7 +15,7 @@ const SearchChats = () => {
     const [filteredContacts, setFilteredContacts] = useState<Chat[] | null>(null); 
     
     const applyFilters = (title: string) => {
-        if (contacts && filteredContacts) { 
+        if (contacts) { 
             const newContacts = contacts.filter(c => c?.car.title.toLowerCase().includes(title.toLowerCase()));
             
             setFilteredContacts(newContacts); 

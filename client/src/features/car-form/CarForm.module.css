@@ -12,7 +12,7 @@
 .carForm{
   background: white;
   padding: 20px;
-  width: 60%;
+  width: 100%;
   border-radius: var(--border-radius);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   animation: fadeIn 0.5s ease-in-out;

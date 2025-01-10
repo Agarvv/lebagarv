@@ -68,11 +68,7 @@ builder.Services.AddAuthentication(options =>
     options.Events.OnCreatingTicket = context =>
     {
        
-        var email = context.Identity?.FindFirstValue(ClaimTypes.Email);
-        if (!string.IsNullOrEmpty(email))
-        {
-            Console.WriteLine($"google email: {email}");
-        }
+        Console.WriteLine("Google auth success.");
         return Task.CompletedTask;
     };
 });

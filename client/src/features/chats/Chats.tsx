@@ -13,14 +13,13 @@ import { RootState } from 'src/store';
 
 
 const Chats = () => {
-    // const { data } = useContacts();
     const dispatch = useDispatch(); 
     const contacts = useSelector((state: RootState) => state.chat.contacts);
-    
     
     const setContactsInRedux = (chats: ChatType[])=> {
         dispatch(setContacts(chats)); 
     }
+    
     const { data: chats } = useGet<ChatType[]>({
         serviceFunc: getUserContacts,
         successFunc: (chats) => setContactsInRedux(chats),

@@ -26,7 +26,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 builder.Services.AddSignalR(); 
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins", builder =>
@@ -36,30 +40,35 @@ builder.Services.AddCors(options =>
                .AllowCredentials());
 });
 
+
 builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-    })
-    .AddCookie()
-    .AddGoogle(options =>
-    {
-        options.CallbackPath = new PathString("/api/lebagarv/auth/google/callback"); 
-        options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-        options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-
-        options.Events.OnRedirectToAuthorizationEndpoint = context =>
 {
-    if (!context.RedirectUri.StartsWith("https://"))
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+})
+.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddGoogle(options =>
+{
+    options.CallbackPath = new PathString("/api/lebagarv/auth/google/callback"); 
+    options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+    options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+
+    options.Events.OnRedirectToAuthorizationEndpoint = context =>
     {
-        context.RedirectUri = context.RedirectUri.Replace("http://", "https://");
-    }
-    context.Response.Redirect(context.RedirectUri);
-    return Task.CompletedTask;
+        if (!context.RedirectUri.StartsWith("https://"))
+        {
+            context.RedirectUri = context.RedirectUri.Replace("http://", "https://");
+        }
+        context.Response.Redirect(context.RedirectUri);
+        return Task.CompletedTask;
     };
-
-
-    });
+})
+.AddJwtBearer("JwtBearer", options =>
+{
+    options.Authority = "http://agarvvIssuer"; 
+    options.Audience = "agarvvAudience";
+    options.RequireHttpsMetadata = false; 
+});
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -75,7 +84,6 @@ builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
 {
     var smtpConfig = builder.Configuration.GetSection("Smtp");
-    
     var smtpPassword = Environment.GetEnvironmentVariable("SMTP_PASSWORD");
 
     var smtpClient = new SmtpClient(smtpConfig["Host"], int.Parse(smtpConfig["Port"]))
@@ -87,7 +95,7 @@ builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
     return new EmailSender(smtpClient);
 });
 
-builder.Services.AddSingleton<JwtService>(new JwtService("vM8n3j5V7r9bJ2hQ4w6xYtZ1aG3m9P0s")); // i understand the danger.
+builder.Services.AddSingleton<JwtService>(new JwtService("vM8n3j5V7r9bJ2hQ4w6xYtZ1aG3m9P0s"));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>(); 
@@ -96,17 +104,21 @@ builder.Services.AddScoped<IResetPasswordTokenRepository, ResetPasswordTokenRepo
 builder.Services.AddScoped<IMessageRepository, MessageRepository>(); 
 
 
-builder.Logging.AddConsole();
-
-Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
-
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
         Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"),
         ServerVersion.AutoDetect(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"))
     ));
 
+
+builder.Logging.AddConsole();
+
+Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
+
+
 var app = builder.Build();
+
+
 app.UseMiddleware<AuthMiddleware>(); 
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -116,11 +128,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers();
 app.UseCors("AllowSpecificOrigins");
+
+app.MapControllers();
 app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

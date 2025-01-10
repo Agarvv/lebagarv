@@ -7,9 +7,11 @@ namespace lebagarv.Presentation.Controllers.Auth
     using System.Threading.Tasks;
     using System.Security.Claims;
 
-    public class AccountController : Controller
+    [ApiController]
+    [Route("/api/lebagarv/auth/google")]
+    public class AccountController : ControllerBase 
     {
-        [Route("signin-google")]
+        [HttpGet]
         public IActionResult SignInWithGoogle()
         {
             var redirectUrl = Url.Action("GoogleResponse", "Account");
@@ -17,7 +19,7 @@ namespace lebagarv.Presentation.Controllers.Auth
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 
-        [Route("google-response")]
+        [HttpGet("callback")]
         public async Task<IActionResult> GoogleResponse()
         {
             var info = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);

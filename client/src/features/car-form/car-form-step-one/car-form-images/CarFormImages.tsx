@@ -31,7 +31,7 @@ const CarFormImages = () => {
     };
 
     const removeImage = (index: number) => {
-        const updatedImages = images.filter((_, i) => i !== index);
+        const updatedImages = images.filter((_: any, i: any) => i !== index);
         setValue('images', updatedImages);
     };
 

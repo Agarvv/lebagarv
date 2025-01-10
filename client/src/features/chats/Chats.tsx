@@ -8,10 +8,16 @@ import { useGet } from 'src/hooks/useGet'
 import { getUserContacts } from 'src/api/services/chat/ChatService'
 import { useDispatch } from 'react-redux';
 import { setContacts } from 'src/store/chat/chatSlice'
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/store';
+
 
 const Chats = () => {
     // const { data } = useContacts();
     const dispatch = useDispatch(); 
+    const contacts = useSelector((state: RootState) => state.chat.contacts);
+    
+    
     const setContactsInRedux = (chats: ChatType[])=> {
         dispatch(setContacts(chats)); 
     }
@@ -21,10 +27,6 @@ const Chats = () => {
         withError: true 
      })
        
-    useEffect(() => {
-        
-    }, [chats])
-    
     return (
       <div className={styles.chatsContainer}> 
         <main className={styles.chats}>
@@ -34,7 +36,7 @@ const Chats = () => {
             <div className={styles.asideContent}>
                     <div className={styles['aside-chats']}>
                     {
-                        chats?.map((chat) => (
+                        contacts?.map((chat) => (
                           <Chat chat={chat}/>
                         ))
                     }

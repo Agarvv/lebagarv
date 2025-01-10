@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 const SearchChats = () => {
     const dispatch = useDispatch(); 
     
-    const contacts = useSelector((state: RootState) => state.chat.contacts; 
+    const contacts = useSelector((state: RootState) => state.chat.contacts); 
     
     const [filteredContacts, setFilteredContacts] = useState<Chat[] | null>(null); 
     

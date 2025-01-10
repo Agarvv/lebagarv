@@ -27,10 +27,8 @@ const chatSlice = createSlice({
             }
         },         
         setContacts: (state, action: PayloadAction<Chat[]>) => {
-          console.log("Chatsa after", state.contacts)
-          state.contacts = [...action.payload]; 
-          console.log("chats before", state.contacts)
-      },
+            return { ...state, contacts: action.payload }; 
+        }
     },
 });
 

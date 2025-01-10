@@ -62,13 +62,6 @@ builder.Services.AddAuthentication(options =>
     options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
     options.SaveTokens = true; 
 
-    options.Events.OnRemoteFailure = context =>
-    {
-        context.Response.Redirect("/error");
-        context.HandleResponse();
-        return Task.CompletedTask;
-    };
-
     options.Events.OnCreatingTicket = context =>
     {
        

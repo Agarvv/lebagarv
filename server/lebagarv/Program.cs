@@ -45,6 +45,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme; 
 })
 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddGoogle(options =>
@@ -62,13 +63,9 @@ builder.Services.AddAuthentication(options =>
         context.Response.Redirect(context.RedirectUri);
         return Task.CompletedTask;
     };
-})
-.AddJwtBearer("JwtBearer", options =>
-{
-    options.Authority = "http://agarvvIssuer"; 
-    options.Audience = "agarvvAudience";
-    options.RequireHttpsMetadata = false; 
 });
+
+
 
 
 builder.Services.AddEndpointsApiExplorer();

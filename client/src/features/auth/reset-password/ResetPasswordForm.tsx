@@ -27,9 +27,10 @@ const ResetPasswordForm = () => {
   const onSubmit = (data: FormValues) => {
     const requestData = {
       ...data,
-      token,
-      email,
+      resetToken: token,
+      email: email,
     };
+    console.log("request data", requestData)
     mutate(requestData); 
   };
 

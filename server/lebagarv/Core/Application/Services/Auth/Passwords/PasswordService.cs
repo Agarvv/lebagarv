@@ -50,7 +50,7 @@ public class PasswordService : IPasswordService
 
        await _tokenRepository.AddAsync(token);        
        
-       var url = $"https://lebagarv.vercel.app/reset-passord/{email}/{token.ResetToken}"; 
+       var url = $"https://lebagarv.vercel.app/reset-password/{email}/{token.ResetToken}"; 
        var mailMessage = $"Hi, Use this URL to reset your password at Lebagarv: {url}"; 
        await _mailSender.SendEmailAsync(email, "YOUR PASSWORD AT LEBAGARV", mailMessage); 
 

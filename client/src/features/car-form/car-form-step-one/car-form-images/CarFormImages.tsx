@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import sharedCarFormStyles from '../../CarForm.module.css';
 import styles from './CarFormImages.module.css';
@@ -17,16 +17,25 @@ const CarFormImages = () => {
     };
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        
         const files = e.target.files;
+        
         if (files) {
+            
             const uploadedImages: string[] = [];
+            
             for (const file of Array.from(files)) {
+                
                 if (file.type.startsWith('image/')) {
+                    
                     const imageUrl = await uploadImage(file, 'image');
+                    
                     uploadedImages.push(imageUrl);
                 }
+                
             }
             setValue('images', [...images, ...uploadedImages]);
+            
         }
     };
 
@@ -58,11 +67,14 @@ const CarFormImages = () => {
                                     src={images[index]}
                                     alt={`Car pic ${index + 1}`}
                                 />
-                                <div className={styles.removeBtn}>
-                                    <i
-                                        onClick={() => removeImage(index)}
-                                        className="fa fa-close"
-                                    ></i>
+                                <div
+                                    className={styles.removeBtn}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        removeImage(index);
+                                    }}
+                                >
+                                    <i className="fa fa-times"></i>
                                 </div>
                             </div>
                         ) : (

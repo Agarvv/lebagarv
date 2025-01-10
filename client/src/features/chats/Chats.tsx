@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { setContacts } from 'src/store/chat/chatSlice'
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
-
+import AppLayout  from 'src/layout/AppLayout/AppLayout'
 
 const Chats = () => {
     const dispatch = useDispatch(); 
@@ -27,11 +27,10 @@ const Chats = () => {
      })
        
     return (
+     <>
+     <AppLayout footer={true}>
       <div className={styles.chatsContainer}> 
         <main className={styles.chats}>
-            <div className={styles['chat-h']}>
-                <SearchChats />
-            </div>
             <div className={styles.asideContent}>
                     <div className={styles['aside-chats']}>
                     {
@@ -43,6 +42,8 @@ const Chats = () => {
             </div>
         </main>
       </div> 
+     </AppLayout /> 
+     </>
     );
 }
 

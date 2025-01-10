@@ -33,6 +33,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSignalR(); 
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); 
+});
 
 builder.Services.AddCors(options =>
 {
@@ -52,7 +56,7 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(options =>
 {
-    options.Cookie.HttpOnly = true;
+    options.Cookie.HttpOnly = false;
     options.Cookie.SameSite = SameSiteMode.None; 
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always; 
     options.Cookie.MaxAge = TimeSpan.FromDays(7);
@@ -141,6 +145,7 @@ if (app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 app.UseRouting();
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("AllowSpecificOrigins");

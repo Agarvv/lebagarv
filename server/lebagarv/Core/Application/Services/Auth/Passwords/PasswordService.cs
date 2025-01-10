@@ -13,6 +13,7 @@ using lebagarv.Core.Domain.Entities.Users;
 using Microsoft.AspNetCore.Identity;
 using lebagarv.Core.Domain.Entities;
 
+
 public class PasswordService : IPasswordService 
 {
     private readonly IEmailSender _mailSender; 
@@ -37,7 +38,7 @@ public class PasswordService : IPasswordService
     {
        if(!await _userRepository.ExistsByEmailAsync(email))
        {
-          return true; // for security purposes
+          return true; 
        }
        
        ResetPasswordToken token = new()
@@ -49,7 +50,7 @@ public class PasswordService : IPasswordService
 
        await _tokenRepository.AddAsync(token);        
        
-       var url = $"https://lebagarv.vercel.app/reset_passord/{email}/{token.ResetToken}"; 
+       var url = $"https://lebagarv.vercel.app/reset-passord/{email}/{token.ResetToken}"; 
        var mailMessage = $"Hi, Use this URL to reset your password at Lebagarv: {url}"; 
        await _mailSender.SendEmailAsync(email, "YOUR PASSWORD AT LEBAGARV", mailMessage); 
 
@@ -66,7 +67,7 @@ public class PasswordService : IPasswordService
 
        if(token.IsExpired())
        {
-        throw new LebagarvException("Your Token is expired, get a new one.", 400); 
+        throw new LebagarvException("Password Reset Expired!", 400); 
        }
 
        var user = await _userRepository.FindByEmailAsync(request.Email);
@@ -88,12 +89,7 @@ public class PasswordService : IPasswordService
 
     public string GenerateResetToken()
     {
-        using (var rng = RandomNumberGenerator.Create())
-        {
-            var tokenData = new byte[32]; 
-            rng.GetBytes(tokenData);
-            return Convert.ToBase64String(tokenData);
-        }
+       return Convert.ToHexString(RandomNumberGenerator.GetBytes(32));
     }
 
     public DateTime GenerateExpiryDate()

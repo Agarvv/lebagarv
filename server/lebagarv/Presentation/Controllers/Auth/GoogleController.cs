@@ -22,21 +22,29 @@ namespace lebagarv.Presentation.Controllers.Auth
         }
 
         [HttpGet("callback")]
-        public async Task<IActionResult> GoogleResponse()
-        {
+         public async Task<IActionResult> GoogleResponse()
+        {    
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            if (result?.Principal != null)
-            {
-                var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+           if (result?.Principal != null)
+           {
+             var email = result.Principal.FindFirstValue(ClaimTypes.Email);
 
-                if (!string.IsNullOrEmpty(email))
-                {
-                    return Ok(new { email });
-                }
+             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.Principal);
+
+             if (!string.IsNullOrEmpty(email))
+             {
+                return Ok(new { email });
+             }
+             
+             
             }
 
-            return Unauthorized(); 
-        }
+            return Unauthorized();
+         }
+        
+        
+        
+        
     }
 }

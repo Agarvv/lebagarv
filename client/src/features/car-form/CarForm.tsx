@@ -47,6 +47,7 @@ const CarForm = () => {
        </header>
 
         <FormProvider {...methods}>
+            <div className={styles.carFormContainer}>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.carForm}>
                 <div className="form">
                     {step === 0 && (
@@ -90,6 +91,7 @@ const CarForm = () => {
                     </div>
                 </div>
             </form>
+            </div>
         </FormProvider>
       </> 
     );

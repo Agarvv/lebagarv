@@ -48,23 +48,34 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme; 
 })
-.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SameSite = SameSiteMode.Lax;  
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  
+    options.Cookie.MaxAge = TimeSpan.FromDays(7); 
+})
 .AddGoogle(options =>
 {
     options.CallbackPath = new PathString("/api/lebagarv/auth/google/callback"); 
     options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
     options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+    options.SaveTokens = true; 
 
-    /*options.Events.OnRedirectToAuthorizationEndpoint = context =>
+    options.Events.OnRemoteFailure = context =>
     {
-        if (!context.RedirectUri.StartsWith("https://"))
-        {
-            context.RedirectUri = context.RedirectUri.Replace("http://", "https://");
-        }
-        context.Response.Redirect(context.RedirectUri);
+        context.Response.Redirect("/error");
+        context.HandleResponse();
         return Task.CompletedTask;
-    }; */
+    };
+
+    options.Events.OnCreatingTicket = context =>
+    {
+       
+        return Task.CompletedTask;
+    };
 });
+
 
 
 

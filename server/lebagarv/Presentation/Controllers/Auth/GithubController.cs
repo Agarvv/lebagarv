@@ -12,7 +12,7 @@ public class GitHubAuthController : ControllerBase
     {
         var properties = new AuthenticationProperties
         {
-            RedirectUri = Url.Action(nameof(GitHubCallback), "GitHubAuth")
+           RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/github/callback",
         };
 
         return Challenge(properties, "GitHub");

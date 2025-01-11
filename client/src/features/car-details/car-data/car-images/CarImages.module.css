@@ -26,13 +26,13 @@
     object-fit: cover;
 }
 
-.controlPrev {
+.controlprev {
     position: absolute;
     top: 150px;
-    left: 15px;
+  /*  left: 15px;
     padding: 5px; 
     background: white;
-    border-radius: 5px;
+    border-radius: 5px; */
 }
 
 .controlNext {

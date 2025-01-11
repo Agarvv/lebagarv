@@ -1,30 +1,24 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
 namespace lebagarv.Presentation.Controllers.Auth
 {
-    using Microsoft.AspNetCore.Authentication;
-    using Microsoft.AspNetCore.Authentication.Google;
-    using Microsoft.AspNetCore.Authentication.Cookies;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
-    using System.Security.Claims;
-
     [ApiController]
-    [Route("/api/lebagarv/auth/google")]
+    [Route("api/lebagarv/auth/google")]
     public class GoogleController : ControllerBase
     {
         [HttpGet]
         public IActionResult SignInWithGoogle()
         {
-            var state = Guid.NewGuid().ToString();
-            HttpContext.Session.SetString("OAuthState", state);
-
+            Console.WriteLine("Auth google endpoint hit"); 
             var properties = new AuthenticationProperties
             {
-                RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback?state=" + properties.Items["State"],
-                Items =
-                {
-                    { "LoginProvider", GoogleDefaults.AuthenticationScheme },
-                    { "State", state }
-                }
+                RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback",  
+                Items = { { "LoginProvider", GoogleDefaults.AuthenticationScheme } }
             };
 
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
@@ -33,27 +27,25 @@ namespace lebagarv.Presentation.Controllers.Auth
         [HttpGet("callback")]
         public async Task<IActionResult> GoogleResponse()
         {
-            var receivedState = HttpContext.Request.Query["state"];
-            var storedState = HttpContext.Session.GetString("OAuthState");
-
-            if (string.IsNullOrEmpty(receivedState) || receivedState != storedState)
-            {
-                return BadRequest(new { error = "Invalid state parameter" });
-            }
-
+            Console.WriteLine("Callback endpoint hit"); 
+            
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             if (result?.Principal != null)
             {
                 var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+                var name = result.Principal.FindFirstValue(ClaimTypes.Name);
+                var accessToken = result.Properties.GetTokenValue("access_token");
 
-                if (!string.IsNullOrEmpty(email))
+                return Ok(new
                 {
-                    return Ok(new { email });
-                }
+                    email,
+                    name,
+                    accessToken
+                });
             }
 
-            return Unauthorized(new { error = "Authentication failed" });
+            return Unauthorized();
         }
     }
 }

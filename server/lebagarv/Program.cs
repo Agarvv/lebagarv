@@ -78,7 +78,7 @@ builder.Services.AddAuthentication(options =>
 }).AddGitHub(options => {
   options.ClientId=Environment.GetEnvironmentVariable("GITHUB_CLIENT_ID");
   options.ClientSecret=Environment.GetEnvironmentVariable("GITHUB_CLIENT_SECRET");  
-  options.CallbackPath="/api/lebagarv/auth/github/callback"; 
+ // options.CallbackPath="/api/lebagarv/auth/github/callback"; 
 });
 
 

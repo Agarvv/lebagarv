@@ -9,45 +9,52 @@ namespace lebagarv.Presentation.Controllers.Auth
 
     [ApiController]
     [Route("/api/lebagarv/auth/google")]
-    public class AccountController : ControllerBase 
+    public class AccountController : ControllerBase
     {
         [HttpGet]
         public IActionResult SignInWithGoogle()
         {
-           var properties = new AuthenticationProperties
-           {
-              RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback",
-              Items = { { "LoginProvider", GoogleDefaults.AuthenticationScheme } }
-           };
+            var properties = new AuthenticationProperties
+            {
+                RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback",
+                Items =
+                {
+                    { "LoginProvider", GoogleDefaults.AuthenticationScheme },
+                    { "State", Guid.NewGuid().ToString() }
+                }
+            };
 
-           Console.WriteLine("Auth Properties State: " + properties.Items["LoginProvider"]);
-           return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+            Console.WriteLine("Generated State: " + properties.Items["State"]);
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 
         [HttpGet("callback")]
-         public async Task<IActionResult> GoogleResponse()
-        {    
-            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var state = HttpContext.Request.Query["state"];
+            Console.WriteLine("Received State: " + state);
 
-           if (result?.Principal != null)
-           {
-             var email = result.Principal.FindFirstValue(ClaimTypes.Email);
-
-             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.Principal);
-
-             if (!string.IsNullOrEmpty(email))
-             {
-                return Ok(new { email });
-             }
-             
-             
+            if (string.IsNullOrEmpty(state))
+            {
+                Console.WriteLine("Missing or invalid state.");
+                return BadRequest(new { error = "Invalid state parameter" });
             }
 
-            return Unauthorized();
-         }
-        
-        
-        
-        
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            if (result?.Principal != null)
+            {
+                var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+                Console.WriteLine("Authenticated Email: " + email);
+
+                if (!string.IsNullOrEmpty(email))
+                {
+                    return Ok(new { email });
+                }
+            }
+
+            Console.WriteLine("Authentication failed or no principal found.");
+            return Unauthorized(new { error = "Authentication failed" });
+        }
     }
 }

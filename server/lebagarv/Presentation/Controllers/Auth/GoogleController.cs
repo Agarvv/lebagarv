@@ -14,12 +14,14 @@ namespace lebagarv.Presentation.Controllers.Auth
         [HttpGet]
         public IActionResult SignInWithGoogle()
         {
-            var properties = new AuthenticationProperties
-            {
-                 RedirectUri = "/api/lebagarv/auth/google/callback",
-                 Items = { { "LoginProvider", GoogleDefaults.AuthenticationScheme } }
-            };
-            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+           var properties = new AuthenticationProperties
+           {
+              RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback",
+              Items = { { "LoginProvider", GoogleDefaults.AuthenticationScheme } }
+           };
+
+           Console.WriteLine("Auth Properties State: " + properties.Items["LoginProvider"]);
+           return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 
         [HttpGet("callback")]

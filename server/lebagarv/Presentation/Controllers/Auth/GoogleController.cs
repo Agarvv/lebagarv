@@ -17,7 +17,7 @@ namespace lebagarv.Presentation.Controllers.Auth
             Console.WriteLine("Auth google endpoint hit"); 
             var properties = new AuthenticationProperties
             {
-                RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback",  
+                RedirectUri = "/",  
                 Items = { { "LoginProvider", GoogleDefaults.AuthenticationScheme } }
             };
 

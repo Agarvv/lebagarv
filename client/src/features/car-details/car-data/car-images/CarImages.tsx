@@ -25,14 +25,16 @@ const CarImages: React.FC<Props> = ({ car }: Props) => {
 
   return (
     <div className={styles.carImages}>
-      <div className={styles.controlprev} onClick={prevImage}>
-        <i className="fa fa-arrow-left"></i>
-      </div>
       <div className={styles.slider}>
        <AddOrRemoveFavorite 
         carId={car?.id}
         isFavorite={car?.isFavorite}
        /> 
+       
+        <div className={styles.controlprev} onClick={prevImage}>
+        <i className="fa fa-arrow-left"></i>
+      </div>
+
         <img src={car?.images[currentIndex]} alt="Car" />
 
         <div className={styles.controlNext} onClick={nextImage}>
@@ -47,7 +49,7 @@ const CarImages: React.FC<Props> = ({ car }: Props) => {
       </div>
      
 
-     
+
     </div>
   );
 };

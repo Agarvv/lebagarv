@@ -1,8 +1,8 @@
 using lebagarv.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Mail; 
+using System.Net.Mail;
 using System.Net;
-using lebagarv.Presentation.Hubs; 
+using lebagarv.Presentation.Hubs;
 using lebagarv.Core.Application.Services.Auth;
 using lebagarv.Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,26 +19,18 @@ using lebagarv.Presentation.Middleware;
 using lebagarv.Core.Application.Services.Profile;
 using lebagarv.Application.Services.Auth.Passwords;
 using lebagarv.Infrastructure.Persistence.Repositories.User.Password;
-using lebagarv.Core.Application.Services.Favorites; 
+using lebagarv.Core.Application.Services.Favorites;
 using lebagarv.Infrastructure.Persistence.Repositories.Favorites;
-using lebagarv.Infrastructure.Persistence.Repositories.Chat.Messages; 
-using Microsoft.AspNetCore.Authentication; 
+using lebagarv.Infrastructure.Persistence.Repositories.Chat.Messages;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.HttpOverrides;
-using System.Security.Claims; 
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddSignalR(); 
-
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
-});
-
+builder.Services.AddSignalR();
 
 builder.Services.AddCors(options =>
 {
@@ -49,20 +41,19 @@ builder.Services.AddCors(options =>
                .AllowCredentials());
 });
 
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme; 
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 })
 .AddCookie(options =>
 {
-    options.Cookie.HttpOnly = false;
-    options.Cookie.SameSite = SameSiteMode.None; 
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; 
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SameSite = SameSiteMode.None;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.MaxAge = TimeSpan.FromDays(7);
-    options.Cookie.IsEssential = true; 
+    options.Cookie.IsEssential = true;
 })
 .AddGoogle(options =>
 {
@@ -71,27 +62,37 @@ builder.Services.AddAuthentication(options =>
     options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
     options.SaveTokens = true;
 
-    options.Events.OnCreatingTicket = context =>
+    options.Events.OnCreatingTicket = async context =>
     {
-       
-        Console.WriteLine("Google auth success.");
-        return Task.CompletedTask;
+        var tokens = context.Properties.GetTokens() ?? new List<AuthenticationToken>();
+        tokens.Add(new AuthenticationToken
+        {
+            Name = "access_token",
+            Value = context.AccessToken
+        });
+
+        context.Properties.StoreTokens(tokens);
+        await Task.CompletedTask;
     };
+
 });
 
-
-
-
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarsService, CarsService>();
-builder.Services.AddScoped<IChatService, ChatService>(); 
+builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
-builder.Services.AddScoped<IPasswordService, PasswordService>(); 
-builder.Services.AddScoped<IFavoriteService, FavoriteService>(); 
+builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 
 builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
 {
@@ -100,7 +101,7 @@ builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
 
     var smtpClient = new SmtpClient(smtpConfig["Host"], int.Parse(smtpConfig["Port"]))
     {
-        Credentials = new NetworkCredential(smtpConfig["UserName"], smtpPassword), 
+        Credentials = new NetworkCredential(smtpConfig["UserName"], smtpPassword),
         EnableSsl = bool.Parse(smtpConfig["EnableSsl"])
     };
 
@@ -110,11 +111,10 @@ builder.Services.AddTransient<IEmailSender, EmailSender>(provider =>
 builder.Services.AddSingleton<JwtService>(new JwtService("vM8n3j5V7r9bJ2hQ4w6xYtZ1aG3m9P0s"));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
-builder.Services.AddScoped<IChatRepository, ChatRepository>(); 
+builder.Services.AddScoped<IChatRepository, ChatRepository>();
 builder.Services.AddScoped<IFavoritesRepository, FavoritesRepository>();
 builder.Services.AddScoped<IResetPasswordTokenRepository, ResetPasswordTokenRepository>();
-builder.Services.AddScoped<IMessageRepository, MessageRepository>(); 
-
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
@@ -122,11 +122,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         ServerVersion.AutoDetect(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"))
     ));
 
-
 builder.Logging.AddConsole();
 
 Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
-
 
 var app = builder.Build();
 app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -134,8 +132,8 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.XForwardedProto
 });
 
-
-app.UseMiddleware<AuthMiddleware>(); 
+app.UseSession(); 
+app.UseMiddleware<AuthMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
@@ -144,10 +142,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
-// app.UseHttpsRedirection();
 app.UseRouting();
-app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("AllowSpecificOrigins");

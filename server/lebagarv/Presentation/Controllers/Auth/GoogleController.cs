@@ -16,7 +16,8 @@ namespace lebagarv.Presentation.Controllers.Auth
         {
             var properties = new AuthenticationProperties
             {
-                RedirectUri = "/api/lebagarv/auth/google/callback" 
+                 RedirectUri = "/api/lebagarv/auth/google/callback",
+                 Items = { { "LoginProvider", GoogleDefaults.AuthenticationScheme } }
             };
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }

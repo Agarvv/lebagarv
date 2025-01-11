@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "AspNet.Security.OAuth.GitHub/8.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/AspNet.Security.OAuth.GitHub.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/AspNet.Security.OAuth.GitHub.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "BouncyCastle.Cryptography/2.3.1": {
         "type": "package",
         "compile": {
@@ -2123,6 +2135,20 @@
     }
   },
   "libraries": {
+    "AspNet.Security.OAuth.GitHub/8.2.0": {
+      "sha512": "5fX4rmBSxn+yU/uYGWK213kYoL/1ZxW+0YpZw7boIvIpErRBNZ+bK9wjItQOxM0JI0SnPMOPuHkAiP84b/qBEA==",
+      "type": "package",
+      "path": "aspnet.security.oauth.github/8.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "aspnet.security.oauth.github.8.2.0.nupkg.sha512",
+        "aspnet.security.oauth.github.nuspec",
+        "lib/net8.0/AspNet.Security.OAuth.GitHub.dll"
+      ]
+    },
     "BouncyCastle.Cryptography/2.3.1": {
       "sha512": "buwoISwecYke3CmgG1AQSg+sNZjJeIb93vTAtJiHZX35hP/teYMxsfg0NDXGUKjGx6BKBTNKc77O2M3vKvlXZQ==",
       "type": "package",
@@ -5530,6 +5556,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AspNet.Security.OAuth.GitHub >= 8.2.0",
       "Microsoft.AspNetCore.Authentication.Cookies >= 2.2.0",
       "Microsoft.AspNetCore.Authentication.Google >= 8.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
@@ -5587,6 +5614,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "AspNet.Security.OAuth.GitHub": {
+            "target": "Package",
+            "version": "[8.2.0, )"
+          },
           "Microsoft.AspNetCore.Authentication.Cookies": {
             "target": "Package",
             "version": "[2.2.0, )"

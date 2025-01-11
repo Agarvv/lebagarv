@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KBiibQrXx94=",
+  "dgSpecHash": "juaqnQc2xqE=",
   "success": true,
   "projectFilePath": "/workspaces/lebagarv/server/lebagarv/lebagarv.csproj",
   "expectedPackageFiles": [
+    "/home/codespace/.nuget/packages/aspnet.security.oauth.github/8.2.0/aspnet.security.oauth.github.8.2.0.nupkg.sha512",
     "/home/codespace/.nuget/packages/bouncycastle.cryptography/2.3.1/bouncycastle.cryptography.2.3.1.nupkg.sha512",
     "/home/codespace/.nuget/packages/google.protobuf/3.26.1/google.protobuf.3.26.1.nupkg.sha512",
     "/home/codespace/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",

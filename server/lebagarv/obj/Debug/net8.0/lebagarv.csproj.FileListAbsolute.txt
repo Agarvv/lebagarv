@@ -440,3 +440,4 @@ C:/Users/lucas/OneDrive/Web Test/lebagarv8/lebagarv2/lebagarv/server/lebagarv/ob
 /workspaces/lebagarv/server/lebagarv/obj/Debug/net8.0/lebagarv.pdb
 /workspaces/lebagarv/server/lebagarv/obj/Debug/net8.0/lebagarv.genruntimeconfig.cache
 /workspaces/lebagarv/server/lebagarv/obj/Debug/net8.0/ref/lebagarv.dll
+/workspaces/lebagarv/server/lebagarv/bin/Debug/net8.0/AspNet.Security.OAuth.GitHub.dll

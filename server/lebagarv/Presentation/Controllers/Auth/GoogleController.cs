@@ -9,11 +9,14 @@ namespace lebagarv.Presentation.Controllers.Auth
 
     [ApiController]
     [Route("/api/lebagarv/auth/google")]
-    public class AccountController : ControllerBase
+    public class GoogleController : ControllerBase
     {
         [HttpGet]
         public IActionResult SignInWithGoogle()
         {
+            HttpContext.Response.Cookies.Delete(".AspNetCore.Session");
+            HttpContext.Response.Cookies.Delete(".AspNetCore.Cookies");
+
             var properties = new AuthenticationProperties
             {
                 RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback",
@@ -25,6 +28,8 @@ namespace lebagarv.Presentation.Controllers.Auth
             };
 
             Console.WriteLine("Generated State: " + properties.Items["State"]);
+            Console.WriteLine("Session Cookie Before Redirect: " + HttpContext.Request.Headers["Cookie"]);
+
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 

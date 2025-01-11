@@ -50,8 +50,8 @@ builder.Services.AddAuthentication(options =>
 .AddCookie(options =>
 {
     options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.Lax;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+    options.Cookie.SameSite = SameSiteMode.None; //
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None; // 
     options.Cookie.MaxAge = TimeSpan.FromDays(7);
     options.Cookie.IsEssential = true;
 })
@@ -75,6 +75,17 @@ builder.Services.AddAuthentication(options =>
         await Task.CompletedTask;
     };
 
+    options.Events.OnRedirectToAuthorizationEndpoint = context =>
+    {
+        Console.WriteLine("Redirecting to: " + context.RedirectUri);
+        return Task.CompletedTask;
+    };
+
+    options.Events.OnRemoteFailure = context =>
+    {
+        Console.WriteLine("Remote failure: " + context.Failure.Message);
+        return Task.CompletedTask;
+    };
 });
 
 builder.Services.AddDistributedMemoryCache();
@@ -127,12 +138,14 @@ builder.Logging.AddConsole();
 Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
 
 var app = builder.Build();
+
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedProto
 });
 
-app.UseSession(); 
+app.UseSession();
+
 app.UseMiddleware<AuthMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -141,6 +154,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Incoming Request: " + context.Request.Path + "?" + context.Request.QueryString);
+    await next();
+});
 
 app.UseRouting();
 app.UseAuthentication();

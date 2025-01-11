@@ -51,7 +51,7 @@ builder.Services.AddAuthentication(options =>
 .AddCookie(options =>
 {
     options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.Lax;
+    options.Cookie.SameSite = SameSiteMode.None; 
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.MaxAge = TimeSpan.FromDays(7);
     options.Cookie.IsEssential = true;

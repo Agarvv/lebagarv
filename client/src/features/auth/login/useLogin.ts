@@ -29,9 +29,9 @@ export const useLogin = () => {
       localStorage.setItem('userId', data.id)
       navigate('/')
     },
-    onError: (error: Error) => {
+    onError: (error: any) => {
       console.error('Something went wrong..:', error); // debug
-      dispatch(setError('Something went wrong...'))
+      dispatch(setError(error.response?.data))
     },
     onSettled: () => {
    

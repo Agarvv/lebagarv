@@ -51,8 +51,8 @@ builder.Services.AddAuthentication(options =>
 .AddCookie(options =>
 {
     options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.None; 
-    options.Cookie.SecurePolicy = CookieSecurePolicy.None; 
+    options.Cookie.SameSite = SameSiteMode.Lax;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.MaxAge = TimeSpan.FromDays(7);
     options.Cookie.IsEssential = true;
 })
@@ -126,6 +126,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 
 builder.Logging.AddConsole();
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+
 
 Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
 

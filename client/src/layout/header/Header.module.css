@@ -47,7 +47,7 @@
   align-items: center;
 }
 
-.huMessages i, .huFavs i, .huCreate i {
+.huMessages i, .huFavs i, .huCreate i, .huProfile i {
   margin-bottom: 5px;
 }
 

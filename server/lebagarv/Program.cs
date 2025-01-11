@@ -60,7 +60,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");  
     options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-    //options.CallbackPath = "/api/lebagarv/auth/google/callback";  
+    options.CallbackPath = "/api/lebagarv/auth/google/callback";  
     options.SaveTokens = true;
 
     options.Events.OnCreatingTicket = async context =>

@@ -64,7 +64,7 @@ builder.Services.AddAuthentication(options =>
 
     options.Events.OnCreatingTicket = async context =>
     {
-        var tokens = context.Properties.GetTokens() ?? new List<AuthenticationToken>();
+        var tokens = context.Properties.GetTokens()?.ToList() ?? new List<AuthenticationToken>();
         tokens.Add(new AuthenticationToken
         {
             Name = "access_token",

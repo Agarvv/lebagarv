@@ -14,8 +14,8 @@ namespace lebagarv.Presentation.Controllers.Auth
         [HttpGet]
         public IActionResult SignInWithGoogle()
         {
-            HttpContext.Response.Cookies.Delete(".AspNetCore.Session");
-            HttpContext.Response.Cookies.Delete(".AspNetCore.Cookies");
+            var state = Guid.NewGuid().ToString();
+            HttpContext.Session.SetString("OAuthState", state);
 
             var properties = new AuthenticationProperties
             {
@@ -23,12 +23,9 @@ namespace lebagarv.Presentation.Controllers.Auth
                 Items =
                 {
                     { "LoginProvider", GoogleDefaults.AuthenticationScheme },
-                    { "State", Guid.NewGuid().ToString() }
+                    { "State", state }
                 }
             };
-
-            Console.WriteLine("Generated State: " + properties.Items["State"]);
-            Console.WriteLine("Session Cookie Before Redirect: " + HttpContext.Request.Headers["Cookie"]);
 
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
@@ -36,12 +33,11 @@ namespace lebagarv.Presentation.Controllers.Auth
         [HttpGet("callback")]
         public async Task<IActionResult> GoogleResponse()
         {
-            var state = HttpContext.Request.Query["state"];
-            Console.WriteLine("Received State: " + state);
+            var receivedState = HttpContext.Request.Query["state"];
+            var storedState = HttpContext.Session.GetString("OAuthState");
 
-            if (string.IsNullOrEmpty(state))
+            if (string.IsNullOrEmpty(receivedState) || receivedState != storedState)
             {
-                Console.WriteLine("Missing or invalid state.");
                 return BadRequest(new { error = "Invalid state parameter" });
             }
 
@@ -50,7 +46,6 @@ namespace lebagarv.Presentation.Controllers.Auth
             if (result?.Principal != null)
             {
                 var email = result.Principal.FindFirstValue(ClaimTypes.Email);
-                Console.WriteLine("Authenticated Email: " + email);
 
                 if (!string.IsNullOrEmpty(email))
                 {
@@ -58,7 +53,6 @@ namespace lebagarv.Presentation.Controllers.Auth
                 }
             }
 
-            Console.WriteLine("Authentication failed or no principal found.");
             return Unauthorized(new { error = "Authentication failed" });
         }
     }

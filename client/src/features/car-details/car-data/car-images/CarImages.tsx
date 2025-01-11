@@ -34,15 +34,20 @@ const CarImages: React.FC<Props> = ({ car }: Props) => {
         isFavorite={car?.isFavorite}
        /> 
         <img src={car?.images[currentIndex]} alt="Car" />
+
+        <div className={styles.controlNext} onClick={nextImage}>
+        <i className="fa fa-arrow-right"></i>
+      </div>
+
       </div>
       <div className={styles.imageIndex}>
         <p>
           {currentIndex + 1}/{car?.images.length}
         </p>
       </div>
-      <div className={styles.controlNext} onClick={nextImage}>
-        <i className="fa fa-arrow-right"></i>
-      </div>
+     
+
+     
     </div>
   );
 };

@@ -1,4 +1,4 @@
-/*using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -34,4 +34,3 @@ public class GitHubAuthController : ControllerBase
         return Ok(new { username, email });
     }
 }
-*/

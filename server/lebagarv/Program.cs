@@ -74,18 +74,6 @@ builder.Services.AddAuthentication(options =>
         context.Properties.StoreTokens(tokens);
         await Task.CompletedTask;
     };
-
-    options.Events.OnRedirectToAuthorizationEndpoint = context =>
-    {
-        Console.WriteLine("Redirecting to: " + context.RedirectUri);
-        return Task.CompletedTask;
-    };
-
-    options.Events.OnRemoteFailure = context =>
-    {
-        Console.WriteLine("Remote failure: " + context.Failure.Message);
-        return Task.CompletedTask;
-    };
 });
 
 builder.Services.AddDistributedMemoryCache();

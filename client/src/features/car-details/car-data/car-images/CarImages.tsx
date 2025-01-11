@@ -25,7 +25,7 @@ const CarImages: React.FC<Props> = ({ car }: Props) => {
 
   return (
     <div className={styles.carImages}>
-      <div className={styles.controlPrev} onClick={prevImage}>
+      <div className={styles.controlprev} onClick={prevImage}>
         <i className="fa fa-arrow-left"></i>
       </div>
       <div className={styles.slider}>

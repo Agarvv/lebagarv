@@ -19,7 +19,7 @@ namespace lebagarv.Presentation.Controllers.Auth
 
             var properties = new AuthenticationProperties
             {
-                RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback",
+                RedirectUri = "https://lebagarv.onrender.com/api/lebagarv/auth/google/callback?state=" + properties.Items["State"],
                 Items =
                 {
                     { "LoginProvider", GoogleDefaults.AuthenticationScheme },

@@ -17,7 +17,7 @@ public class GoogleController : ControllerBase
         Console.WriteLine("Auth google endpoint hit"); 
         var properties = new AuthenticationProperties
         {
-            RedirectUri = Url.Action("GoogleResponse"),  
+            RedirectUri = "/api/lebagarv/auth/google/callback",
             Items = { { "LoginProvider", GoogleDefaults.AuthenticationScheme } }
         };
 

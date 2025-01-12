@@ -132,15 +132,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
 
 Console.WriteLine(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING"));
 
 var app = builder.Build();
-
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-});
+app.UseHttpsRedirection();
+app.UseForwardedHeaders();
 
 app.UseSession();
 

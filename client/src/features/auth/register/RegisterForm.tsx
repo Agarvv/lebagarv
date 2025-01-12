@@ -69,10 +69,6 @@ const RegisterForm: React.FC = () => {
               </div>
             </div>
           </form>
-          <div className={styles['social-login']}>
-            <p className={styles['social-login-title']}>Or log in with</p>
-            <div className={styles['social-btns']}></div>
-          </div>
         </div>
       </div>
     </div>

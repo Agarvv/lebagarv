@@ -41,56 +41,6 @@ builder.Services.AddCors(options =>
                .AllowCredentials());
 });
 
-
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-})
-.AddCookie(options =>
-{
-    options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.None; 
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.MaxAge = TimeSpan.FromDays(7);
-    options.Cookie.IsEssential = true;
-})
-.AddGoogle(options =>
-{
-    options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");  
-    options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-    options.CallbackPath = "/api/lebagarv/auth/google/callback";  
-    options.SaveTokens = true;
-
-    options.Events.OnCreatingTicket = async context =>
-    {
-        var tokens = context.Properties.GetTokens()?.ToList() ?? new List<AuthenticationToken>();
-        tokens.Add(new AuthenticationToken
-        {
-            Name = "access_token",
-            Value = context.AccessToken
-        });
-
-        context.Properties.StoreTokens(tokens);
-        await Task.CompletedTask;
-    };
-}).AddGitHub(options => {
-  options.ClientId=Environment.GetEnvironmentVariable("GITHUB_CLIENT_ID");
-  options.ClientSecret=Environment.GetEnvironmentVariable("GITHUB_CLIENT_SECRET");  
- options.CallbackPath="/api/lebagarv/auth/github/callback"; 
-});
-
-
-
-
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -130,7 +80,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 
 builder.Logging.AddConsole();
-builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -143,8 +92,6 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseForwardedHeaders();
 
-app.UseSession();
-
 app.UseMiddleware<AuthMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
@@ -153,12 +100,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.Use(async (context, next) =>
-{
-    Console.WriteLine("Incoming Request: " + context.Request.Path + "?" + context.Request.QueryString);
-    await next();
-});
 
 app.UseRouting();
 app.UseAuthentication();

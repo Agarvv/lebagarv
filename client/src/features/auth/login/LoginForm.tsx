@@ -11,21 +11,10 @@ import { loginUser } from 'src/api/services/auth/AuthService';
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   
-
-  /*const { mutate } = usePost<FormValues>(
-      {
-          serviceFunc: loginUser,
-          successMessage: "Welcome Back!",
-          withError: true,
-          withLoading: true 
-      }
-  )*/
-  
   const { mutate } = useLogin(); 
   
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
       const response = await mutate(data);
-    
   }; 
 
   return (
@@ -69,17 +58,6 @@ const LoginForm: React.FC = () => {
               </div>
             </div>
           </form>
-          <div className={styles['social-login']}>
-            <p className={styles['social-login-title']}>Or log in with</p>
-            <div className={styles['social-btns']}>
-              <button className={`${styles['social-btn']} ${styles.facebook}`}>
-                <i className="fab fa-facebook-f"></i> Facebook
-              </button>
-              <button className={`${styles['social-btn']} ${styles.google}`}>
-                <i className="fab fa-google"></i> Google
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>

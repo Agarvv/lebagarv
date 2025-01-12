@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Chat } from 'src/types/chat/Chat';
 import { Message } from 'src/types/chat/Message';
-import { Contacts } from 'src/types/chat/contacts/Contacts'
 
 
 export interface ChatState {

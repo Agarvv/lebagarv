@@ -14,7 +14,7 @@ const Car: React.FC<Props> = ({ car }) => {
     <div className={styles.car}>
     <a href={`/car/${car?.id}`}>
       <div className={styles.carImage}>
-        <img src={logo} alt="Car Image" />
+        <img src={car?.images[0]} alt="Car Image" />
       </div>
       <div className={styles.carDetails}>
         <div className={styles.carTitle}>

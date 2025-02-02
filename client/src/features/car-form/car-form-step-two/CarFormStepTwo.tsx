@@ -4,7 +4,7 @@ import sharedCarFormStyles from '../CarForm.module.css';
 
 const CarFormStepTwo = () => {
     const { register, formState: { errors } } = useFormContext();
-
+{/* */}
     return (
         <div className="second-step">
             <div className="st-h">

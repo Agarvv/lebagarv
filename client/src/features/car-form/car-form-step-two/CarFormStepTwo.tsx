@@ -15,7 +15,9 @@ const CarFormStepTwo = () => {
                     <label>Car Brand</label>
                     <select {...register('carBrand', { required: 'Car brand is required' })}>
                         <option value="">Select Brand</option>
-                        <option value={1}>BEMVE</option>
+                                                <option value={1}>BEMVE</option>
+                        <option value={2}>Porke</option>
+                        <option value={3}>Mermeledes</option>
                     </select>
                     {errors.carBrand?.message && <small className="formError">{String(errors.carBrand.message)}</small>}
                 </div>

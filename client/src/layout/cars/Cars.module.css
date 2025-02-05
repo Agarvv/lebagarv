@@ -19,7 +19,7 @@
 
 @media(max-width: 600px) {
     .cars {
-       overflow: scroll;
+        grid-template-columns: repeat(2, 1fr)
     }
 }
 

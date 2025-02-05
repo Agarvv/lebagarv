@@ -17,6 +17,12 @@
     }
 }
 
+@media(max-width: 600px) {
+    .cars {
+       overflow: scroll;
+    }
+}
+
 
 
 
